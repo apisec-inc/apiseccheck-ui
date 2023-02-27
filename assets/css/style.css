@@ -207,13 +207,44 @@ label {
 .bg-dark-secondary {
   background-color: rgba(216, 214, 227, 0.15);
 }
-
+.col-lg-6.mx-auto.hero {
+  padding-top: 40px;
+}
 html {
   scroll-behavior: smooth;
 }
 
 
+/*Progress bar */
 
+.progress-container {
+  width: 100%;
+  height: 12px;
+  background-color: #f1f1f1;
+  margin-top: 20px;
+}
+
+div#messageValue {
+  font-size: 22px;
+  margin-top: 10px;
+  color: #777;
+}
+
+#progress-text {
+  color: rgb(2, 92, 122);
+  font-size: 22px;
+  background: #fff;
+  box-shadow: 12920;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+}
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -359,7 +390,13 @@ tr:last-child {
   line-height: 1.2;
 
 }
+div#progressIcons {
+  padding-top: 20px;
+}
 
+div#scantime {
+  padding-top: 20px;
+}
 #downloadbtn {
   background-color: #025c7a;
   font-size: 20px;
@@ -402,9 +439,14 @@ tr:last-child {
   line-height: 1.2;
 
 }
+.anchortag {
+  font-weight: 600;
+  border-bottom: 1px solid rgb(2, 92, 122);
+}
 
+#settingdark {}
 .pdfImage {
-  width: 30%;
+  width: 35%;
 }
 
 .getFullReport {
@@ -429,7 +471,13 @@ tr:last-child {
   width: 90%;
 
 }
+section#ApisecCheck {
+  padding: 100px 0px;
+}
 
+section#faqs {
+  padding: 100px 0px;
+}
 .check {
   color: #72ba2c;
 }
@@ -451,7 +499,11 @@ tr:last-child {
   background-color: #fff;
   border-radius: 10px;
 }
-
+.testdomain {
+  font-family: "Inter";
+  line-height: 1.2;
+  font-size: 20px;
+}
 .Test_passed {
   font-size: 18px;
   font-family: "Inter";
