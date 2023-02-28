@@ -15,7 +15,49 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 
+<style>
+    /*other css*/
+    .hr-theme-slash-2 {
+        display: flex;
+    }
 
+    .hr-line1 {
+        width: 100%;
+        position: relative;
+        margin: 15px;
+        border-bottom: 3px solid #025c7a;
+        margin-bottom: 16%;
+    }
+
+    .hr-line2 {
+        width: 100%;
+        position: relative;
+        margin: 15px;
+        border-bottom: 3px solid #666;
+        margin-bottom: 16%;
+    }
+
+    .hr-line3 {
+        width: 100%;
+        position: relative;
+        margin: 15px;
+        border-bottom: 3px solid #666;
+        margin-bottom: 16%;
+    }
+
+    .hr-icon img {
+        position: relative;
+        top: 3px;
+        color: #ff0000;
+        text-align: center;
+    }
+
+    .progressText {
+        font-size: 16px;
+        text-align: center;
+    }
+
+</style>
 
 </head>
 
@@ -75,6 +117,7 @@
 
 
     </section>
+
     <section class="resultPage p-0">
         <div class="container">
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
@@ -84,7 +127,7 @@
                 <div class="col-md-2 py-2"></div>
                 <div class="col-md-2 py-2">
                     <div class="gradeScore">
-                        <h1 class="text-danger bigscore">C</h1>
+                        <h1 class="text-danger bigscore" id="overallScore"></h1>
                         <p class="score"> Overall Score</p>
                     </div>
                 </div>
@@ -94,6 +137,9 @@
                 </div>
                 <div class="col-md-1 py-2"></div>
 
+            </div>
+            <div class="row">
+                <p id="test123" class="d-none"></p>
             </div>
             <div class="spacing1"></div>
             <div class="row">
@@ -135,6 +181,7 @@
         </div>
     </section>
 
+    
     <div class="spacing1"></div>
     <section class="vulnerabilitySection">
         <div class="container">
@@ -278,11 +325,11 @@
     <section class="aboutTest">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 mx-auto">
+                <div class="col-md-8 mx-auto">
                     <h3 class="Vulnerability text-center mb-2">About This Test</h3>
 
                     <div class="testContent">
-                        <p class="text-center">
+                        <p style="text-align: justify;">
                             APIsec Check tests APIs using automated techniques to identify vulnerabilities, high value
                             data, configuration issues
                             and authentication flaws. This testing is performed without authentication and provides
@@ -290,7 +337,7 @@
                             information an attacker can discover through automated/bot scans. Note, APIsec Check does
                             not perform authenticated
                             tests. We strongly recommend performing authenticated testing of APIs, which can be
-                            performed by APIsec. <a href="">Contact us</a> for
+                            performed by APIsec. <a href="" class="anchortag">Contact us</a> for
                             a free scan.
                         </p>
                     </div>
@@ -358,10 +405,9 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-5 col-md-1-offset">
                     <div class="row p-3">
-                        <div class="pdf py-3">
-                            <h3 class="accessall mb-4 ">Not Sure What <br />to expect ?</h3>
+                        <div class="pdf py-3 text-center">
+                            <h3 class="accessall">Not Sure What <br />to expect ?</h3>
                             <img src="assets/img/pdf-image.png" class="pdfImage" alt="PDF Download">
-
                             <br />
                             <button type="submit" class="btn btn-block1 " id="downloadsample">
                                 Download Sample Report
@@ -374,9 +420,11 @@
 
                 </div>
             </div>
+        
         </div>
     </section>
 
+    
 
 
     <!-- ======= Footer ======= -->
