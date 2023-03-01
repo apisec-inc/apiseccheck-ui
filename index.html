@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>APIsec Scan </title>
+  <title>APIsec Scan</title>
   <meta content="" name="APIsec Scan">
   <!-- Favicons -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -60,27 +60,7 @@
         text-align: center;
       }
     </style>
-<script>
-  $(document).ready(function () {
-    function localresponse() {
-      $.ajax({
-        url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20VtTD",
-        method: "GET",
-        dataType: "json",
-        success: function (response) {
-          // store the response in local storage
-          localStorage.setItem("apiResponse", JSON.stringify(response));
-        },
-        error: function (xhr, status, error) {
-          // Handle any API errors here
-        }
 
-      });
-    }
-  })
-
-
-</script>
 </head>
 
 <body>
