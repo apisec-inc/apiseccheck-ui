@@ -14,6 +14,8 @@
   <link href="assets/img/favicon.png" rel="icon">
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
+
+
   <!-- Google Fonts -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
@@ -58,6 +60,27 @@
         text-align: center;
       }
     </style>
+<script>
+  $(document).ready(function () {
+    function localresponse() {
+      $.ajax({
+        url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20VtTD",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+          // store the response in local storage
+          localStorage.setItem("apiResponse", JSON.stringify(response));
+        },
+        error: function (xhr, status, error) {
+          // Handle any API errors here
+        }
+
+      });
+    }
+  })
+
+
+</script>
 </head>
 
 <body>
@@ -104,7 +127,7 @@
                       <div class="form-outline mb-1">
                         <div class="d-inline">
                         <label for="text">Enter API spec: <i class="fa fa-question-circle questionMark"
-                            aria-hidden="true"></i> 
+                            aria-hidden="true" rel="tooltip" title="Please provide a URL to an API specification. APIsec Scan supports OpenAPI Spec/Swagger and Postman Collections."></i> 
                             <!-- &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0" data-toggle="modal" data-target="#fileUploadModal">Upload a Spec</a> -->
                           </label>
                             </div>
@@ -130,13 +153,13 @@
                           style="  color: rgb(2, 92, 122);
                                             ;">
                           APIsec
-                          Check
                           scanning your API</h3>
                         <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
                         <button class="btn btn-primary" type="button" style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
                           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span>
+                          <span id="messageValue" class="mt-4"></span>
                         </button>
-                        <div id="messageValue" class="mt-4"></div>
+                      
                         </div>
                         <div class="d-none d-flex flex-row mt-4" id="progressIcons">
                           <div class="hr-icon text-center"><img src="assets/img/rectangle_3.png" alt="" width="48px;" height="60px;">
@@ -153,7 +176,7 @@
                             <div class="d-none progressText2 pt-2" id="running" style="color: #025c7a;">Running Security Tests</div>
                           </div>
                           <div class="hr-line2"></div>
-                          <div class="hr-icon2"><img src="assets/img/rectangle_4.png" alt="" width="60px" height="60px" id="preparing"
+                          <div class="hr-icon2"><img src="assets/img/rectangle_4.png" alt="" width="60px" height="60px" id="reporticon"
                               style="filter: grayscale(100%) brightness(10%) contrast(10%);">
                             <div class="d-none progressText3 pt-2" id="preparing" style="color: #025c7a;">Preparing Results Report</div>
                           </div>
@@ -244,6 +267,21 @@
         </div>
         </div>
     <div class="spacing1"></div>
+    <div class="container">
+      <div class="d-none" id="errorresult">
+        <hr class="my-4" />
+        <div class="alert alert-basic" role="alert"
+          style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
+          <h4 class="pt-2 alert alert-basic text-center"><i class="fa fa-exclamation-triangle text-danger"
+              aria-hidden="true"></i>
+            <span id="keyerror"></span> <span class="testdomain">&#8203;</span>
+          </h4>
+          <p class="text-basic text-center" id="errorvalue">
+          </p>
+        </div>
+      </div>
+    </div>
+
   </section><!-- End Hero -->
 
   <!-- <section class="d-none" id="resultPage">
@@ -590,11 +628,7 @@
                 Log4J):
               </td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id=""></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="injectionsForEndpoints"></i>
-                <p id="na"></p>
-  
-  
+              <p id="injection"></p>
               </td>
   
             </tr>
@@ -604,26 +638,22 @@
                 <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
                         <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
                         <p id="na"></p> -->
-                <p id="sixXFuzz"></p>
-  
+                <p id="6fuzz"></p>
               </td>
   
             </tr>
             <tr>
               <td class="vulnerbilityLeft py-2">Reflected GET Injection:</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+                <p id="reflectedget"></p>
                 <p id="na"></p>
-  
               </td>
   
             </tr>
             <tr>
               <td class="vulnerbilityLeft py-2">Reflected POST Injection:</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+            <p id="reflectedpost"></p>
                 <p id="na"></p>
               </td>
   
@@ -640,30 +670,12 @@
               <td class="vulnerbilityLeft py-2">PII
               </td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-cross-circle cross d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+              <p id="pii"></p>
                 <p id="na"></p>
               </td>
   
             </tr>
-            <tr>
-              <td class="vulnerbilityLeft py-2">Money Related</td>
-              <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
-                <p id="na"></p>
-              </td>
-  
-            </tr>
-            <tr>
-              <td class="vulnerbilityLeft py-2">Rich Content Uploads:</td>
-              <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
-                <p id="na"></p>
-              </td>
-  
-            </tr>
+          
   
   
   
@@ -677,8 +689,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">SSL Certificate Issues</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+        <p id="ssl" class="text-center"></p>
                 <p id="na"></p>
               </td>
   
@@ -686,8 +697,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Missing TLS HSTS Headers</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+                <p id="missing"></p>
                 <p id="na"></p>
               </td>
   
@@ -695,8 +705,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Server Properties Leak in Headers</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+              <p id="serverprop"></p>
                 <p id="na"></p>
               </td>
   
@@ -704,8 +713,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Http Options</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+        <p id="httpoption"></p>
                 <p id="na"></p>
               </td>
   
@@ -713,8 +721,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Cors Config</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+        <p id="cors"></p>
                 <p id="na"></p>
               </td>
   
@@ -722,8 +729,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Incremental IDs for Endpoint:</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+                <p id="incremental"></p>
                 <p id="na"></p>
               </td>
   
@@ -741,8 +747,7 @@
                 "status" ):
               </td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+                <p id="noauth"></p>
                 <p id="na"></p>
               </td>
   
@@ -750,8 +755,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Broken Authentication</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+    <p id="brokenauth"></p>
                 <p id="na"></p>
               </td>
   
@@ -759,8 +763,7 @@
             <tr>
               <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
               <td class="vulnerbilityRight">
-                <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
-                <i class="fa fa-times-circle cross d-none" aria-hidden="true" id="failed"></i>
+        <p id="basicauth"></p>
                 <p id="na"></p>
               </td>
   
@@ -799,7 +802,7 @@
   </section>
   
   
-  <section class="getFullReport">
+  <!-- <section class="getFullReport">
     <div class="container">
       <div class="row">
         <h3 class="getFullreportHeading">Get Full Report</h3>
@@ -867,7 +870,7 @@
       </div>
   
     </div>
-  </section>
+  </section> -->
   </section>
 
 

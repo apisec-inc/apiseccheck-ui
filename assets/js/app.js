@@ -1,49 +1,17 @@
 $(document).ready(function () {
 
     scan();
-    barchart();
     hidecheck();
     $("#apiurl").addClass("d-none");
     $("#bearertoken").addClass("d-none");
     $("#emailpro2").addClass("d-none");
     $("#licensekey2").addClass("d-none");
 
-
-
-
+    $("[rel=tooltip]").tooltip({ placement: 'right' });
 
 });
 
-function barchart() {
-    var mychart
-    var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
-    var yValues = [100, 100, 100, 100];
-    var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
 
-    mychart = new Chart("myChart", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            fontColor: ['#dec15a'],
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }],
-
-        },
-
-        options: {
-            legend: { display: false },
-            title: {
-                display: true,
-
-            },
-            scales: {
-                yAxes: [{ ticks: { min: 0, stepSize: 50, max: 100 } }]
-            }
-        }
-    })
-}
 
 function scan() {
     $('#btn').click(function () {
@@ -100,9 +68,26 @@ function scan() {
             },
             data: JSON.stringify(jsonData),
             success: function (result) {
-                console.log('result', result);
-                $('#resultFeatures').removeClass('d-none');
+                if (result.errors === true) {
+                    errorDisplay();
+                }
+                function errorDisplay() {
+                    for (var i = 0; i < result.messages.length; i++) {
+                        if (result.messages[i].type == "ERROR") {
+                            keyMessage = result.messages[i].key;
+                            messageValue = result.messages[i].value;
+                            $('#keyerror').text(keyMessage);
+                            $('#errorvalue').html(messageValue);
+                        }
+                    }
+                    $("#errorresult").removeClass("d-none");
+                    $('#messageValue').addClass("d-none");
+                    $("#loadingresultfree").addClass("d-none");
+                    $("#progressIcons").addClass("d-none");
+                    $('#scantime').addClass("d-none");
+                    $('#btn').prop('disabled', false);
 
+                }
                 var intervalId = setInterval(function () {
                     $.ajax({
                         url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=' + result.data.name,
@@ -113,6 +98,7 @@ function scan() {
                         },
 
                         success: function (testresult) {
+                            $("#errorresult").addClass("d-none");
                             console.log('testresult',);
                             $('#messageValue').text(testresult.data)
                             if (testresult.data == 'API Security Test case Generation') {
@@ -133,7 +119,7 @@ function scan() {
                                 $('.hr-line2').css('border-bottom', '3px solid #025c7a')
                             }
                             if (testresult.data == 'Scan completed') {
-                                $('#scancomp').css('filter', 'none')
+                                $('#reporticon').css('filter', 'none')
                                 $('#preparing').removeClass('d-none')
                                 $('#preparing').css('color', '#6c757d');
                                 $('#openAPISpec').val('');
@@ -154,9 +140,10 @@ function scan() {
 
 
 
-                // 
+
                 function resultAPI() {
                     clearInterval(intervalId);
+                    $("#errorresult").addClass("d-none");
                     $.ajax({
                         url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=' + result.data.name,
                         method: 'GET',
@@ -164,32 +151,33 @@ function scan() {
                         headers: {
                             "Content-Type": "application/json"
                         },
-
                         success: function (resultData) {
-                            $('#indexpageUI').hide().html();
-                            $('#indexpageUI').hide().html('#resultPageOnUI');
-                            $('#indexpageUI').addClass('d-none');
-                            $('#resultPageOnUI').removeClass('d-none')
                             console.log('resultData', resultData);
-                            var viewResult = resultData
-                            var apispecification = viewResult.data.openAPISpec
-                            var name = viewResult.data.name
-                            var description = viewResult.data.description
-                            var score = viewResult.data.testSummary.overallScore
-                            var totalEndpoints = viewResult.data.testSummary.totalEndpoints
+                            var viewResult = resultData;
+                            var apispecification = viewResult.data.openAPISpec;
+                            var name = viewResult.data.name;
+                            var description = viewResult.data.description;
+                            var score = viewResult.data.testSummary.overallScore;
+                            var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
                             // var dateTested = viewResult.data.dateTested
-                            var testEnvironment = viewResult.data.testSummary.testEnvironment
+
+                            var testEnvironment = viewResult.data.testSummary.testEnvironment;
+                            var vulnerabilityScore = viewResult.data.testSummary.vulnerabilityScore;
+                            var valueDataScore = viewResult.data.testSummary.valueDataScore;
+                            var configurationScore = viewResult.data.testSummary.configurationScore;
+                            var authenticationScore = viewResult.data.testSummary.authenticationScore;
                             var dateString = viewResult.data.dateTested;
                             var date = new Date(dateString);
                             var formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
                             console.log(formattedDate);
+
                             var injectionsForEndpoints = viewResult.data.testSummary.injectionsForEndpoints;
                             var sixXFuzz = viewResult.data.testSummary.sixXFuzz;
                             var reflectedGetInjection = viewResult.data.testSummary.reflectedGetInjection;
                             var reflectedPOSTInjection = viewResult.data.testSummary.reflectedPOSTInjection;
                             var pii = viewResult.data.testSummary.pii;
-                            var moneyRelated = viewResult.data.testSummary.moneyRelated;
-                            var richContentUploads = viewResult.data.testSummary.richContentUploads;
+                            // var moneyRelated = viewResult.data.testSummary.moneyRelated;
+                            // var richContentUploads = viewResult.data.testSummary.richContentUploads;
                             var sslCertificateIssues = viewResult.data.testSummary.sslCertificateIssues;
                             var missingTLSHSTSHeaders = viewResult.data.testSummary.missingTLSHSTSHeaders;
                             var serverPropertiesLeakInHeaders = viewResult.data.testSummary.serverPropertiesLeakInHeaders;
@@ -199,15 +187,97 @@ function scan() {
                             var noAuth = viewResult.data.testSummary.noAuth;
                             var brokenAuthentication = viewResult.data.testSummary.brokenAuthentication;
                             var basicAuthentication = viewResult.data.testSummary.basicAuthentication;
-                            for (var i = 0; i < viewResult.data.testSummary.length; i++) {
-                                if (viewResult.data.testSummary[i].injectionsForEndpoints == 'passed') {
-                                    $('#passed').removeClass('d-none');
-                                }
-                                if (viewResult.data.testSummary[i].injectionsForEndpoints == 'passed') {
-                                    $('#failed').removeClass('d-none');
-                                }
-
+                            barchart();
+                            if (injectionsForEndpoints === 'Passed') {
+                                $("#injectionsForEndpoints").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
+                            else {
+                                $("#injectionsForEndpoints").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (sixXFuzz === 'Passed') {
+                                $("#6xfuz").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+
+                            else {
+                                $("#6xfuz").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (reflectedGetInjection === 'Passed') {
+                                $("#reflectedget").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#reflectedget").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (reflectedPOSTInjection === 'Passed') {
+                                $("#reflectedpost").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#reflectedpost").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (pii === 'Passed') {
+                                $("#pii").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#pii").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+
+                            if (sslCertificateIssues === 'Passed') {
+                                $("#ssl").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#ssl").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (missingTLSHSTSHeaders === 'Passed') {
+                                $("#missing").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#missing").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (serverPropertiesLeakInHeaders === 'Passed') {
+                                $("#serverprop").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#serverprop").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (httpOptions === 'Passed') {
+                                $("#httpoption").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#httpoption").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (corsConfig === 'Passed') {
+                                $("#cors").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#cors").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (incrementalIDsForEndpoint === 'Passed') {
+                                $("#incremental").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#incremental").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (noAuth === 'Passed') {
+                                $("#noauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#noauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (brokenAuthentication === 'Passed') {
+                                $("#brokenauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#brokenauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            if (basicAuthentication === 'Passed') {
+                                $("#basicauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                            }
+                            else {
+                                $("#basicauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            }
+                            $('#indexpageUI').hide().html();
+                            $('#indexpageUI').hide().html('#resultPageOnUI');
+                            $('#indexpageUI').addClass('d-none');
+                            $('#resultPageOnUI').removeClass('d-none')
 
                             $('#dateTested').text(formattedDate);
                             $("#apispecification").text(apispecification)
@@ -217,12 +287,6 @@ function scan() {
                             $("#testEnvironment").text(testEnvironment)
                             $("#overallScore").text(score);
                             $('#injectionsForEndpoints').text(injectionsForEndpoints)
-                            if (injectionsForEndpoints == 'failed') {
-                                $('#injectionsForEndpoints').html(' <i class="fa fa-times-circle cross d-none" aria-hidden="true"></i>')
-                            }
-                            if (injectionsForEndpoints == 'passed') {
-                                $('#injectionsForEndpoints').html('<i class="fa fa-check-circle check d-none" aria-hidden="true" id=""></i>')
-                            }
                             $('#sixXFuzz').text(sixXFuzz)
                             $('#reflectedGetInjection').text(reflectedGetInjection)
                             $('#reflectedPOSTInjection').text(reflectedPOSTInjection)
@@ -239,34 +303,37 @@ function scan() {
                             $('#brokenAuthentication').text(brokenAuthentication)
                             $('#basicAuthentication').text(basicAuthentication)
 
-                                // for (var key in viewResult.data.testSummary) {
-                                //     if (viewResult.data.testSummary.hasOwnProperty(key)) {
-                                //         console.log(key + ": " + viewResult.data.testSummary[key]);
-                                //     }
-                                //     if (viewResult.data.testSummary.hasOwnProperty(injectionsForEndpoints || sixXFuzz) == 'passed') {
-                                //         $('#passed').removeClass('d-none');
-                                //     }
-                                //     if (viewResult.data.testSummary.hasOwnProperty(injectionsForEndpoints || sixXFuzz) == 'failed') {
-                                //         $('#failed').removeClass('d-none');
-                                //     }
-                                // }
-                                // if (viewResult.data.testSummary.injectionsForEndpoints && viewResult.data.testSummary.sixXFuzz && viewResult.data.testSummary.reflectedGetInjection && viewResult.data.testSummary.reflectedPOSTInjection && viewResult.data.testSummary.pii && viewResult.data.testSummary.moneyRelated && viewResult.data.testSummary.richContentUploads && viewResult.data.testSummary.sslCertificateIssues && viewResult.data.testSummary.missingTLSHSTSHeaders && viewResult.data.testSummary.serverPropertiesLeakInHeaders && viewResult.data.testSummary.httpOptions && viewResult.data.testSummary.corsConfig && viewResult.data.testSummary.incrementalIDsForEndpoint && viewResult.data.testSummary.noAuth && viewResult.data.testSummary.brokenAuthentication && viewResult.data.testSummary.basicAuthentication === 'failed') {
-                                //     $('#failed').removeClass('d-none');
-                                //     $('#na').hide();
-                                // }
-                                // else if (viewResult.data.testSummary.injectionsForEndpoints && viewResult.data.testSummary.sixXFuzz && viewResult.data.testSummary.reflectedGetInjection && viewResult.data.testSummary.reflectedPOSTInjection && viewResult.data.testSummary.pii && viewResult.data.testSummary.moneyRelated && viewResult.data.testSummary.richContentUploads && viewResult.data.testSummary.sslCertificateIssues && viewResult.data.testSummary.missingTLSHSTSHeaders && viewResult.data.testSummary.serverPropertiesLeakInHeaders && viewResult.data.testSummary.httpOptions && viewResult.data.testSummary.corsConfig && viewResult.data.testSummary.incrementalIDsForEndpoint && viewResult.data.testSummary.noAuth && viewResult.data.testSummary.brokenAuthentication && viewResult.data.testSummary.basicAuthentication == 'passed') {
-                                //     $('#passed').removeClass('d-none');
-                                //     $('#na').hide();
-                                // }
-                                // else {
-                                //     $('#failed').hide();
-                                //     $('#passed').hide();
-                                //     $('#na').show()
-                                // }
-                                // var dateTestValue = currentDate().curentDate
+                            function barchart() {
+                                var mychart
+                                var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
+                                var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
+                                var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
+                                mychart = new Chart("myChart", {
+                                    type: "bar",
+                                    data: {
+                                        labels: xValues,
+                                        fontColor: ['#dec15a'],
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }],
+                                    },
+                                    options: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                        },
+                                        scales: {
+                                            yAxes: [{ ticks: { min: 0, stepSize: 50, max: 100 } }]
+                                        }
+                                    }
+                                })
 
-                                ("date").text()
-                            console.log('overallscore', score);
+                            }
+
+
+
+
 
                         },
                         error: function (xhr, status, error) {
@@ -280,40 +347,17 @@ function scan() {
 
 
 
-                if (result.errors === true) {
-                    errorDisplay();
-                }
-                function errorDisplay() {
-                    $("#testresultfree").addClass("d-none");
-                    $("#testresultpro").addClass("d-none");
-                    $("#displayerrormessage").addClass("d-none");
-                    $("#errorscreen").addClass("d-none")
-                    for (var i = 0; i < result.messages.length; i++) {
-                        if (result.messages[i].type == "ERROR") {
-                            keyMessage = result.messages[i].key;
-                            messageValue = result.messages[i].value;
-                            $('#keyerror').text(keyMessage);
-                            $('#errorvalue').html(messageValue);
-                        }
-                    }
-                    $("#errorresult").removeClass("d-none")
-
-                }
 
             },
             error: function (error) {
 
                 var err = eval("(" + error.responseText + ")");
-                console.log(err.messageValue)
+
                 var errmsg = error.responseText
                 if (err.status == '500') {
-                    $('#email').val("");
                     $('#openAPISpec').val('');
                     $('#btn').prop('disabled', false);
-                    $('.freebtn').prop('disabled', false);
-                    $('.probtn').prop('disabled', false);
                     $("#loadingresultfree").addClass("d-none");
-                    $("#Features").removeClass("d-none");
                     $("#errorscreen").removeClass("d-none")
                 }
                 else {
