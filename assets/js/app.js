@@ -81,12 +81,13 @@ function scan() {
                     }
                     $("#errorresult").removeClass("d-none");
                     $("#errorresult1").addClass("d-none");
-
                     $('#messageValue').addClass("d-none");
                     $("#loadingresultfree").addClass("d-none");
                     $("#progressIcons").addClass("d-none");
                     $('#scantime').addClass("d-none");
                     $('#btn').prop('disabled', false);
+                    $('#openAPISpec').val('');
+
 
                 }
                 var intervalId = setInterval(function () {
@@ -332,7 +333,7 @@ function scan() {
                                         },
 
                                         scales: {
-                                            yAxes: [{ ticks: { min: 0, stepSize: 50, max: 100 } }]
+                                            yAxes: [{ ticks: { min: 0, stepSize: 10, max: 100 } }]
                                         }
                                     }
                                 })
