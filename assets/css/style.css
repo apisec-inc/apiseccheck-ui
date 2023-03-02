@@ -681,7 +681,7 @@ a.nav-link.scrollto.logo {
   height: 2px;
   bottom: 3px;
   left: 30px;
-  background-color: #1acc8d;
+  background-color: #c0d6de;
   visibility: hidden;
   width: 0px;
   transition: all 0.3s ease-in-out 0s;
@@ -698,7 +698,8 @@ a.nav-link.scrollto.logo {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #fff;
+  color: rgb(2, 92, 122);
+    font-weight: 600;
 }
 
 

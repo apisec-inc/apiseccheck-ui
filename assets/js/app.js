@@ -307,6 +307,12 @@ function scan() {
 
                             function barchart() {
                                 var mychart
+                                const data = [
+                                    { name: 'A', value: 30 },
+                                    { name: 'B', value: 60 },
+                                    { name: 'C', value: 85 },
+                                    { name: 'D', value: 20 },
+                                ];
                                 var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
                                 var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
 
@@ -321,9 +327,20 @@ function scan() {
                                         labels: xValues,
                                         fontColor: ['#dec15a'],
                                         datasets: [{
-                                            backgroundColor: barColors,
-                                            data: yValues
-                                        }],
+                                            // backgroundColor: barColors,
+                                            data: yValues,
+                                            itemStyle: {
+                                                backgroundColor: (yValues) => {
+                                                    if (yValues <= 49) {
+                                                        return 'green';
+                                                    } else if (yValues >= 50 && yValues <= 75) {
+                                                        return 'yellow';
+                                                    } else if (yValues >= 76 && yValues <= 100) {
+                                                        return 'red';
+                                                    }
+                                                }
+                                            }
+                                        }]
                                     },
                                     options: {
 
