@@ -80,6 +80,8 @@ function scan() {
                         }
                     }
                     $("#errorresult").removeClass("d-none");
+                    $("#errorresult1").addClass("d-none");
+
                     $('#messageValue').addClass("d-none");
                     $("#loadingresultfree").addClass("d-none");
                     $("#progressIcons").addClass("d-none");
@@ -400,10 +402,17 @@ function scan() {
 
                 var errmsg = error.responseText
                 if (err.status == '500') {
+                    $("#errorresult1").removeClass("d-none");
+                    $("#keyerror1").html("Internal Server Error");
                     $('#openAPISpec').val('');
-                    $('#btn').prop('disabled', false);
+                    $('#messageValue').addClass("d-none");
                     $("#loadingresultfree").addClass("d-none");
-                    $("#errorscreen").removeClass("d-none")
+                    $("#progressIcons").addClass("d-none");
+                    $('#scantime').addClass("d-none");
+                    $('#btn').prop('disabled', false);
+                    $("#errorresult").addClass("d-none");
+
+                    // $("#errorscreen").removeClass("d-none")
                 }
                 else {
                     errorDisplay();
