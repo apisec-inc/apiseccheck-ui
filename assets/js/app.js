@@ -188,161 +188,123 @@ function scan() {
                             var brokenAuthentication = viewResult.data.testSummary.brokenAuthentication;
                             var basicAuthentication = viewResult.data.testSummary.basicAuthentication;
                             barchart();
+                            if (APIdescription === 'null') {
+                                $("#descriptionForAPI").text('No Description');
+                            }
+                            else {
+                                $("#descriptionForAPI").text(APIdescription)
+                            }
                             if (injectionsForEndpoints === 'Passed') {
-                                $("#injectionsForEndpoints").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                                $("#injection").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
                             else if (injectionsForEndpoints === 'Failed') {
-                                $("#injectionsForEndpoints").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
-                            }
-                            else {
-                                $("#na").html('NA')
-                            }
-                            if (sixXFuzz === 'Passed') {
-                                $("#6xfuz").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
+                                $("#injection").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
 
-                            else if (sixXFuzz === 'Failed') {
-                                $("#6xfuz").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
+                            if (sixXFuzz === 'Passed') {
+                                $("#6fuzz").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
+
                             else {
-                                $("#na").html('NA')
+                                $("#6fuzz").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
+
                             if (reflectedGetInjection === 'Passed') {
                                 $("#reflectedget").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (reflectedGetInjection === 'Failed') {
+                            else {
                                 $("#reflectedget").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (reflectedPOSTInjection === 'Passed') {
                                 $("#reflectedpost").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (reflectedPOSTInjection === 'Failed') {
+                            else {
                                 $("#reflectedpost").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (pii === 'Passed') {
                                 $("#piiData").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (pii === 'Failed') {
+                            else {
                                 $("#piiData").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (sslCertificateIssues === 'Passed') {
                                 $("#ssl").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (sslCertificateIssues === 'Failed') {
+                            else {
                                 $("#ssl").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (missingTLSHSTSHeaders === 'Passed') {
                                 $("#missing").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (missingTLSHSTSHeaders === 'Failed') {
+                            else {
                                 $("#missing").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (serverPropertiesLeakInHeaders === 'Passed') {
                                 $("#serverprop").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (serverPropertiesLeakInHeaders === 'Failed') {
+                            else {
                                 $("#serverprop").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (httpOptions === 'Passed') {
                                 $("#httpoption").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (httpOptions === 'Failed') {
+                            else {
                                 $("#httpoption").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (corsConfig === 'Passed') {
                                 $("#cors").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (corsConfig === 'Failed') {
+                            else {
                                 $("#cors").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (incrementalIDsForEndpoint === 'Passed') {
                                 $("#incremental").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (incrementalIDsForEndpoint === 'Failed') {
+                            else {
                                 $("#incremental").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (noAuth === 'Passed') {
                                 $("#noauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (noAuth === 'Failed') {
+                            else {
                                 $("#noauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (brokenAuthentication === 'Passed') {
                                 $("#brokenauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (brokenAuthentication === 'Failed') {
+                            else {
                                 $("#brokenauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             if (basicAuthentication === 'Passed') {
                                 $("#basicauth").html('<i class="fa fa-check-circle check" aria-hidden="true"></i>');
                             }
-                            else if (basicAuthentication === 'Failed') {
+                            else {
                                 $("#basicauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-                            else {
-                                $("#na").html('NA')
-                            }
+
                             $('#indexpageUI').hide().html();
                             $('#indexpageUI').hide().html('#resultPageOnUI');
                             $('#indexpageUI').addClass('d-none');
                             $('#resultPageOnUI').removeClass('d-none')
-
                             $('#dateTested').text(formattedDate);
                             $("#apispecification").text(apispecification)
                             $("#name").text(name)
-                            $("#APIdescription").text(APIdescription)
+
                             $("#totalEndpoints").text(totalEndpoints)
                             $("#testEnvironment").text(testEnvironment)
                             $("#overallScore").text(score);
-                            $('#injectionsForEndpoints').text(injectionsForEndpoints)
-                            $('#6xfuz').text(sixXFuzz)
-                            $('#reflectedget').text(reflectedGetInjection)
-                            $('#reflectedpost').text(reflectedPOSTInjection)
-                            $('#piiData').text(pii)
-                            $('#moneyRelated').text(moneyRelated)
-                            $('#richContentUploads').text(richContentUploads)
-                            $('#sslCertificateIssues').text(sslCertificateIssues)
-                            $('#missingTLSHSTSHeaders').text(missingTLSHSTSHeaders)
-                            $('#serverPropertiesLeakInHeaders').text(serverPropertiesLeakInHeaders)
-                            $('#httpOptions').text(httpOptions)
-                            $('#corsConfig').text(corsConfig)
-                            $('#incrementalIDsForEndpoint').text(incrementalIDsForEndpoint)
-                            $('#noAuth').text(noAuth)
-                            $('#brokenAuthentication').text(brokenAuthentication)
-                            $('#basicAuthentication').text(basicAuthentication)
+
                             function barchart() {
                                 var mychart
                                 var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
