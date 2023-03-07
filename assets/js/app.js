@@ -308,7 +308,19 @@ function scan() {
                                 var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
                                 var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
 
-                                var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
+                                // var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
+                                const backgroundColor = [];
+                                for (i = 0; i < yValues.length; i++) {
+                                    if (yValues[i] >= 0 && yValues[i] < 49) {
+                                        backgroundColor.push('green')
+                                    }
+                                    if (yValues[i] >= 50 && yValues <= 75) {
+                                        backgroundColor.push('yellow')
+                                    }
+                                    if (yValues[i] > 75) {
+                                        backgroundColor.push('red')
+                                    }
+                                }
                                 mychart = new Chart("myChart", {
 
                                     type: "bar",
@@ -317,7 +329,7 @@ function scan() {
                                         labels: xValues,
                                         fontColor: ['#dec15a'],
                                         datasets: [{
-                                            backgroundColor: barColors,
+                                            backgroundColor: backgroundColor,
                                             data: yValues,
 
                                         }],
@@ -568,21 +580,31 @@ function runAsampleAPI() {
                 $("#overallScore").text(score);
 
                 function barchart() {
-                    var mychart
+
                     var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
                     var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
                     var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
-
-                    mychart = new Chart("myChart", {
-
+                    const backgroundColor = [];
+                    for (i = 0; i < yValues.length; i++) {
+                        if (yValues[i] >= 0 && yValues[i] < 49) {
+                            backgroundColor.push('green')
+                        }
+                        if (yValues[i] >= 50 && yValues <= 75) {
+                            backgroundColor.push('yellow')
+                        }
+                        if (yValues[i] > 75) {
+                            backgroundColor.push('red')
+                        }
+                    }
+                    var ctx = document.getElementById('myChart').getContext('2d')
+                    var mychart = new Chart(ctx, {
                         type: "bar",
-
                         data: {
                             labels: xValues,
                             fontColor: ['#dec15a'],
                             datasets: [{
-                                backgroundColor: barColors,
                                 data: yValues,
+                                backgroundColor: backgroundColor,
                             }],
                         },
 
