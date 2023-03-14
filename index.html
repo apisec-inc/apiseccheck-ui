@@ -107,6 +107,7 @@
                     <div class="col-md-10 py-0">
                       <div class="form-outline mb-1">
                         <div class="d-inline">
+                          
                         <label for="text">Enter API spec: <i class="fa fa-question-circle questionMark"
                             aria-hidden="true" rel="tooltip" title="Please provide a URL to an API specification. APIsec Scan supports OpenAPI Spec/Swagger and Postman Collections."></i> 
                             <!-- &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0" data-toggle="modal" data-target="#fileUploadModal">Upload a Spec</a> -->
@@ -611,7 +612,7 @@
           <p class="Test_passed mb-2">Test Passed</p>
           <table class="vulnerabilityData" style="width: 100%;">
             <tr>
-              <td class="vulnerbilityLeft py-2">Injection for endpoints (SQL, NoSQL, Linux, Windows,
+              <td class="vulnerbilityLeft py-2">Injection (SQL, NoSQL, Linux, Windows,
                 Log4J):
               </td>
               <td class="vulnerbilityRight">
@@ -620,7 +621,7 @@
   
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">6x Fuzz for endpoints without auth</td>
+              <td class="vulnerbilityLeft py-2">Fuzzing</td>
               <td class="vulnerbilityRight">
                 <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
                         <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
@@ -651,10 +652,10 @@
       </div>
       <div class="row mt-5">
         <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-          <h3 class="Vulnerability float-left mb-3">Valuable Data</h3>
+          <h3 class="Vulnerability float-left mb-3">Valuable</h3>
           <table class="vulnerabilityData" style="width: 100%;">
             <tr>
-              <td class="vulnerbilityLeft py-2">PII
+              <td class="vulnerbilityLeft py-2">Personal Data
               </td>
               <td class="vulnerbilityRight">
               <p id="piiData"></p>
@@ -669,42 +670,42 @@
           <h3 class="Vulnerability float-left mb-3">Configuration </h3>
           <table class="vulnerabilityData" style="width: 100%;">
             <tr>
-              <td class="vulnerbilityLeft py-2">SSL Certificate Issues</td>
+              <td class="vulnerbilityLeft py-2">SSL Certificate</td>
               <td class="vulnerbilityRight">
               <p id="ssl"></p>
                 <p id="na"></p>
               </td>
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">Missing TLS HSTS Headers</td>
+              <td class="vulnerbilityLeft py-2">SSL Required</td>
               <td class="vulnerbilityRight">
                 <p id="missing"></p>
                 <p id="na"></p>
               </td>
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">Server Properties Leak in Headers</td>
+              <td class="vulnerbilityLeft py-2">Server Properties Leak</td>
               <td class="vulnerbilityRight">
               <p id="serverprop"></p>
                 <p id="na"></p>
               </td>
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">Http Options</td>
+              <td class="vulnerbilityLeft py-2">HTTP Options</td>
               <td class="vulnerbilityRight">
         <p id="httpoption"></p>
                 <p id="na"></p>
               </td>
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">Cors Config</td>
+              <td class="vulnerbilityLeft py-2">CORS Configuration</td>
               <td class="vulnerbilityRight">
         <p id="cors"></p>
                 <p id="na"></p>
               </td>
             </tr>
             <tr>
-              <td class="vulnerbilityLeft py-2">Incremental IDs for Endpoint:</td>
+              <td class="vulnerbilityLeft py-2">Incremental IDs</td>
               <td class="vulnerbilityRight">
                 <p id="incremental"></p>
                 <p id="na"></p>
@@ -718,7 +719,7 @@
         <div class=" col-md-7 mx-auto vulnerabiltyHeading">
           <h3 class="Vulnerability float-left mb-3">Authentication</h3>
           <table class="vulnerabilityData" style="width: 100%;">
-            <tr>
+            <!-- <tr>
               <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
                 "status" ):
               </td>
@@ -727,7 +728,7 @@
                 <p id="na"></p>
               </td>
   
-            </tr>
+            </tr> -->
             <tr>
               <td class="vulnerbilityLeft py-2">Broken Authentication</td>
               <td class="vulnerbilityRight">

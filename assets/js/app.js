@@ -305,7 +305,7 @@ function scan() {
 
                             function barchart() {
                                 var mychart
-                                var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
+                                var xValues = ["Vulnerable", "Valuable", "Configuration", "Authentication"];
                                 var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
 
                                 // var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
@@ -581,7 +581,7 @@ function runAsampleAPI() {
 
                 function barchart() {
 
-                    var xValues = ["Vulnerability", "Value Data", "Configuration", "Authentication"];
+                    var xValues = ["Vulnerable", "Valuable", "Configuration", "Authentication"];
                     var yValues = [vulnerabilityScore, valueDataScore, configurationScore, authenticationScore];
                     var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
                     const backgroundColor = [];
