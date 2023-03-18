@@ -107,7 +107,6 @@
                     <div class="col-md-10 py-0">
                       <div class="form-outline mb-1">
                         <div class="d-inline">
-                          
                         <label for="text">Enter API spec: <i class="fa fa-question-circle questionMark"
                             aria-hidden="true" rel="tooltip" title="Please provide a URL to an API specification. APIsec Scan supports OpenAPI Spec/Swagger and Postman Collections."></i> 
                             <!-- &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0" data-toggle="modal" data-target="#fileUploadModal">Upload a Spec</a> -->
@@ -170,7 +169,7 @@
                         <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
                                                                                                                                                                                                                                                                                                                         style="color: #72ba2c"></i> Scan Completed</p> -->
                       </div>
-                      <div class="col-lg-6 mx-auto report pt-4">
+                      <div class="col-lg-6 mx-auto report pt-4" id="runasamplescan">
                         <p>Or <span class="samplecheck"><a href="#" id="runSample">run a sample scan</a> <img src="assets/img/shape_1.png"
                               alt="" class="image-fluid"></span></p>
                         </div>
@@ -198,20 +197,22 @@
             <span aria-hidden="true" class="timesx">&times;</span>
           </button>
         </div>
-        <form method="post" enctype="multipart/form-data" action="/upload">
+        <form method="post" enctype="multipart/form-data" id="popupform">
           <div class="modal-body">
-            <p>upload your API spec here. We support OAS, Swagger and Postman</p>
+            <p class="text-center">Upload your API spec here. We support OAS, Swagger and Postman</p>
             <div class="text-center">
               <span class="drag">Drag your file here</span><br />
               <span class="drag">Or</span>
             
             </div>
             <div class="form-group">
-            <div class="text-center">
-              <button type="button" name="file" id="file" class="form-control-file mt-2">
+            <div class="text-center mt-2">
+              <!-- <button type="button" name="file" id="file" class="form-control-file mt-2"
+                                                                                                                                  onclick="document.getElementById('getFile').click()">
             
                 Select from your computer
-              </button>
+              </button> -->
+              <input type='file' id="getFile">
             </div>
             </div>
           </div>
@@ -518,7 +519,7 @@
             <div class="result my-3" id="result" style="display: block;">
               <div class="col-lg-6 mx-auto hero">
                 <div class="logo-center text-center my-3">
-                  <a href="#"><img src="assets/img/APIsecCheckLogoBig.png" class="center-logo img-fluid"></a>
+                  <a href="#"><img src="assets/img/betaLogo@2x.png" class="center-logo img-fluid"></a>
                 </div>
                 <div class="text-center py-5">
                   <h2>How Attractive is your API to automated attack?
