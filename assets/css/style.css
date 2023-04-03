@@ -503,6 +503,7 @@ section#faqs {
   font-family: "Inter";
   line-height: 1.2;
   font-size: 20px;
+  word-wrap: break-word;
 }
 .Test_passed {
   font-size: 18px;
