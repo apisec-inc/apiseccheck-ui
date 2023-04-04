@@ -100,7 +100,6 @@ function scan() {
 
                         success: function (testresult) {
                             $("#errorresult").addClass("d-none");
-                            console.log('testresult',);
                             $('#messageValue').text(testresult.data)
                             if (testresult.data == 'API Security Test case Generation') {
                                 $('#progre').removeClass('d-none')
@@ -178,7 +177,6 @@ function scan() {
                             var dateString = viewResult.data.dateTested;
                             var date = new Date(dateString);
                             var formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                            console.log(formattedDate);
 
                             var injectionsForEndpoints = viewResult.data.testSummary.injectionsForEndpoints;
                             var sixXFuzz = viewResult.data.testSummary.sixXFuzz;
@@ -448,7 +446,6 @@ function fileupload() {
                     if (result.errors === true) {
                         errorDisplay();
                     }   
-                    console.log('resultjere', result);
                     function errorDisplay() {
                         for (var i = 0; i < result.messages.length; i++) {
                             if (result.messages[i].type == "ERROR") {
@@ -492,7 +489,6 @@ function fileupload() {
 
                             success: function (testresult) {
                                 $("#errorresult").addClass("d-none");
-                                console.log('testresult',);
                                 $('#messageValue').text(testresult.data)
                                 if (testresult.data == 'API Security Test case Generation') {
                                     $('#progre').removeClass('d-none')
@@ -566,7 +562,6 @@ function fileupload() {
                                 var dateString = viewResult.data.dateTested;
                                 var date = new Date(dateString);
                                 var formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                                console.log(formattedDate);
 
                                 var injectionsForEndpoints = viewResult.data.testSummary.injectionsForEndpoints;
                                 var sixXFuzz = viewResult.data.testSummary.sixXFuzz;
