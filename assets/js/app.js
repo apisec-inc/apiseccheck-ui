@@ -1,11 +1,18 @@
 $(document).ready(function () {
 
-    scan();
     runAsampleAPI();
+    scan();
     fileupload();
     $("#apiurl").addClass("d-none");
     $("[rel=tooltip]").tooltip({ placement: 'right' });
-
+    // $.getJSON("https://api.ipify.org/?format=json", function (e) {
+    //     // console.log(""e.ip);
+    //     if (e.ip == '49.204.27.190') {
+    //         console.log('this is APIsec Ip', e.ip);
+    //         var ip = e.ip;
+    //         $("ipAddress").text(ip)
+    //     }
+    // });
 });
 
 
@@ -81,8 +88,6 @@ function scan() {
                     $('#scantime').addClass("d-none");
                     $('#btn').prop('disabled', false);
                     $('#openAPISpec').val('');
-
-
                 }
                 var intervalId = setInterval(function () {
                     $.ajax({
@@ -115,6 +120,9 @@ function scan() {
                                 $('#running').css('color', '#025c7a', 'font-weight', '600')
                                 $('.hr-line2').css('border-bottom', '3px solid #025c7a')
                             }
+                            if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large') {
+                                clearInterval(intervalId);
+                            }
                             if (testresult.data == 'Scan completed') {
                                 $('#reporticon').css('filter', 'none')
                                 $('#preparing').removeClass('d-none')
@@ -126,6 +134,7 @@ function scan() {
                                 clearInterval(intervalId);
                                 resultAPI();
                             }
+
                             else if (testresult.data == 'Error occured during scan') {
                                 $('#loadingresultfree').addClass('d-none')
                             }
@@ -153,6 +162,7 @@ function scan() {
                             "Content-Type": "application/json"
                         },
                         success: function (resultData) {
+
                             var viewResult = resultData;
                             var apispecification = viewResult.data.openAPISpec;
                             var name = viewResult.data.name;
@@ -300,6 +310,7 @@ function scan() {
                             $('#indexpageUI').hide().html('#resultPageOnUI');
                             $('#indexpageUI').addClass('d-none');
                             $('#resultPageOnUI').removeClass('d-none')
+
                             $('#dateTested').text(formattedDate);
                             $("#apispecification").text(apispecification)
                             $("#name").text(name)
@@ -319,7 +330,7 @@ function scan() {
                                     if (yValues[i] >= 0 && yValues[i] < 49) {
                                         backgroundColor.push('green')
                                     }
-                                    if (yValues[i] >= 50 && yValues <= 75) {
+                                    if (yValues[i] >= 50 && yValues[i] <= 75) {
                                         backgroundColor.push('yellow')
                                     }
                                     if (yValues[i] > 75) {
@@ -407,16 +418,21 @@ function updateProgress(progress) {
 
 
 function fileupload() {
-
+    $('#getFile').val = '';
     $('#getFile').on('change', function () {
         var file = this.files[0];
         var reader = new FileReader();
-        reader.onload = function (e) {
-            var contents = e.target.result;
-            console.log('content', contents);
-            var newData = JSON.parse(contents);
-            console.log('newdata', newData);
-            $("#fileUploadModal").modal('hide');
+        var fileName = file.name
+        // $('#openAPISpec').text(fileName).val
+        $('#openAPISpec').val(fileName);
+        // console.log('txtet', filename);
+        reader.onload = function (v) {
+            var contents = v.target.result;
+            if (contents) {
+                $('.modal').modal('hide');
+            }
+
+            $('#btn').prop('disabled', true);
             var jsonData = {
                 'openAPISpec': contents, "isFileUpload": true,
             };
@@ -431,7 +447,7 @@ function fileupload() {
                 success: function (result) {
                     if (result.errors === true) {
                         errorDisplay();
-                    }
+                    }   
                     console.log('resultjere', result);
                     function errorDisplay() {
                         for (var i = 0; i < result.messages.length; i++) {
@@ -450,9 +466,21 @@ function fileupload() {
                         $('#scantime').addClass("d-none");
                         $('#btn').prop('disabled', false);
                         $('#openAPISpec').val('');
-
-
                     }
+                    // var modal = document.getElementById('fileUploadModal');
+
+                    // // When the form is submitted
+                    // document.getElementById('popupform').addEventListener('submit', function (e) {
+                    //     e.preventDefault(); // Prevent the form from submitting
+                    //     // Do your file upload process here
+                    //     // Once the upload is complete, close the modal
+                    //     $(modal).modal('hide');
+                    // });
+                    $("#fileUploadModal").addClass('d-none')
+                    $('.modal-backdrop').addClass('d-none')
+                    $("#loadingresultfree").removeClass("d-none");
+                    $("#progressIcons").removeClass("d-none");
+                    $("#scantime").removeClass("d-none");
                     var intervalId = setInterval(function () {
                         $.ajax({
                             url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=' + result.data.name,
@@ -492,6 +520,7 @@ function fileupload() {
                                     $('#btn').prop('disabled', false);
                                     $('#loadingresultfree').addClass('d-none')
                                     $('#progressIcons').addClass('d-none')
+
                                     clearInterval(intervalId);
                                     resultAPI();
                                 }
@@ -523,7 +552,7 @@ function fileupload() {
                             },
                             success: function (resultData) {
                                 var viewResult = resultData;
-                                var apispecification = viewResult.data.openAPISpec;
+                                var apispecification = 'file';
                                 var name = viewResult.data.name;
                                 var APIdescription = viewResult.data.description;
                                 var score = viewResult.data.testSummary.overallScore;
@@ -684,7 +713,7 @@ function fileupload() {
                                         if (yValues[i] >= 0 && yValues[i] < 49) {
                                             backgroundColor.push('green')
                                         }
-                                        if (yValues[i] >= 50 && yValues <= 75) {
+                                        if (yValues[i] >= 50 && yValues[i] <= 75) {
                                             backgroundColor.push('yellow')
                                         }
                                         if (yValues[i] > 75) {
@@ -729,6 +758,7 @@ function fileupload() {
                         })
                     }
 
+
                 },
                 error: function (error) {
 
@@ -748,9 +778,9 @@ function fileupload() {
 
                         // $("#errorscreen").removeClass("d-none")
                     }
-                    else {
-                        errorDisplay();
-                    }
+                    // else {
+                    //     errorDisplay();
+                    // }
                     // console.log(error);
                 }
 
@@ -791,7 +821,7 @@ function runAsampleAPI() {
             success: function (resultData) {
                 // console.log('resultData', resultData);
                 var viewResult = resultData;
-                var apispecification = viewResult.data.openAPISpec;
+                let apispecification = viewResult.data.openAPISpec;
                 var name = viewResult.data.name;
                 var APIdescription = viewResult.data.description;
                 var score = viewResult.data.testSummary.overallScore;
@@ -951,7 +981,7 @@ function runAsampleAPI() {
                         if (yValues[i] >= 0 && yValues[i] < 49) {
                             backgroundColor.push('green')
                         }
-                        if (yValues[i] >= 50 && yValues <= 75) {
+                        if (yValues[i] >= 50 && yValues[i] <= 75) {
                             backgroundColor.push('yellow')
                         }
                         if (yValues[i] > 75) {
