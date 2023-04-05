@@ -474,7 +474,8 @@ function fileupload() {
                     //     $(modal).modal('hide');
                     // });
                     $("#fileUploadModal").addClass('d-none')
-                    $('.modal-backdrop').addClass('d-none')
+                    $('.modal-backdrop').addClass('d-none');
+                    $('body').removeClass('modal-open');
                     $("#loadingresultfree").removeClass("d-none");
                     $("#progressIcons").removeClass("d-none");
                     $("#scantime").removeClass("d-none");
