@@ -16,7 +16,13 @@ $(document).ready(function () {
 });
 
 
-
+$('#fileUploadModal').click(function () {
+    $('#getFile').val = '';
+    $("#fileUploadModal").removeClass('d-none')
+    $('.modal-backdrop').addClass('d-none');
+    $('body').addClass('modal-open');
+    fileupload();
+});
 function scan() {
     $('#btn').click(function () {
         $("#Features").addClass("d-none");
@@ -303,7 +309,10 @@ function scan() {
                             else {
                                 $("#basicauth").html('<i class="fa fa-times-circle cross" aria-hidden="true"></i>');
                             }
-
+                            // let resultUrl = window.location.href;
+                            // resultUrl.searchParams.set("project-name", name);
+                            // console.log(resultUrl)
+                            // window.location.replace(url2)
                             $('#indexpageUI').hide().html();
                             $('#indexpageUI').hide().html('#resultPageOnUI');
                             $('#indexpageUI').addClass('d-none');
@@ -405,18 +414,11 @@ function scan() {
 
 }
 
-function updateProgress(progress) {
-    var progressBar = document.querySelector('.progress-bar');
-    progressBar.style.width = progress + '%';
-    progressBar.innerHTML = progress + '%';
-    $("#text12").text()
-}
-
-
-
-
 function fileupload() {
     $('#getFile').val = '';
+    $("#fileUploadModal").removeClass('d-none')
+    $('.modal-backdrop').removeClass('d-none');
+    $('body').addClass('modal-open');
     $('#getFile').on('change', function () {
         var file = this.files[0];
         var reader = new FileReader();
@@ -437,48 +439,64 @@ function fileupload() {
             $.ajax({
                 url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck',
                 method: 'POST',
-                dataType: 'json',
+                // dataType: 'json',
                 headers: {
                     "Content-Type": "application/json",
                 },
                 data: JSON.stringify(jsonData),
                 success: function (result) {
-                    if (result.errors === true) {
-                        errorDisplay();
-                    }   
-                    function errorDisplay() {
-                        for (var i = 0; i < result.messages.length; i++) {
-                            if (result.messages[i].type == "ERROR") {
-                                keyMessage = result.messages[i].key;
-                                messageValue = result.messages[i].value;
-                                $('#keyerror').text(keyMessage);
-                                $('#errorvalue').html(messageValue);
-                            }
+                    try {
+                        if (result.errors === true) {
+                            errorDisplay();
                         }
-                        $("#errorresult").removeClass("d-none");
-                        $("#errorresult1").addClass("d-none");
-                        $('#messageValue').addClass("d-none");
-                        $("#loadingresultfree").addClass("d-none");
-                        $("#progressIcons").addClass("d-none");
-                        $('#scantime').addClass("d-none");
-                        $('#btn').prop('disabled', false);
-                        $('#openAPISpec').val('');
-                    }
-                    // var modal = document.getElementById('fileUploadModal');
+                        function errorDisplay() {
+                            for (var i = 0; i < result.messages.length; i++) {
+                                if (result.messages[i].type == "ERROR") {
+                                    keyMessage = result.messages[i].key;
+                                    messageValue = result.messages[i].value;
+                                    $('#keyerror').text(keyMessage);
+                                    $('#errorvalue').html(messageValue);
+                                    $('#messageValue').addClass("d-none");
+                                    $("#loadingresultfree").addClass("d-none");
+                                    $("#progressIcons").addClass("d-none");
+                                    $('#scantime').addClass("d-none");
+                                }
+                            }
+                            $("#errorresult").removeClass("d-none");
+                            $("#errorresult1").addClass("d-none");
+                            $('#messageValue').addClass("d-none");
+                            $("#loadingresultfree").addClass("d-none");
+                            $("#progressIcons").addClass("d-none");
+                            $('#scantime').addClass("d-none");
+                            $('#btn').prop('disabled', false);
+                            $('#openAPISpec').val('');
+                            $("#fileUploadModal").addClass('d-none');
+                            $('.modal-backdrop').addClass('d-none');
+                            $('body').removeClass('modal-open');
+                            return;
+                        }
+                        // var modal = document.getElementById('fileUploadModal');
 
-                    // // When the form is submitted
-                    // document.getElementById('popupform').addEventListener('submit', function (e) {
-                    //     e.preventDefault(); // Prevent the form from submitting
-                    //     // Do your file upload process here
-                    //     // Once the upload is complete, close the modal
-                    //     $(modal).modal('hide');
-                    // });
-                    $("#fileUploadModal").addClass('d-none')
-                    $('.modal-backdrop').addClass('d-none');
-                    $('body').removeClass('modal-open');
-                    $("#loadingresultfree").removeClass("d-none");
-                    $("#progressIcons").removeClass("d-none");
-                    $("#scantime").removeClass("d-none");
+                        // // When the form is submitted
+                        // document.getElementById('popupform').addEventListener('submit', function (e) {
+                        //     e.preventDefault(); // Prevent the form from submitting
+                        //     // Do your file upload process here
+                        //     // Once the upload is complete, close the modal
+                        //     $(modal).modal('hide');
+                        // });
+                        $("#fileUploadModal").addClass('d-none');
+                        $('.modal-backdrop').addClass('d-none');
+                        $('body').removeClass('modal-open');
+                        if (result.errors === false) {
+                            $("#loadingresultfree").removeClass("d-none");
+                            $("#progressIcons").removeClass("d-none");
+                            $("#scantime").removeClass("d-none");
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        // Handle the error here, such as displaying an error message to the user
+                    }
+
                     var intervalId = setInterval(function () {
                         $.ajax({
                             url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=' + result.data.name,
@@ -761,7 +779,8 @@ function fileupload() {
                     var err = eval("(" + error.responseText + ")");
 
                     var errmsg = error.responseText
-                    if (err.status == '500') {
+
+                    if (error.statusText = 'error') {
                         $("#errorresult1").removeClass("d-none");
                         $("#keyerror1").html("Internal Server Error");
                         $('#openAPISpec').val('');
@@ -771,9 +790,25 @@ function fileupload() {
                         $('#scantime').addClass("d-none");
                         $('#btn').prop('disabled', false);
                         $("#errorresult").addClass("d-none");
-
-                        // $("#errorscreen").removeClass("d-none")
+                        $("#errorscreen").removeClass("d-none");
+                        $("#fileUploadModal").addClass('d-none')
+                        $('.modal-backdrop').addClass('d-none');
+                        $('body').removeClass('modal-open');
                     }
+
+                    // if (err.status == '500') {
+                    //     $("#errorresult1").removeClass("d-none");
+                    //     $("#keyerror1").html("Internal Server Error");
+                    //     $('#openAPISpec').val('');
+                    //     $('#messageValue').addClass("d-none");
+                    //     $("#loadingresultfree").addClass("d-none");
+                    //     $("#progressIcons").addClass("d-none");
+                    //     $('#scantime').addClass("d-none");
+                    //     $('#btn').prop('disabled', false);
+                    //     $("#errorresult").addClass("d-none");
+
+                    //     // $("#errorscreen").removeClass("d-none")
+                    // }
                     // else {
                     //     errorDisplay();
                     // }
@@ -786,20 +821,7 @@ function fileupload() {
         reader.readAsText(file);
     });
 }
-function simulateProgress() {
-    var progress = 0;
-    var interval = setInterval(function () {
-        progress += Math.floor(Math.random() * 10);
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-        }
-        updateProgress(25);
-        updateProgress(50);
-        updateProgress(75);
-        updateProgress(100);
-    }, 500);
-}
+
 
 
 

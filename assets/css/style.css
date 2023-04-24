@@ -494,7 +494,9 @@ section#faqs {
   line-height: 1.2;
 
 }
-
+.modal-open {
+  overflow: auto !important;
+}
 .vulnerabilityData {
   background-color: #fff;
   border-radius: 10px;
