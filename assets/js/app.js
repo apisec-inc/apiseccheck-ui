@@ -201,6 +201,10 @@ function scan() {
                             var noAuth = viewResult.data.testSummary.noAuth;
                             var brokenAuthentication = viewResult.data.testSummary.brokenAuthentication;
                             var basicAuthentication = viewResult.data.testSummary.basicAuthentication;
+                            let mainURL = window.location.origin+'/result.html';
+                            let url2=new URL(mainURL.replace('index.html',''));
+                            url2.searchParams.set("project-name",name);
+                            window.location.replace(url2)
                             barchart();
                             if (APIdescription === 'null') {
                                 $("#descriptionForAPI").text('No Description');
@@ -598,6 +602,10 @@ function fileupload() {
                                 var noAuth = viewResult.data.testSummary.noAuth;
                                 var brokenAuthentication = viewResult.data.testSummary.brokenAuthentication;
                                 var basicAuthentication = viewResult.data.testSummary.basicAuthentication;
+                                let mainURL = window.location.origin+'/result.html';
+                                let url2=new URL(mainURL.replace('index.html',''));
+                                url2.searchParams.set("project-name",name);
+                                window.location.replace(url2)
                                 barchart();
                                 if (APIdescription === 'null') {
                                     $("#descriptionForAPI").text('No Description');

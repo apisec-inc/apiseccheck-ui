@@ -121,7 +121,7 @@
     <section class="resultPage p-0">
         <div class="container">
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
-                <p class="text-center fw-bold">ACME Investment API</p>
+                           <p class="text-center fw-bold" id="name"></p>
             </div>
             <div class="row py-2">
                 <div class="col-md-2 py-2"></div>
@@ -148,29 +148,27 @@
                         <table class="data" style="width: 100%;">
                             <tr>
                                 <th>Description:</th>
-                                <td>Overwood is an investment financial technology company with one simple goal, to
-                                    make safe high yield investments accessible to regular people. Below are API
-                                    endpoints from the backend. </td>
+                                <td id="descriptionForAPI"></td>
 
                             </tr>
                             <tr>
                                 <th>API Specification:</th>
-                                <td>www.acmebank.com/swagger/index.html</td>
+                                <td id="apispecification"></td>
 
                             </tr>
                             <tr>
                                 <th>API Base URL:</th>
-                                <td>www.acmebank.com/api/v1</td>
+                                <td id="testEnvironment"></td>
 
                             </tr>
                             <tr>
                                 <th>Number of Endpoints:</th>
-                                <td>95</td>
+                                <td id="totalEndpoints"></td>
 
                             </tr>
                             <tr>
                                 <th>Date Tested:</th>
-                                <td>February 07, 2023</td>
+                                <td id="dateTested"></td>
 
                             </tr>
 
@@ -194,32 +192,53 @@
                             <td class="vulnerbilityLeft py-2">Injection for endpoints (SQL, NoSQL, Linux, Windows,
                                 Log4J):
                             </td>
-                            <td class="vulnerbilityRight"><i class="fa fa-check-circle check" aria-hidden="true"></i>
+                            <td class="vulnerbilityRight" id="injection">
+                                <!-- <i class="fa fa-check-circle check" aria-hidden="true"></i> -->
                             </td>
 
                         </tr>
                         <tr>
+                            <td class="vulnerbilityLeft py-2">Fuzzing</td>
+                            <td class="vulnerbilityRight">
+                              <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
+                                      <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
+                                      <p id="na"></p> -->
+                              <p id="6fuzz"></p>
+                            </td>
+                
+                          </tr>
+                        <!-- <tr>
                             <td class="vulnerbilityLeft py-2">6x Fuzz for endpoints without auth</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></i>
+                            <td class="vulnerbilityRight">
+                                <i class="fa fa-times-circle cross" aria-hidden="true"></i>
+                                <p id="6fuzz2"></p>
+
                             </td>
 
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <td class="vulnerbilityLeft py-2">Reflected GET Injection:</td>
                             <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
 
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <td class="vulnerbilityLeft py-2">Reflected POST Injection:</td>
                             <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
 
-                        </tr>
-
+                        </tr> -->
+                        <tr>
+                            <td class="vulnerbilityLeft py-2">Reflected Injection:</td>
+                            <td class="vulnerbilityRight">
+                              <p id="reflectedget"></p>
+                              <p id="na"></p>
+                            </td>
+                
+                          </tr>
 
                     </table>
                 </div>
             </div>
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class=" col-md-7 mx-auto vulnerabiltyHeading">
                     <h3 class="Vulnerability float-left mb-3">Valuable Data</h3>
                     <table class="vulnerabilityData" style="width: 100%;">
@@ -247,41 +266,78 @@
 
                     </table>
                 </div>
-            </div>
+            </div> -->
+            <div class="row mt-5">
+                <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                  <h3 class="Vulnerability float-left mb-3">Valuable</h3>
+                  <table class="vulnerabilityData" style="width: 100%;">
+                    <tr>
+                      <td class="vulnerbilityLeft py-2">Personal Data
+                      </td>
+                      <td class="vulnerbilityRight">
+                      <p id="piiData"></p>
+                        <p id="na"></p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
             <div class="row mt-5">
                 <div class=" col-md-7 mx-auto vulnerabiltyHeading">
                     <h3 class="Vulnerability float-left mb-3">Configuration </h3>
                     <table class="vulnerabilityData" style="width: 100%;">
                         <tr>
                             <td class="vulnerbilityLeft py-2">SSL Certificate Issues</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></i>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"></i> -->
+                                <p id="ssl"></p>
+                                <p id="na"></p>
                             </td>
 
                         </tr>
                         <tr>
                             <td class="vulnerbilityLeft py-2">Missing TLS HSTS Headers</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></i>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true">-->
+                                <p id="missing"></p>
+                                <p id="na"></p>
                             </td>
 
                         </tr>
                         <tr>
                             <td class="vulnerbilityLeft py-2">Server Properties Leak in Headers</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
+                                <p id="serverprop"></p>
+                                <p id="na"></p>
+                            </td>
 
                         </tr>
                         <tr>
                             <td class="vulnerbilityLeft py-2">Http Options</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"></i> -->
+                                <p id="httpoption"></p>
+                                <p id="na"></p>
+                            </td>
 
                         </tr>
                         <tr>
                             <td class="vulnerbilityLeft py-2">Cors Config</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
+                                <p id="cors"></p>
+                                <p id="na"></p>
+                            </td>
 
                         </tr>
                         <tr>
                             <td class="vulnerbilityLeft py-2">Incremental IDs for Endpoint:</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
+                            <td class="vulnerbilityRight">
+                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
+                                    <p id="incremental"></p>
+                                     <p id="na"></p>
+                            </td>
 
                         </tr>
 
@@ -293,26 +349,28 @@
                 <div class=" col-md-7 mx-auto vulnerabiltyHeading">
                     <h3 class="Vulnerability float-left mb-3">Authentication</h3>
                     <table class="vulnerabilityData" style="width: 100%;">
-                        <tr>
+                        <!-- <tr>
                             <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
                                 "status" ):
                             </td>
                             <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></i>
                             </td>
 
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td class="vulnerbilityLeft py-2">Broken Authentication</td>
                             <td class="vulnerbilityRight">
-                                <i class="fa fa-check-circle check" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-check-circle check" aria-hidden="true"></i> -->
+                                <p id="brokenauth"></p>
+                                <p id="na"></p>
                             </td>
 
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
                             <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
 
-                        </tr>
+                        </tr> -->
 
 
                     </table>
@@ -464,10 +522,16 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/app.js"></script>
+    <!-- <script src="assets/js/app.js" type="module"></script> -->
+    <script src="assets/js/result.js"></script>
+
     <script src="assets/js/jquery.slim.min.js"></script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 </body>
 
 </html>
