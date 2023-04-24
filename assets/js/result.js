@@ -222,7 +222,7 @@ $(document).ready(function () {
           $("#resultPageOnUI").removeClass("d-none");
   
           $("#dateTested").text(formattedDate);
-          $("#apispecification").text(apispecification);
+          // $("#apispecification").text(apispecification);
           $("#name").text(name);
   
           $("#totalEndpoints").text(totalEndpoints);
