@@ -28,6 +28,8 @@ function scan() {
         $("#Features").addClass("d-none");
         $("#testresultfree").addClass("d-none");
         $("#errorresult").addClass("d-none");
+        $('#errorresult2').addClass('d-none')
+
         var testStart = Date.now();
         var openAPISpectemp = $('#openAPISpec').val();
         var openAPISpec = openAPISpectemp.replace("getpostman", "postman");
@@ -125,7 +127,12 @@ function scan() {
                                 $('#running').css('color', '#025c7a', 'font-weight', '600')
                                 $('.hr-line2').css('border-bottom', '3px solid #025c7a')
                             }
-                            if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large') {
+                            if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large.') {
+                                $('#openAPISpec').val('');
+                                $('#btn').prop('disabled', false);
+                                $('#loadingresultfree').addClass('d-none')
+                                $('#progressIcons').addClass('d-none')
+                                $('#errorresult2').removeClass('d-none')
                                 clearInterval(intervalId);
                             }
                             if (testresult.data == 'Scan completed') {
@@ -139,10 +146,15 @@ function scan() {
                                 clearInterval(intervalId);
                                 resultAPI();
                             }
+                            // if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large') {
+                            //     clearInterval(intervalId);
+                            // }
+                           
 
-                            else if (testresult.data == 'Error occured during scan') {
-                                $('#loadingresultfree').addClass('d-none')
-                            }
+
+                            // else if (testresult.data == 'Error occured during scan') {
+                            //     $('#loadingresultfree').addClass('d-none')
+                            // }
 
                         },
                         error: function (xhr, status, error) {
@@ -423,6 +435,7 @@ function fileupload() {
     $("#fileUploadModal").removeClass('d-none')
     $('.modal-backdrop').removeClass('d-none');
     $('body').addClass('modal-open');
+    $('#errorresult2').addClass('d-none');
     $('#getFile').on('change', function () {
         var file = this.files[0];
         var reader = new FileReader();
@@ -477,7 +490,7 @@ function fileupload() {
                             $("#fileUploadModal").addClass('d-none');
                             $('.modal-backdrop').addClass('d-none');
                             $('body').removeClass('modal-open');
-                            return;
+                            return
                         }
                         // var modal = document.getElementById('fileUploadModal');
 
@@ -531,6 +544,14 @@ function fileupload() {
                                     $('#running').css('color', '#025c7a', 'font-weight', '600')
                                     $('.hr-line2').css('border-bottom', '3px solid #025c7a')
                                 }
+                                if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large.') {
+                                    $('#openAPISpec').val('');
+                                    $('#btn').prop('disabled', false);
+                                    $('#loadingresultfree').addClass('d-none')
+                                    $('#progressIcons').addClass('d-none')
+                                    $('#errorresult2').removeClass('d-none')
+                                    clearInterval(intervalId);
+                                }
                                 if (testresult.data == 'Scan completed') {
                                     $('#reporticon').css('filter', 'none')
                                     $('#preparing').removeClass('d-none')
@@ -543,9 +564,8 @@ function fileupload() {
                                     clearInterval(intervalId);
                                     resultAPI();
                                 }
-                                else if (testresult.data == 'Error occured during scan') {
-                                    $('#loadingresultfree').addClass('d-none')
-                                }
+                              
+                                
 
                             },
                             error: function (xhr, status, error) {
