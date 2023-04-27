@@ -97,6 +97,7 @@ function scan() {
                     $('#btn').prop('disabled', false);
                     $('#openAPISpec').val('');
                 }
+                if(result.errors === false){
                 var intervalId = setInterval(function () {
                     $.ajax({
                         url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=' + result.data.name,
@@ -397,6 +398,7 @@ function scan() {
 
                     })
                 }
+                }
 
             },
             error: function (error) {
@@ -435,6 +437,7 @@ function fileupload() {
     $("#fileUploadModal").removeClass('d-none')
     $('.modal-backdrop').removeClass('d-none');
     $('body').addClass('modal-open');
+    $("#errorresult").addClass("d-none");
     $('#errorresult2').addClass('d-none');
     $('#getFile').on('change', function () {
         var file = this.files[0];
@@ -487,7 +490,9 @@ function fileupload() {
                             $('#scantime').addClass("d-none");
                             $('#btn').prop('disabled', false);
                             $('#openAPISpec').val('');
-                            $("#fileUploadModal").addClass('d-none');
+                            $('#getFile').val('');
+                            // $("#fileUploadModal").addClass('d-none');
+                            $("#fileUploadModal").hide();
                             $('.modal-backdrop').addClass('d-none');
                             $('body').removeClass('modal-open');
                             return
@@ -501,7 +506,8 @@ function fileupload() {
                         //     // Once the upload is complete, close the modal
                         //     $(modal).modal('hide');
                         // });
-                        $("#fileUploadModal").addClass('d-none');
+                        // $("#fileUploadModal").addClass('d-none');
+                        $("#fileUploadModal").hide();
                         $('.modal-backdrop').addClass('d-none');
                         $('body').removeClass('modal-open');
                         if (result.errors === false) {
@@ -513,7 +519,7 @@ function fileupload() {
                         console.error(error);
                         // Handle the error here, such as displaying an error message to the user
                     }
-
+                    if(result.errors === false){
                     var intervalId = setInterval(function () {
                         $.ajax({
                             url: 'https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=' + result.data.name,
@@ -799,7 +805,7 @@ function fileupload() {
 
                         })
                     }
-
+                }
 
                 },
                 error: function (error) {
@@ -819,7 +825,8 @@ function fileupload() {
                         $('#btn').prop('disabled', false);
                         $("#errorresult").addClass("d-none");
                         $("#errorscreen").removeClass("d-none");
-                        $("#fileUploadModal").addClass('d-none')
+                        // $("#fileUploadModal").addClass('d-none')
+                        $("#fileUploadModal").hide();
                         $('.modal-backdrop').addClass('d-none');
                         $('body').removeClass('modal-open');
                     }
