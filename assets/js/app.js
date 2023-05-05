@@ -28,7 +28,8 @@ function scan() {
         $("#Features").addClass("d-none");
         $("#testresultfree").addClass("d-none");
         $("#errorresult").addClass("d-none");
-        $('#errorresult2').addClass('d-none')
+        $('#errorresult2').addClass('d-none');
+        $('#errorresult1').addClass("d-none");
 
         var testStart = Date.now();
         var openAPISpectemp = $('#openAPISpec').val();
@@ -438,7 +439,8 @@ function fileupload() {
     $('.modal-backdrop').removeClass('d-none');
     $('body').addClass('modal-open');
     $("#errorresult").addClass("d-none");
-    $('#errorresult2').addClass('d-none');
+    $('#errorresult2').addClass("d-none");
+    $('#errorresult1').addClass("d-none");
     $('#getFile').on('change', function () {
         var file = this.files[0];
         var reader = new FileReader();
@@ -531,6 +533,7 @@ function fileupload() {
 
                             success: function (testresult) {
                                 $("#errorresult").addClass("d-none");
+                                $("#errorresult1").addClass("d-none");
                                 $('#messageValue').text(testresult.data)
                                 if (testresult.data == 'API Security Test case Generation') {
                                     $('#progre').removeClass('d-none')
