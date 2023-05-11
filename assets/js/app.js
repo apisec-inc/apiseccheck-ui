@@ -15,7 +15,7 @@ $(document).ready(function () {
     // });
 });
 
-
+var isSubmitting = false;
 $('#fileUploadModal').click(function () {
     $('#getFile').val = '';
     $("#fileUploadModal").removeClass('d-none')
@@ -432,8 +432,9 @@ function scan() {
 
 
 }
-
+var isSubmitting = false;
 function fileupload() {
+
     $('#getFile').val = '';
     $("#fileUploadModal").removeClass('d-none')
     $('.modal-backdrop').removeClass('d-none');
@@ -445,10 +446,17 @@ function fileupload() {
         var file = this.files[0];
         var reader = new FileReader();
         var fileName = file.name
+
         // $('#openAPISpec').text(fileName).val
         $('#openAPISpec').val(fileName);
         // console.log('txtet', filename);
         reader.onload = function (v) {
+            if (isSubmitting) {
+                return false; // prevent multiple clicks if already submitting
+            }
+
+            isSubmitting = true;
+            $(this).prop('disabled', true);
             var contents = v.target.result;
             if (contents) {
                 $('.modal').modal('hide');
