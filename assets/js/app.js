@@ -563,6 +563,7 @@ function fileupload() {
                                 }
                                 if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large.') {
                                     $('#openAPISpec').val('');
+                                    // $('#messageValue').text('');
                                     $('#btn').prop('disabled', false);
                                     $('#loadingresultfree').addClass('d-none')
                                     $('#progressIcons').addClass('d-none')
@@ -581,7 +582,7 @@ function fileupload() {
                                     clearInterval(intervalId);
                                     resultAPI();
                                 }
-                              
+                                $('#messageValue').text('');
                                 
 
                             },
