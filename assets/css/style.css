@@ -75,14 +75,50 @@ span.timesx {
   color: #c0d6de !important;
   font-size: 32px;
 }
-.modal-content {
+.popupWidth {
   width: 85%;
   margin: auto;
 border-radius: 12px;
   border: none;
 }
 
-.modal-body {
+.popupBaseUrl{
+   max-width: 75%;
+  margin: auto;
+  font-family: 'Inter';
+border-radius: 12px;
+  border: none;
+  text-align: center;
+  padding: 22px;
+  background-color: #d9d9d9;
+}
+.cancel{
+  border: none;
+  background: none;
+}
+button.btn.btn-basic.goback {
+    background: #ffff;
+    font-size: 20px;
+}
+
+button.btn.btn-primary.testBaseUrl {
+    background-color: #025c7a;
+    border: none;
+    width: 300px;
+        font-size: 20px;
+    font-family: "Epura";
+}
+input#baseUrlInput {
+    width: 450px;
+    height: 44px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(205, 214, 225);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 12px;
+}
+.uploadFileBody {
 border: 5px dotted #c0d6de;
   margin: 25px;
   height: 240px;

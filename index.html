@@ -169,9 +169,19 @@
                         <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
                                                                                                                                                                                                                                                                                                                         style="color: #72ba2c"></i> Scan Completed</p> -->
                       </div>
-                      <div class="col-lg-6 mx-auto report pt-4" id="runasamplescan">
+                      <div class="col-lg-8 mx-auto report pt-4" id="runasamplescan">
                         <p>Or <span class="samplecheck"><a href="#" id="runSample">run a sample scan</a> <img src="assets/img/shape_1.png"
                               alt="" class="image-fluid"></span></p>
+                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                                                  Launch Base Url
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenterGoback">
+                                                                  Launch Go back
+                                                                </button>
+                                                                <br />
+                                                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenterUnabletoLoad">
+                                                                  unable to load
+                                                                </button> -->
                         </div>
               </div>
               </form>
@@ -189,7 +199,7 @@
   <div class="modal" id="fileUploadModal" tabindex="-1" role="dialog" aria-labelledby="fileUploadModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
+      <div class="modal-content popupWidth">
         <div class="modal-header">
           <!-- <h5 class="modal-title" id="fileUploadModalLabel">Upload File</h5> -->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -197,7 +207,7 @@
           </button>
         </div>
         <form method="post" enctype="multipart/form-data" id="popupform">
-          <div class="modal-body">
+          <div class="modal-body uploadFileBody">
             <p class="text-center">Upload your API spec here. We support OAS, Swagger and Postman</p>
             <div class="text-center">
               <span class="drag">Drag your file here</span><br />
@@ -225,6 +235,102 @@
   </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content popupBaseUrl">
+  
+        <div class="modal-body ">
+          <div class="bodyContent">
+            <h2 class="text-center fw-bold">Hmm...</h2>
+            <p>APIsec Scan found a "base URL" for your API in the specifications!</p>
+            <p class="fw-bold">https://unreachable.apisec.ai/V2</p>
+            <p>However when it tried to call this URL. it was unable to reach your API</p>
+            <p class="text-center fw-bold scanContent">APIsec Scan runs in the cloud, so the provided URL for this API
+              needs to
+              be
+              accessible from the open
+              internet</p>
+            <form action="">
+              <label for="url"
+                class="text-center pl-5
+                                                                                                                                          ">URL</label><br>
+              <input type="text" name="baseurl" id="baseUrlInput" class="baseurl"
+                placeholder="Enter a Publicly - accessible URL for this API">
+              <br>
+              <br>
+              <button type="button" class="btn btn-primary testBaseUrl mt-2">Test Base Url</button>
+              <br>
+              <br>
+              <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel Scan</button>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenterGoback" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content popupBaseUrl">
+  
+        <div class="modal-body ">
+          <div class="bodyContent">
+            <h2 class="text-center fw-bold">We're sorry...</h2>
+            <br>
+            <p class="text-center fw-bold scanContent">APIsec Scan is having trouble reaching your API at the URL
+              provided.</p>
+            <p class="text-center fw-bold scanContent">APIsec Scan runs on APIs that are reachable from the open internet
+            </p>
+            <p>Need help, or need to scan an internal API?</p>
+            <p>Reach out to <a href="#">sales@apisec.ai</a> and we'll get you started.</p>
+            <button type="button" class="btn btn-basic goback mt-2" data-dismiss="modal">Go Back</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenterUnabletoLoad" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content popupBaseUrl">
+  
+        <div class="modal-body ">
+          <div class="bodyContent">
+            <h2 class="text-center fw-bold">Hmm...</h2>
+            <p>APIsec Scan was unable to find a "base URL" in the specifications file</p>
+            <p>Please provide a Base URL where we can reach your API</p>
+            <p class="text-center fw-bold scanContent">APIsec Scan runs in the cloud, so the provided URL for this API
+              needs to
+              be
+              accessible from the open
+              internet</p>
+            <form action="">
+              <label for="url"
+                class="text-center pl-5
+                                                                                                                                          ">URL</label><br>
+              <input type="text" name="baseurl" id="baseUrlInput" class="baseurl"
+                placeholder="Enter a Publicly - accessible URL for this API">
+              <br>
+              <br>
+              <button type="button" class="btn btn-primary testBaseUrl mt-2">Test Base Url</button>
+              <br>
+              <br>
+              <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel Scan</button>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
     <div class="spacing1"></div>
     <div class="container">
       <div class="d-none" id="errorresult">
