@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>APIsec Scan</title>
+    <meta content="" name="APIsec Scan">
+    <!-- Favicons -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link href="assets/img/favicon.png" rel="icon">
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <!-- Google Fonts -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .hr-theme-slash-2 {
+            display: flex;
+        }
+
+        .hr-line {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #025c7a;
+            margin-bottom: 17%;
+        }
+
+        .hr-line1 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 17%;
+        }
+
+        .hr-line2 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 17%;
+        }
+
+        .hr-icon img {
+            position: relative;
+            top: 3px;
+            color: #ff0000;
+            text-align: center;
+        }
+
+        .progressText {
+            font-size: 16px;
+            text-align: center;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <main id="main">
+
+        <!-- ======= Hero Section ======= -->
+        <section class="d-block p-0" id="indexpageUI">
+            <section id="hero">
+
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-12  pt-lg-0 order-2 text-center">
+                            <div>
+                                <div class="free-form my-3" id="free" style="display: block;">
+                                    <div class="col-lg-6 mx-auto freeapi">
+                                        <!-- <div class="logo-center text-center my-3">
+                                            <a href="#"><img src="assets/img/betaLogo@2x.png"
+                                                    class="center-logo img-fluid"></a>
+                                        </div>
+                                        <div class="text-center">
+                                            <h2>Free API Security Scan
+                                            </h2>
+                                        </div> -->
+                                        <form class="needs-validation row g-3 mt-5" id="myForm" method="post"
+                                            novalidate>
+                                            <div class="row p-0 ml-3">
+                                                <div class="col-md-10 py-0">
+                                                    <div class="form-outline mb-1">
+                                                        <div class="d-inline">
+                                                            <label for="text">Enter API spec: <i
+                                                                    class="fa fa-question-circle questionMark"
+                                                                    aria-hidden="true" rel="tooltip"
+                                                                    title="Please provide a URL to an API specification. APIsec Scan supports OpenAPI Spec/Swagger and Postman Collections."></i>
+                                                                &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0"
+                                                                    data-toggle="modal"
+                                                                    data-target="#fileUploadModal">Upload a Spec</a>
+                                                            </label>
+                                                        </div>
+                                                        <input type="url" id="openAPISpec" name="openAPISpec"
+                                                            class="form-control" required="" placeholder="" />
+
+                                                        <div class="invalid-tooltip">A valid API URL is required.</div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <button type="submit" class="btn btn-block1" id="btn">
+                                                        Scan
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                            <div class="testresult pb-1">
+                                                <div class="d-none" id="loadingresultfree">
+                                                    <h3 class="mt-5" style="  color: rgb(2, 92, 122);
+                                            ;">
+                                                        APIsec
+                                                        scanning your API</h3>
+                                                    <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
+                                                    <button class="btn btn-primary" type="button"
+                                                        style="background-color: rgb(2, 92, 122); color: #fff;"
+                                                        disabled>
+                                                        <span class="spinner-border spinner-border-sm" role="status"
+                                                            aria-hidden="true" id=""></span>
+                                                        <span id="messageValue" class="mt-4"></span>
+                                                    </button>
+
+                                                </div>
+                                                <div class="d-none d-flex flex-row mt-4" id="progressIcons">
+                                                    <div class="hr-icon text-center"><img
+                                                            src="assets/img/rectangle_3.png" alt="" width="48px;"
+                                                            height="60px;">
+                                                        <div class="progressText mt-2" id="analyse"
+                                                            style="color: #b8b9b9;">Analyzing API Specification</div>
+                                                    </div>
+                                                    <div class="hr-line"></div>
+                                                    <div class="hr-icon1"><img src="assets/img/settingsDark.png"
+                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);"
+                                                            alt="" width="60px" height="60px" id="settingdark">
+                                                        <div class="progressText1 pt-2" id="generate"
+                                                            style="color: #b8b9b9;">Generating Tests Scenarios</div>
+                                                    </div>
+                                                    <div class="hr-line1"></div>
+                                                    <div class="hr-icon1"><img src="assets/img/ellipse_1_copy_3.png"
+                                                            alt="" width="60px" height="60px" id="targetNew"
+                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);">
+                                                        <div class="progressText2 pt-2 " id="running"
+                                                            style="color: #b8b9b9;">Running Security Tests</div>
+                                                    </div>
+                                                    <div class="hr-line2"></div>
+                                                    <div class="hr-icon2"><img src="assets/img/rectangle_4.png" alt=""
+                                                            width="60px" height="60px" id="reporticon"
+                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);">
+                                                        <div class="progressText3 pt-2 " id="preparing"
+                                                            style="color: #b8b9b9;">Preparing Results Report</div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-none mt-5" id="scantime">
+                                                    <p class="text-center" style="color: #025c7a;">The scan will take
+                                                        approximately 2-5 Minutes to complete.</p>
+                                                </div>
+                                                <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
+                                                                                                                                                                                                                                                                                                                        style="color: #72ba2c"></i> Scan Completed</p> -->
+                                            </div>
+                                            <div class="col-lg-8 mx-auto report pt-4" id="runasamplescan">
+                                                <p>Or <span class="samplecheck"><a href="#" id="runSample">run a sample
+                                                            scan</a> <img src="assets/img/shape_1.png" alt=""
+                                                            class="image-fluid"></span></p>
+
+                                            </div>
+                                    </div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                <div class="" id="modalfileupload">
+                    <div class="modal" id="fileUploadModal" tabindex="-1" role="dialog"
+                        aria-labelledby="fileUploadModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content popupWidth">
+                                <div class="modal-header">
+                                    <!-- <h5 class="modal-title" id="fileUploadModalLabel">Upload File</h5> -->
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" class="timesx">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="post" enctype="multipart/form-data" id="popupform">
+                                    <div class="modal-body uploadFileBody">
+                                        <p class="text-center">Upload your API spec here. We support OAS, Swagger and
+                                            Postman</p>
+                                        <div class="text-center">
+                                            <span class="drag">Drag your file here</span><br />
+                                            <span class="drag">Or</span>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="text-center mt-2">
+                                                <!-- <button type="button" name="file" id="file" class="form-control-file mt-2"
+                                                                                                                                  onclick="document.getElementById('getFile').click()">
+            
+                Select from your computer
+              </button> -->
+                                                <input type='file' id="getFile">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                          </div> -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content popupBaseUrl">
+
+                            <div class="modal-body ">
+                                <div class="bodyContent">
+                                    <h2 class="text-center fw-bold">Hmm...</h2>
+                                    <p>APIsec Scan found a "base URL" for your API in the specifications!</p>
+                                    <p class="fw-bold">https://unreachable.apisec.ai/V2</p>
+                                    <p>However when it tried to call this URL. it was unable to reach your API</p>
+                                    <p class="text-center fw-bold scanContent">APIsec Scan runs in the cloud, so the
+                                        provided URL for this API
+                                        needs to
+                                        be
+                                        accessible from the open
+                                        internet</p>
+                                    <form action="">
+                                        <label for="url"
+                                            class="text-center pl-5
+                                                                                                                                          ">URL</label><br>
+                                        <input type="text" name="baseurl" id="baseUrlInput" class="baseurl"
+                                            placeholder="Enter a Publicly - accessible URL for this API">
+                                        <br>
+                                        <br>
+                                        <button type="button" class="btn btn-primary testBaseUrl mt-2">Test Base
+                                            Url</button>
+                                        <br>
+                                        <br>
+                                        <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel
+                                            Scan</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenterGoback" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content popupBaseUrl">
+
+                            <div class="modal-body ">
+                                <div class="bodyContent">
+                                    <h2 class="text-center fw-bold">We're sorry...</h2>
+                                    <br>
+                                    <p class="text-center fw-bold scanContent">APIsec Scan is having trouble reaching
+                                        your API at the URL
+                                        provided.</p>
+                                    <p class="text-center fw-bold scanContent">APIsec Scan runs on APIs that are
+                                        reachable from the open internet
+                                    </p>
+                                    <p>Need help, or need to scan an internal API?</p>
+                                    <p>Reach out to <a href="#">sales@apisec.ai</a> and we'll get you started.</p>
+                                    <button type="button" class="btn btn-basic goback mt-2" data-dismiss="modal">Go
+                                        Back</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModalCenterUnabletoLoad" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content popupBaseUrl">
+
+                            <div class="modal-body ">
+                                <div class="bodyContent">
+                                    <h2 class="text-center fw-bold">Hmm...</h2>
+                                    <p>APIsec Scan was unable to find a "base URL" in the specifications file</p>
+                                    <p>Please provide a Base URL where we can reach your API</p>
+                                    <p class="text-center fw-bold scanContent">APIsec Scan runs in the cloud, so the
+                                        provided URL for this API
+                                        needs to
+                                        be
+                                        accessible from the open
+                                        internet</p>
+                                    <form action="">
+                                        <label for="url"
+                                            class="text-center pl-5
+                                                                                                                                          ">URL</label><br>
+                                        <input type="text" name="baseurl" id="baseUrlInput" class="baseurl"
+                                            placeholder="Enter a Publicly - accessible URL for this API">
+                                        <br>
+                                        <br>
+                                        <button type="button" class="btn btn-primary testBaseUrl mt-2">Test Base
+                                            Url</button>
+                                        <br>
+                                        <br>
+                                        <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel
+                                            Scan</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="spacing1"></div>
+                <div class="container">
+                    <div class="d-none" id="errorresult">
+                        <hr class="my-4" />
+                        <div class="alert alert-basic" role="alert"
+                            style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
+                            <h4 class="pt-2 alert alert-basic text-center"><i
+                                    class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>
+                                <span id="keyerror"></span> <span class="testdomain">&#8203;</span>
+                            </h4>
+                            <p class="text-basic text-center" id="errorvalue">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-none" id="errorresult1">
+                        <hr class="my-4" />
+                        <div class="alert alert-basic" role="alert"
+                            style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
+                            <h4 class="pt-2 alert alert-basic text-center"><i
+                                    class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>
+                                <span id="keyerror1"></span> <span class="testdomain">&#8203;</span>
+                            </h4>
+                            <p class="text-basic text-center" id="errorvalue1">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-none" id="errorresult2">
+                        <hr class="my-4" />
+                        <div class="alert alert-basic" role="alert"
+                            style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
+                            <h4 class="pt-2 alert alert-basic text-center"><i
+                                    class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>
+                                <span id="">
+                                    Please check your OAS URL is valid, and the API is not too large.
+                                </span>
+                            </h4>
+                            <p class="text-basic text-center" id="">
+                                Please provide another URL/File
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </section><!-- End Hero -->
+
+
+
+
+
+
+
+
+
+        </section>
+
+        <section class="d-none p-0" id="resultPageOnUI">
+            <section id="hero">
+
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-12 pt-5 pt-lg-0 order-2 text-center">
+                            <div>
+                                <div class="result my-3" id="result" style="display: block;">
+                                    <div class="col-lg-6 mx-auto hero">
+                                        <div class="logo-center text-center my-3">
+                                            <a href="/"><img src="assets/img/betaLogo@2x.png"
+                                                    class="center-logo img-fluid"></a>
+                                        </div>
+                                        <div class="text-center py-5">
+                                            <h2>How Attractive is your API to automated attack?
+                                            </h2>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </section>
+
+            <section class="resultPage p-0">
+                <div class="container">
+                    <div class="section-title  aos-init aos-animate " data-aos="fade-up">
+                        <p class="text-center fw-bold" id="name"></p>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-2 py-2"></div>
+                        <div class="col-md-2 py-2">
+                            <div class="gradeScore">
+                                <h1 class="text-danger bigscore" id="overallScore"></h1>
+                                <p class="score"> Overall Score</p>
+                            </div>
+                        </div>
+                        <div class="col-md-7 ml-5">
+                            <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+
+                        </div>
+                        <div class="col-md-1 py-2"></div>
+
+                    </div>
+                    <div class="row">
+                        <p id="test123" class="d-none"></p>
+                    </div>
+                    <div class="spacing1"></div>
+                    <div class="row">
+                        <div class="col-md-7 mx-auto">
+                            <div class="apiDescription">
+                                <table class="data" style="width: 100%;">
+                                    <tr>
+                                        <th>Description:</th>
+                                        <td id="descriptionForAPI"> </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>API Specification:</th>
+                                        <td id="apispecification"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>API Base URL:</th>
+                                        <td id="testEnvironment"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Number of Endpoints:</th>
+                                        <td id="totalEndpoints"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Date Tested:</th>
+                                        <td id="dateTested"></td>
+
+                                    </tr>
+                                    <!-- <tr>
+                                                                                                                                                                                                                                                <th>Your Ip is :</th>
+                                                                                                                                                                                                                                                <td id="ipAddress"></td>
+                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                              </tr> -->
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="spacing1"></div>
+            <section class="vulnerabilitySection">
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-2">Vulnerable</h3>
+                            <p class="Test_passed mb-2">Test Passed</p>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Injection (SQL, NoSQL, Linux, Windows,
+                                        Log4J):
+                                    </td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="injection"></p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Fuzzing</td>
+                                    <td class="vulnerbilityRight">
+                                        <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
+                        <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
+                        <p id="na"></p> -->
+                                        <p id="6fuzz"></p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Reflected Injection:</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="reflectedget"></p>
+                                        <p id="na"></p>
+                                    </td>
+
+                                </tr>
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">Reflected POST Injection:</td>
+              <td class="vulnerbilityRight">
+            <p id="reflectedpost"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Valuable</h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Personal Data
+                                    </td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="piiData"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Configuration </h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">SSL Certificate</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="ssl"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">SSL Required</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="missing"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Server Properties Leak</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="serverprop"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">HTTP Options</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="httpoption"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">CORS Configuration</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="cors"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Incremental IDs</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="incremental"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Authentication</h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
+                "status" ):
+              </td>
+              <td class="vulnerbilityRight">
+                <p id="noauth"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Broken Authentication</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="brokenauth"></p>
+                                        <p id="na"></p>
+                                    </td>
+
+                                </tr>
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
+              <td class="vulnerbilityRight">
+        <p id="basicauth"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="aboutTest">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <h3 class="Vulnerability text-center mb-3">About This Test</h3>
+
+                            <div class="testContent">
+                                <p style="text-align: justify;">
+                                    APIsec Scan tests APIs using automated techniques to identify vulnerabilities, high
+                                    value
+                                    data, configuration issues
+                                    and authentication flaws. This testing is performed without authentication and
+                                    provides
+                                    insight into the type of
+                                    information an attacker can discover through automated/bot scans. Note, APIsec Scan
+                                    does
+                                    not perform authenticated
+                                    tests. We strongly recommend performing authenticated testing of APIs, which can be
+                                    performed by APIsec. <a href="https://www.apisec.ai/contact" target="_blank"
+                                        class="anchortag">Contact us</a> for
+                                    a free scan.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- <section class="getFullReport">
+    <div class="container">
+      <div class="row">
+        <h3 class="getFullreportHeading">Get Full Report</h3>
+        <div class="col-md-5 col-md-1-offset">
+          <form class="needs-validation row g-3 " id="myForm" method="post" novalidate>
+            <div class="row p-3">
+              <div class="col-md-10 py-3">
+  
+                <h3 class="accessall text-center mb-4">Access all technical details
+                  in a convenient PDF:</h3>
+                <div class="form-outline mb-3">
+  
+                  <input type="url" id="openAPISpec" name="FirstName" class="form-control" required=""
+                    placeholder="First Name" />
+  
+                  <div class="invalid-tooltip">A valid API URL is required.</div>
+                </div>
+                <div class="form-outline mb-3">
+  
+                  <input type="url" id="openAPISpec" name="openAPISpec" class="form-control" required=""
+                    placeholder="Last Name" />
+  
+                  <div class="invalid-tooltip">A valid API URL is required.</div>
+                </div>
+                <div class="form-outline mb-3">
+  
+                  <input type="url" id="openAPISpec" name="openAPISpec" class="form-control" required=""
+                    placeholder="Company" />
+  
+                  <div class="invalid-tooltip">A valid API URL is required.</div>
+                </div>
+                <div class="form-outline mb-3">
+  
+                  <input type="url" id="openAPISpec" name="openAPISpec" class="form-control" required=""
+                    placeholder="Email" />
+  
+                  <div class="invalid-tooltip">A valid API URL is required.</div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-block1 " id="downloadbtn">
+                    Download Full Report
+                  </button>
+                </div>
+              </div>
+  
+  
+            </div>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5 col-md-1-offset">
+          <div class="row p-3">
+            <div class="pdf py-3 text-center">
+              <h3 class="accessall">Not Sure What <br />to expect ?</h3>
+              <img src="assets/img/pdf-image.png" class="pdfImage" alt="PDF Download">
+              <br />
+              <button type="submit" class="btn btn-block1 " id="downloadsample">
+                Download Sample Report
+              </button>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section> -->
+        </section>
+
+        <script>
+            (() => {
+                'use strict';
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation');
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms).forEach((form) => {
+                    form.addEventListener('.dropdown-item', (event) => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            })();
+
+
+
+        </script>
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
+            class="	fa fa-angle-up"></i></a>
+    <!-- End Footer -->
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/productResult.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <!-- Slick Carousel Plug-in -->
+    <!-- <script src="assets/js/bootstrap.bundle.min.js"></script> -->
+
+</body>
+
+</html>
