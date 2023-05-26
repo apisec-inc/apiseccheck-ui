@@ -16,6 +16,7 @@
     <!-- Google Fonts -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    
     <style>
         .hr-theme-slash-2 {
             display: flex;
@@ -58,6 +59,12 @@
 
         }
     </style>
+    <!-- <script>
+                        window.addEventListener('load', function () {
+                            let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
+                            window.top.postMessage(message, "*");
+                        });
+                    </script> -->
 
 </head>
 
@@ -76,7 +83,7 @@
                     <div class="row justify-content-between">
                         <div class="col-lg-12  pt-lg-0 order-2 text-center">
                             <div>
-                                <div class="free-form my-3" id="free" style="display: block;">
+                                <div class="free-form" id="free" style="display: block;">
                                     <div class="col-lg-6 mx-auto freeapi">
                                         <!-- <div class="logo-center text-center my-3">
                                             <a href="#"><img src="assets/img/betaLogo@2x.png"
@@ -86,7 +93,7 @@
                                             <h2>Free API Security Scan
                                             </h2>
                                         </div> -->
-                                        <form class="needs-validation row g-3 mt-5" id="myForm" method="post"
+                                        <form class="needs-validation row " id="myForm" method="post"
                                             novalidate>
                                             <div class="row p-0 ml-3">
                                                 <div class="col-md-10 py-0">
@@ -720,7 +727,12 @@
             class="	fa fa-angle-up"></i></a> -->
     <!-- End Footer -->
 
-
+<script>
+    window.addEventListener('load', function () {
+        let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
+        window.top.postMessage(message, "*");
+    });
+</script>
 
 
 

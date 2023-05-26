@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>APIsec Check </title>
+    <title>APIsec Scan </title>
     <meta content="" name="APIsec Scan">
     <!-- Favicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -294,7 +294,12 @@
 
 
 
-
+<script>
+    window.addEventListener('load', function () {
+        let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
+        window.top.postMessage(message, "*");
+    });
+</script>
 
     <!-- ======= Footer ======= -->
 
