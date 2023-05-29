@@ -19,6 +19,7 @@ var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
 var jsonData;
+var baseURL = null;
 $("#fileUploadModal").click(function () {
   $("#getFile").val("");
   $("#fileUploadModal").removeClass("d-none");
@@ -26,6 +27,13 @@ $("#fileUploadModal").click(function () {
   $("body").addClass("modal-open");
   fileupload();
 });
+function callAPI() {
+  $("#exampleModalCenterUnabletoLoad").hide();
+  $(".modal-backdrop").addClass("d-none");
+  // $(".modal").modal("hide");
+  document.getElementById("btn").click();
+  // scan();
+}
 function scan() {
   apiCallCounter = 0;
   $("#btn").click(function () {
@@ -55,6 +63,7 @@ function scan() {
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
 
+    baseURL = $("#baseUrlInput").val();
     // progressStats();
     // $('.report').hide();
     // var jsonData = {
@@ -67,12 +76,14 @@ function scan() {
         email: email,
         openAPISpec: contents,
         isFileUpload: true,
+        host: baseURL,
       };
     } else {
       jsonData = {
         email: email,
         openAPISpec: openAPISpec,
         isFileUpload: false,
+        host: baseURL,
       };
     }
 
@@ -92,7 +103,7 @@ function scan() {
           var resultMessages = result.messages[0].key === "Missing Base URL";
           console.log(resultMessages);
           if (resultMessages) {
-            apiCallCounter = apiCallCounter + 1;
+            apiCallCounter = 0 + 1;
             if (apiCallCounter == 1) {
               $("#missingBaseUrlPop").removeClass("d-none");
               $("#exampleModalCenterUnabletoLoad").modal("show");
@@ -103,7 +114,6 @@ function scan() {
               $("#progressIcons").addClass("d-none");
               $("#scantime").addClass("d-none");
               $("#btn").prop("disabled", false);
-              $("#openAPISpec").val("");
             } else if (apiCallCounter > 1 && apiCallCounter <= 3) {
               $("#missingBaseUrlPop").removeClass("d-none");
               $("#exampleModalCenter").modal("show");
@@ -127,7 +137,6 @@ function scan() {
             $("#progressIcons").addClass("d-none");
             $("#scantime").addClass("d-none");
             $("#btn").prop("disabled", false);
-            $("#openAPISpec").val("");
           }
         }
         if (result.errors === false) {
@@ -544,7 +553,7 @@ function fileupload() {
       if (contents) {
         $(".modal").modal("hide");
       }
-      console.log(contents);
+      // console.log(contents);
     };
     reader.readAsText(file);
     $("#fileUploadModal").hide();
