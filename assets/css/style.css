@@ -801,6 +801,7 @@ input#openAPISpec {
 
 input#email {
   height: 42px;
+  border-radius: 10px;
 }
 
 
