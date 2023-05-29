@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    runAsampleAPI();
+    // runAsampleAPI();
     scan();
     fileupload();
     $("#apiurl").addClass("d-none");
