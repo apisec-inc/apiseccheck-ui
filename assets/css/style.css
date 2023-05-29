@@ -798,7 +798,16 @@ input#openAPISpec {
   width: 100%;
   height: 45px;
 }
-
+.api-invalid-tooltip{
+  color: red;
+  text-align: left;
+  margin-top: 5px;
+}
+.email-invalid-tooltip{
+  color: red;
+  text-align: left;
+  margin-top: 5px;
+}
 input#email {
   height: 42px;
   border-radius: 10px;
