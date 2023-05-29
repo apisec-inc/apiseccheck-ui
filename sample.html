@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>APIsec Scan</title>
+    <meta content="" name="APIsec Scan">
+    <!-- Favicons -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <link href="assets/img/favicon.png" rel="icon">
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <!-- Google Fonts -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .hr-theme-slash-2 {
+            display: flex;
+        }
+
+        .hr-line {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #025c7a;
+            margin-bottom: 17%;
+        }
+
+        .hr-line1 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 17%;
+        }
+
+        .hr-line2 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 17%;
+        }
+
+        .hr-icon img {
+            position: relative;
+            top: 3px;
+            color: #ff0000;
+            text-align: center;
+        }
+
+        .progressText {
+            font-size: 16px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+    <main id="main">
+        <section class="resultPage p-0">
+            <div class="container">
+                <div class="section-title  aos-init aos-animate " data-aos="fade-up">
+                    <p class="text-center fw-bold" id="name"></p>
+                </div>
+                <!-- <div class="row py-2">
+                    <div class="col-md-2 py-2"></div> -->
+                    <!-- <div class="col-md-2 py-2">
+                        <div class="gradeScore">
+                            <h1 class="text-danger bigscore" id="overallScore"></h1>
+                            <p class="score"> Overall Score</p>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md-7 ml-5">
+                        <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+
+                    </div> -->
+                    <!-- <div class="col-md-1 py-2"></div> -->
+
+                <!-- </div> -->
+                <div class="row">
+                    <p id="test123" class="d-none"></p>
+                </div>
+                <div class="spacing1"></div>
+                <div class="row">
+                    <div class="col-md-7 mx-auto">
+                        <div class="apiDescription">
+                            <table class="data" style="width: 100%;">
+                                <tr>
+                                    <th>Description:</th>
+                                    <td id="descriptionForAPI"> </td>
+
+                                </tr>
+                                <tr>
+                                    <th>API Specification:</th>
+                                    <td id="apispecification"></td>
+
+                                </tr>
+                                <tr>
+                                    <th>API Base URL:</th>
+                                    <td id="testEnvironment"></td>
+
+                                </tr>
+                                <tr>
+                                    <th>Number of Endpoints:</th>
+                                    <td id="totalEndpoints"></td>
+
+                                </tr>
+                                <tr>
+                                    <th>Date Tested:</th>
+                                    <td id="dateTested"></td>
+
+                                </tr>
+                                <!-- <tr>
+                                                                                                                                                                                                                                            <th>Your Ip is :</th>
+                                                                                                                                                                                                                                            <td id="ipAddress"></td>
+                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                          </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacing1"></div>
+            <section class="vulnerabilitySection">
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-2">Vulnerable</h3>
+                            <p class="Test_passed mb-2">Test Passed</p>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Injection (Log4J):
+                                    </td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="injection"></p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Fuzzing</td>
+                                    <td class="vulnerbilityRight">
+                                        <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
+                        <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
+                        <p id="na"></p> -->
+                                        <p id="6fuzz"></p>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Reflected Injection:</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="reflectedget"></p>
+                                        <p id="na"></p>
+                                    </td>
+
+                                </tr>
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">Reflected POST Injection:</td>
+              <td class="vulnerbilityRight">
+            <p id="reflectedpost"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Valuable</h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Personal Data
+                                    </td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="piiData"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Configuration </h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">SSL Certificate</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="ssl"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">SSL Required</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="missing"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Server Properties Leak</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="serverprop"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">HTTP Options</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="httpoption"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">CORS Configuration</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="cors"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Incremental IDs</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="incremental"></p>
+                                        <p id="na"></p>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                            <h3 class="Vulnerability float-left mb-3">Authentication</h3>
+                            <table class="vulnerabilityData" style="width: 100%;">
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
+                "status" ):
+              </td>
+              <td class="vulnerbilityRight">
+                <p id="noauth"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+                                <tr>
+                                    <td class="vulnerbilityLeft py-2">Broken Authentication</td>
+                                    <td class="vulnerbilityRight">
+                                        <p id="brokenauth"></p>
+                                        <p id="na"></p>
+                                    </td>
+
+                                </tr>
+                                <!-- <tr>
+              <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
+              <td class="vulnerbilityRight">
+        <p id="basicauth"></p>
+                <p id="na"></p>
+              </td>
+  
+            </tr> -->
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sample.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+</body>
+</html>

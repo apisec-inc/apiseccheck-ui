@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  runAsampleAPI();
+  // runAsampleAPI();
   scan();
   fileupload();
   $("#apiurl").addClass("d-none");
@@ -234,7 +234,7 @@ function scan() {
                 let url2 = new URL(mainURL.replace("index.html", ""));
                 url2.searchParams.set("project-name", name);
                 window.location.replace(url2);
-                barchart();
+                // barchart();
                 if (APIdescription === "null") {
                   $("#descriptionForAPI").text("No Description");
                 } else {
@@ -394,7 +394,7 @@ function scan() {
 
                 $("#totalEndpoints").text(totalEndpoints);
                 $("#testEnvironment").text(testEnvironment);
-                $("#overallScore").text(score);
+                // $("#overallScore").text(score);
 
                 function barchart() {
                   var mychart;
@@ -723,7 +723,7 @@ function fileupload() {
                   let url2 = new URL(mainURL.replace("index.html", ""));
                   url2.searchParams.set("project-name", name);
                   window.location.replace(url2);
-                  barchart();
+                  // barchart();
                   if (APIdescription === "null") {
                     $("#descriptionForAPI").text("No Description");
                   } else {
@@ -1052,7 +1052,7 @@ function runAsampleAPI() {
           viewResult.data.testSummary.brokenAuthentication;
         var basicAuthentication =
           viewResult.data.testSummary.basicAuthentication;
-        barchart();
+        // barchart();
         if (APIdescription === "null") {
           $("#descriptionForAPI").text("No Description");
         } else {
