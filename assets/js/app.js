@@ -1047,7 +1047,7 @@ function runAsampleAPI() {
     window.location.replace = "/sampleResult.html";
     $("#errorresult").addClass("d-none");
     $.ajax({
-      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
+      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
       method: "GET",
       dataType: "json",
       headers: {

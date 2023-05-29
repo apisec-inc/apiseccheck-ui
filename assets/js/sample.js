@@ -6,7 +6,7 @@ function runAsampleAPI() {
     //   e.preventDefault();
       $("#errorresult").addClass("d-none");
       $.ajax({
-        url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
+        url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
         method: "GET",
         dataType: "json",
         headers: {
@@ -22,9 +22,11 @@ function runAsampleAPI() {
           var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
           // var dateTested = viewResult.data.dateTested
           var testEnvironment = viewResult.data.testSummary.testEnvironment;
-          var vulnerabilityScore = viewResult.data.testSummary.vulnerabilityScore;
+          var vulnerabilityScore =
+            viewResult.data.testSummary.vulnerabilityScore;
           var valueDataScore = viewResult.data.testSummary.valueDataScore;
-          var configurationScore = viewResult.data.testSummary.configurationScore;
+          var configurationScore =
+            viewResult.data.testSummary.configurationScore;
           var authenticationScore =
             viewResult.data.testSummary.authenticationScore;
           var dateString = viewResult.data.dateTested;
@@ -35,7 +37,7 @@ function runAsampleAPI() {
             day: "numeric",
           });
           // console.log(formattedDate);
-  
+
           var injectionsForEndpoints =
             viewResult.data.testSummary.injectionsForEndpoints;
           var sixXFuzz = viewResult.data.testSummary.sixXFuzz;
@@ -61,7 +63,7 @@ function runAsampleAPI() {
             viewResult.data.testSummary.brokenAuthentication;
           var basicAuthentication =
             viewResult.data.testSummary.basicAuthentication;
-        //   barchart();
+          //   barchart();
           if (APIdescription === "null") {
             $("#descriptionForAPI").text("No Description");
           } else {
@@ -76,7 +78,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (sixXFuzz === "Passed") {
             $("#6fuzz").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -86,7 +88,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (reflectedGetInjection === "Passed") {
             $("#reflectedget").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -96,7 +98,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (reflectedPOSTInjection === "Passed") {
             $("#reflectedpost").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -106,7 +108,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (pii === "Passed") {
             $("#piiData").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -116,7 +118,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (sslCertificateIssues === "Passed") {
             $("#ssl").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -126,7 +128,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (missingTLSHSTSHeaders === "Passed") {
             $("#missing").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -136,7 +138,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (serverPropertiesLeakInHeaders === "Passed") {
             $("#serverprop").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -146,7 +148,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (httpOptions === "Passed") {
             $("#httpoption").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -156,7 +158,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (corsConfig === "Passed") {
             $("#cors").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -166,7 +168,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (incrementalIDsForEndpoint === "Passed") {
             $("#incremental").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -176,7 +178,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (noAuth === "Passed") {
             $("#noauth").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -186,7 +188,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (brokenAuthentication === "Passed") {
             $("#brokenauth").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -196,7 +198,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           if (basicAuthentication === "Passed") {
             $("#basicauth").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
@@ -206,7 +208,7 @@ function runAsampleAPI() {
               '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
             );
           }
-  
+
           $("#indexpageUI").hide().html();
           $("#indexpageUI").hide().html("#resultPageOnUI");
           $("#indexpageUI").addClass("d-none");
@@ -214,11 +216,11 @@ function runAsampleAPI() {
           $("#dateTested").text(formattedDate);
           $("#apispecification").text(apispecification);
           $("#name").text(name);
-  
+
           $("#totalEndpoints").text(totalEndpoints);
           $("#testEnvironment").text(testEnvironment);
-        //   $("#overallScore").text(score);
-  
+          //   $("#overallScore").text(score);
+
           function barchart() {
             var xValues = [
               "Vulnerable",
@@ -258,13 +260,13 @@ function runAsampleAPI() {
                   },
                 ],
               },
-  
+
               options: {
                 legend: { display: false },
                 title: {
                   display: true,
                 },
-  
+
                 scales: {
                   yAxes: [{ ticks: { min: 0, stepSize: 10, max: 100 } }],
                 },
