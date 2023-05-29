@@ -1,18 +1,19 @@
 $(document).ready(function () {
-
-    // runAsampleAPI();
-    scan();
-    fileupload();
-    $("#apiurl").addClass("d-none");
-    $("[rel=tooltip]").tooltip({ placement: 'right' });
-    // $.getJSON("https://api.ipify.org/?format=json", function (e) {
-    //     // console.log(""e.ip);
-    //     if (e.ip == '49.204.27.190') {
-    //         console.log('this is APIsec Ip', e.ip);
-    //         var ip = e.ip;
-    //         $("ipAddress").text(ip)
-    //     }
-    // });
+  // runAsampleAPI();
+  scan();
+  fileupload();
+  $("#apiurl").addClass("d-none");
+  $("[rel=tooltip]").tooltip({ placement: "right" });
+  $(".api-invalid-tooltip").hide();
+  $(".email-invalid-tooltip").hide();
+  // $.getJSON("https://api.ipify.org/?format=json", function (e) {
+  //     // console.log(""e.ip);
+  //     if (e.ip == '49.204.27.190') {
+  //         console.log('this is APIsec Ip', e.ip);
+  //         var ip = e.ip;
+  //         $("ipAddress").text(ip)
+  //     }
+  // });
 });
 
 var isSubmitting = false;
@@ -49,7 +50,11 @@ function scan() {
     $("#email").next().hide();
     $("#openAPISpec").next().hide();
     if (openAPISpec == "") {
-      $(".invalid-tooltip").show();
+      $(".api-invalid-tooltip").show();
+      return false;
+    }
+    if (email == "") {
+      $(".email-invalid-tooltip").show();
       return false;
     }
     // if (IsEmail(email) == false) {
@@ -177,6 +182,7 @@ function scan() {
                   "Please check your OAS URL is valid, and the API is not too large."
                 ) {
                   $("#openAPISpec").val("");
+                  $("#email").val("");
                   $("#btn").prop("disabled", false);
                   $("#loadingresultfree").addClass("d-none");
                   $("#progressIcons").addClass("d-none");
@@ -188,6 +194,7 @@ function scan() {
                   $("#preparing").removeClass("d-none");
                   $("#preparing").css("color", "#025c7a", "font-weight", "600");
                   $("#openAPISpec").val("");
+                  $("#email").val("");
                   $("#btn").prop("disabled", false);
                   $("#loadingresultfree").addClass("d-none");
                   $("#progressIcons").addClass("d-none");
