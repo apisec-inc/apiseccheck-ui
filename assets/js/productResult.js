@@ -105,44 +105,44 @@ function scan() {
           errorDisplay();
         }
         function errorDisplay() {
-          var resultMessages = result.messages[0].key === "Missing Base URL";
-          console.log(resultMessages);
-          if (resultMessages) {
-            apiCallCounter = 0 + 1;
-            if (apiCallCounter == 1) {
-              $("#missingBaseUrlPop").removeClass("d-none");
-              $("#exampleModalCenterUnabletoLoad").modal("show");
-
-              $("#errorresult1").addClass("d-none");
-              $("#messageValue").addClass("d-none");
-              $("#loadingresultfree").addClass("d-none");
-              $("#progressIcons").addClass("d-none");
-              $("#scantime").addClass("d-none");
-              $("#btn").prop("disabled", false);
-            } else if (apiCallCounter > 1 && apiCallCounter <= 3) {
-              $("#missingBaseUrlPop").removeClass("d-none");
-              $("#exampleModalCenter").modal("show");
-            } else if (apiCallCounter > 3) {
-              $("#exampleModalCenterGoback").modal("show");
+          // var resultMessages = result.messages[0].key === "Missing Base URL";
+          // console.log(resultMessages);
+          // if (resultMessages) {
+          //   apiCallCounter = 0 + 1;
+          //   if (apiCallCounter == 1) {
+          //     $("#missingBaseUrlPop").removeClass("d-none");
+          //     $("#exampleModalCenterUnabletoLoad").modal("show");
+          //     $("#errorresult").addClass("d-none");
+          //     $("#errorresult1").addClass("d-none");
+          //     $("#messageValue").addClass("d-none");
+          //     $("#loadingresultfree").addClass("d-none");
+          //     $("#progressIcons").addClass("d-none");
+          //     $("#scantime").addClass("d-none");
+          //     $("#btn").prop("disabled", false);
+          //   } else if (apiCallCounter > 1 && apiCallCounter <= 3) {
+          //     $("#missingBaseUrlPop").removeClass("d-none");
+          //     $("#exampleModalCenter").modal("show");
+          //   } else if (apiCallCounter > 3) {
+          //     $("#exampleModalCenterGoback").modal("show");
+          //   }
+          // }
+          // if (!resultMessages) {
+          for (var i = 0; i < result.messages.length; i++) {
+            if (result.messages[i].type === "ERROR" || resultMessages) {
+              keyMessage = result.messages[i].key;
+              messageValue = result.messages[i].value;
+              $("#keyerror").text(keyMessage);
+              $("#errorvalue").html(messageValue);
             }
           }
-          if (!resultMessages) {
-            for (var i = 0; i < result.messages.length; i++) {
-              if (result.messages[i].type === "ERROR" || resultMessages) {
-                keyMessage = result.messages[i].key;
-                messageValue = result.messages[i].value;
-                $("#keyerror").text(keyMessage);
-                $("#errorvalue").html(messageValue);
-              }
-            }
-            $("#errorresult").removeClass("d-none");
-            $("#errorresult1").addClass("d-none");
-            $("#messageValue").addClass("d-none");
-            $("#loadingresultfree").addClass("d-none");
-            $("#progressIcons").addClass("d-none");
-            $("#scantime").addClass("d-none");
-            $("#btn").prop("disabled", false);
-          }
+          $("#errorresult").removeClass("d-none");
+          $("#errorresult1").addClass("d-none");
+          $("#messageValue").addClass("d-none");
+          $("#loadingresultfree").addClass("d-none");
+          $("#progressIcons").addClass("d-none");
+          $("#scantime").addClass("d-none");
+          $("#btn").prop("disabled", false);
+          // }
         }
         if (result.errors === false) {
           var intervalId = setInterval(function () {
