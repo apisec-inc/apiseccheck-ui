@@ -144,6 +144,8 @@ function scan() {
           $("#progressIcons").addClass("d-none");
           $("#scantime").addClass("d-none");
           $("#btn").prop("disabled", false);
+          $("#openAPISpec").prop("disabled", false);
+          $("#email").prop("disabled", false);
           // }
         }
         if (result.errors === false) {
