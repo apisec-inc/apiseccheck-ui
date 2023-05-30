@@ -62,6 +62,8 @@ function scan() {
       return false;
     }
     $(this).prop("disabled", true);
+    $("#openAPISpec").prop("disabled", true);
+    $("#email").prop("disabled", true);
     $("#testresultfree").addClass("d-none");
     $(".testdomain").text(openAPISpec);
     $("#loadingresultfree").removeClass("d-none");
