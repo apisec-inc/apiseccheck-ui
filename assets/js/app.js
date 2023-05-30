@@ -57,10 +57,10 @@ function scan() {
       $(".email-invalid-tooltip").show();
       return false;
     }
-    // if (IsEmail(email) == false) {
-    //   $("#email").next().show();
-    //   return false;
-    // }
+    if (IsEmail(email) == false) {
+      $("#email").next().show();
+      return false;
+    }
     $(this).prop("disabled", true);
     $("#testresultfree").addClass("d-none");
     $(".testdomain").text(openAPISpec);
@@ -529,6 +529,15 @@ function scan() {
       },
     });
   });
+}
+function IsEmail(email) {
+  var regex =
+    /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (!regex.test(email)) {
+    return false;
+  } else {
+    return true;
+  }
 }
 var isSubmitting = false;
 function fileupload() {
