@@ -1,4 +1,3 @@
-
 /** !--=========================================================* 
 APIsec Check - v1.0.0
 Product Page: www.apiseccheck.com
@@ -49,6 +48,7 @@ a {
   font-size: 18px;
   line-height: 1.333;
 }
+
 .col-lg-6.mx-auto.freeapi {
   margin-top: 120px !important;
 }
@@ -71,55 +71,61 @@ li {
 .modal-backdrop {
   width: 100% !important;
 }
+
 span.timesx {
   color: #c0d6de !important;
   font-size: 32px;
 }
+
 .popupWidth {
   width: 85%;
   margin: auto;
-border-radius: 12px;
+  border-radius: 12px;
   border: none;
 }
 
-.popupBaseUrl{
-   max-width: 75%;
+.popupBaseUrl {
+  max-width: 75%;
   margin: auto;
   font-family: 'Inter';
-border-radius: 12px;
+  border-radius: 12px;
   border: none;
   text-align: center;
   padding: 22px;
   background-color: #d9d9d9;
 }
-.cancel{
+
+.cancel {
   border: none;
   background: none;
 }
+
 button.btn.btn-basic.goback {
-    background: #ffff;
-    font-size: 20px;
+  background: #ffff;
+  font-size: 20px;
 }
 
 button.btn.btn-primary.testBaseUrl {
-    background-color: #025c7a;
-    border: none;
-    width: 300px;
-        font-size: 20px;
-    font-family: "Epura";
+  background-color: #025c7a;
+  border: none;
+  width: 300px;
+  font-size: 20px;
+  font-family: "Epura";
 }
+
 input#baseUrlInput {
-    width: 450px;
-    height: 44px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(205, 214, 225);
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    padding: 12px;
+  width: 450px;
+  height: 44px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(205, 214, 225);
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 12px;
 }
+
 .uploadFileBody {
-border: 5px dotted #c0d6de;
+  border: 5px dotted #c0d6de;
   margin: 25px;
   height: 240px;
 }
@@ -148,6 +154,7 @@ canvas#myChart {
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
 #hero h2 {
   font-size: 26px;
   font-family: "Inter";
@@ -156,23 +163,29 @@ canvas#myChart {
   text-align: center;
   margin-left: 30px;
 }
+
 a:hover {
   color: rgb(2, 92, 122);
   text-decoration: none;
 }
+
 .accordion-button:not(.collapsed) {
   background-color: rgb(2, 92, 122);
   color: #fff;
 }
+
 span.questionText {
   margin-left: 80px;
 }
+
 .accordion-button::after {
   background-image: url('../img/download.svg') !important;
 }
+
 .whatisApisecCheck p {
   line-height: 1.2;
 }
+
 .whatisApisecCheck {
   background-color: #c0d6de;
   border-radius: 10px;
@@ -243,9 +256,11 @@ label {
 .bg-dark-secondary {
   background-color: rgba(216, 214, 227, 0.15);
 }
+
 .col-lg-6.mx-auto.hero {
   padding-top: 40px;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -281,6 +296,7 @@ div#messageValue {
   background-color: #4caf50;
   width: 0%;
 }
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -426,6 +442,7 @@ tr:last-child {
   line-height: 1.2;
 
 }
+
 div#progressIcons {
   padding-top: 20px;
 }
@@ -433,6 +450,7 @@ div#progressIcons {
 div#scantime {
   padding-top: 20px;
 }
+
 #downloadbtn {
   background-color: #025c7a;
   font-size: 20px;
@@ -475,12 +493,14 @@ div#scantime {
   line-height: 1.2;
 
 }
+
 .anchortag {
   font-weight: 600;
   border-bottom: 1px solid rgb(2, 92, 122);
 }
 
 #settingdark {}
+
 .pdfImage {
   width: 35%;
 }
@@ -507,6 +527,7 @@ div#scantime {
   width: 90%;
 
 }
+
 section#ApisecCheck {
   padding: 100px 0px;
 }
@@ -514,6 +535,7 @@ section#ApisecCheck {
 section#faqs {
   padding: 100px 0px;
 }
+
 .check {
   color: #72ba2c;
 }
@@ -530,19 +552,23 @@ section#faqs {
   line-height: 1.2;
 
 }
+
 .modal-open {
   overflow: auto !important;
 }
+
 .vulnerabilityData {
   background-color: #fff;
   border-radius: 10px;
 }
+
 .testdomain {
   font-family: "Inter";
   line-height: 1.2;
   font-size: 20px;
   word-wrap: break-word;
 }
+
 .Test_passed {
   font-size: 18px;
   font-family: "Inter";
@@ -738,7 +764,7 @@ a.nav-link.scrollto.logo {
 .navbar .active:focus,
 .navbar li:hover>a {
   color: rgb(2, 92, 122);
-    font-weight: 600;
+  font-weight: 600;
 }
 
 
@@ -794,20 +820,22 @@ input#openAPISpec {
   border-width: 1px;
   border-color: rgb(205, 214, 225);
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
   width: 100%;
   height: 45px;
 }
-.api-invalid-tooltip{
+
+.api-invalid-tooltip {
   color: red;
   text-align: left;
   margin-top: 5px;
 }
-.email-invalid-tooltip{
+
+.email-invalid-tooltip {
   color: red;
   text-align: left;
   margin-top: 5px;
 }
+
 input#email {
   height: 45px;
   border-radius: 10px;
@@ -839,21 +867,21 @@ input#email {
   line-height: 1.2;
   text-align: center;
   border-radius: 10px;
-  }
-  
-  #file {
-    background-color: #025c7a;
-    width: 280px;
-    height: 40px;
-    font-family: "Epura";
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    line-height: 1.2;
-    text-align: center;
-    border: none;
-    font-size: 20px;
-    border-radius: 5px;
-    margin-left: 24%;
+}
+
+#file {
+  background-color: #025c7a;
+  width: 280px;
+  height: 40px;
+  font-family: "Epura";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-left: 24%;
 }
 
 .accordion-button:link,
@@ -872,10 +900,10 @@ input#email {
 
 .downloadbtnpdf {
   background-color: #025c7a;
-    height: 42px;
-      color: #fff;
-      font-weight: 600;
-      text-align: center !important;
+  height: 42px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center !important;
 }
 
 /*--------------------------------------------------------------
@@ -951,7 +979,7 @@ section {
   font-size: 14px;
   position: relative;
   bottom: 0;
-    width: 100%;
+  width: 100%;
 }
 
 

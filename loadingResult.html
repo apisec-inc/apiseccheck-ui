@@ -102,12 +102,13 @@
                                                                 class="fa fa-question-circle questionMark"
                                                                 aria-hidden="true" rel="tooltip"
                                                                 title="Please provide a URL to an API specification. APIsec Scan supports OpenAPI Spec/Swagger and Postman Collections."></i>
-                                                            &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0"
+                                                            <!-- &nbsp; Or &nbsp; -->
+                                                            <!-- <a href="" class="ml-0 pl-0"
                                                                 data-toggle="modal"
-                                                                data-target="#fileUploadModal">Upload a Spec</a>
+                                                                data-target="#fileUploadModal">Upload a Spec</a> -->
                                                         </label>
                                                     </div>
-                                                    <input type="url" id="openAPISpec" name="openAPISpec"
+                                                    <input type="url" id="openAPISpec" name="openAPISpec" readonly
                                                         class="form-control" required=""
                                                         placeholder="Enter OpenAPI Specification URL / File" />
 
@@ -121,7 +122,7 @@
                                                 <div class="form-outline mb-4">
                                                     <label for="email">Email</label>
                                                     <input type="email" id="email" name="email" class="form-control"
-                                                        required="" placeholder="Enter Email" />
+                                                        readonly required="" placeholder="Enter Email" />
                                                     <!-- <label class="form-label" for="email">Email (PDF Report)<span class="text-danger ms-1">*</span></label> -->
                                                     <div class="email-invalid-tooltip">A valid email is required.</div>
                                                 </div>
@@ -129,7 +130,7 @@
                                             </div>
 
                                             <div class="col-md-2">
-                                                <button class="btn btn-block1" onclick="redirectLoading()" id="btn">
+                                                <button type="submit" class="btn btn-block1" id="btn">
                                                     Scan
                                                 </button>
 
@@ -267,7 +268,7 @@
                                     <label for="url"
                                         class="text-center pl-5
                                                                                                                                           ">URL</label><br>
-                                    <input type="text" name="baseurl" id="baseUrlInput" class="baseurl"
+                                    <input type="text" name="baseurl" id="notReachableUrl" class="baseurl"
                                         placeholder="Enter a Publicly - accessible URL for this API">
                                     <br>
                                     <br>
@@ -337,8 +338,8 @@
                                         placeholder="Enter a Publicly - accessible URL for this API">
                                     <br>
                                     <br>
-                                    <button type="button" class="btn btn-primary testBaseUrl mt-2">Test Base
-                                        Url</button>
+                                    <button type="button" class="btn btn-primary testBaseUrl mt-2"
+                                        onclick="callAPI()">Continue Scan</button>
                                     <br>
                                     <br>
                                     <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel
@@ -738,19 +739,13 @@
     <!-- End Footer -->
 
     <script>
-        function redirectLoading() {
-
-            localStorage.setItem("openAPI", document.getElementById("openAPISpec").value)
-            localStorage.setItem("email", document.getElementById("email").value)
-            localStorage.setItem("contents", contents);
-
-            location.replace("loadingResult.html")
-        }
-    </script>
-    <script>
         window.addEventListener('load', function () {
             let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
             window.top.postMessage(message, "*");
+            document.getElementById("openAPISpec").value = localStorage.getItem("openAPI");
+            document.getElementById("email").value = localStorage.getItem("email");
+            contents = localStorage.getItem("contents");
+            document.getElementById("btn").click();
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.min.js"
