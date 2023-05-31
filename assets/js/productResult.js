@@ -14,6 +14,10 @@ $(document).ready(function () {
   //         $("ipAddress").text(ip)
   //     }
   // });
+  $("#previousBtn").click(function(event){
+     console.log('clicked')
+     window.location.replace("product.html");
+  });
 });
 
 var isSubmitting = false;

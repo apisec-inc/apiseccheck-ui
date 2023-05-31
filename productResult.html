@@ -56,6 +56,13 @@
             font-size: 16px;
             text-align: center;
         }
+        button#previousBtn{
+            position: relative;
+            top: 72px;
+            left: 96px;
+            color:#34495e;
+            font-size: 48px;
+        }
     </style>
 
 </head>
@@ -72,6 +79,8 @@
 
     <section class="resultPage p-0">
         <div class="container">
+            <button class="border-0 bg-none" id="previousBtn" ><ion-icon name="arrow-back-circle"></ion-icon></button>
+
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
                 <p class="text-center fw-bold" id="name"></p>
             </div>
@@ -313,6 +322,7 @@
     <script src="assets/js/main.js"></script>
     <!-- <script src="assets/js/app.js" type="module"></script> -->
     <script src="assets/js/result.js"></script>
+    <script src="assets/js/productResult.js"></script>
 
     <script src="assets/js/jquery.slim.min.js"></script>
 
@@ -321,6 +331,9 @@
     <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
