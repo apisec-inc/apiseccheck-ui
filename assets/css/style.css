@@ -822,6 +822,7 @@ input#openAPISpec {
   border-radius: 10px;
   width: 100%;
   height: 45px;
+  background-color: #E8f0fe;
 }
 
 .api-invalid-tooltip {
