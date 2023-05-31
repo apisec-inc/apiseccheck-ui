@@ -60,13 +60,18 @@ $(document).ready(function () {
             viewResult.data.testSummary.brokenAuthentication;
           var basicAuthentication =
             viewResult.data.testSummary.basicAuthentication;
-  
-          barchart();
-          if (APIdescription === "null") {
-            $("#descriptionForAPI").text("No Description");
-          } else {
-            $("#descriptionForAPI").text(APIdescription);
-          }
+ 
+           barchart();
+           if (APIdescription.length > 450) {
+             let resultDescription = APIdescription.substring(0, 400);
+             // $("#descriptionForAPI").replace(resultDescription);
+             console.log("resultdesc", resultDescription);
+             $("#descriptionForAPI").text(resultDescription);
+           } else if (APIdescription === "null") {
+             $("#descriptionForAPI").text("No Description");
+           } else {
+             $("#descriptionForAPI").text(APIdescription);
+           }
           if (injectionsForEndpoints === "Passed") {
             $("#injection").html(
               '<i class="fa fa-check-circle check" aria-hidden="true"></i>'

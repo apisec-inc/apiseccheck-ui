@@ -87,14 +87,14 @@ function scan() {
         email: email,
         openAPISpec: contents,
         isFileUpload: true,
-        host: baseURL,
+        // host: baseURL,
       };
     } else {
       jsonData = {
         email: email,
         openAPISpec: openAPISpec,
         isFileUpload: false,
-        host: baseURL,
+        // host: baseURL,
       };
     }
 
@@ -238,6 +238,8 @@ function scan() {
                 var apispecification = viewResult.data.openAPISpec;
                 var name = viewResult.data.name;
                 var APIdescription = viewResult.data.description;
+
+
                 var score = viewResult.data.testSummary.overallScore;
                 var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
                 // var dateTested = viewResult.data.dateTested
@@ -288,8 +290,15 @@ function scan() {
                 let url2 = new URL(mainURL.replace("index.html", ""));
                 url2.searchParams.set("project-name", name);
                 window.location.replace(url2);
+                console.log("length", APIdescription.length);
                 barchart();
-                if (APIdescription === "null") {
+
+                if (APIdescription.length > 450) {
+                  let resultDescription = APIdescription.substring(0, 400);
+                  // $("#descriptionForAPI").replace(resultDescription);
+                  console.log("resultdesc", resultDescription);
+                  $("#descriptionForAPI").text(resultDescription);
+                } else if (APIdescription === "null") {
                   $("#descriptionForAPI").text("No Description");
                 } else {
                   $("#descriptionForAPI").text(APIdescription);
