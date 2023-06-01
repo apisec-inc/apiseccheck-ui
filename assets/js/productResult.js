@@ -548,10 +548,14 @@ function scan() {
     });
   });
 }
+
+
+
+
 var isSubmitting = false;
 function fileupload() {
   $(".testdomain").text("");
-  $("#free").css('height', 'auto');
+
   $("#fileUploadModal").removeClass("d-none");
   $(".modal-backdrop").removeClass("d-none");
   $("body").addClass("modal-open");
@@ -583,6 +587,7 @@ function fileupload() {
     };
     reader.readAsText(file);
     $("#fileUploadModal").hide();
+    $("#free").css('height', 'auto');
     $(".modal-backdrop").addClass("d-none");
   });
   // $("#btn").click(function () {
