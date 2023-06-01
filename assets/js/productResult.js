@@ -39,6 +39,9 @@ function callAPI() {
   document.getElementById("btn").click();
   // scan();
 }
+$("#uploadLink").click(function () {
+  $("#free").css('height', '400px');
+})
 function scan() {
   apiCallCounter = 0;
   $("#btn").click(function () {
