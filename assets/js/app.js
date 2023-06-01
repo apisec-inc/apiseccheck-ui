@@ -563,11 +563,11 @@ function fileupload() {
     $("#openAPISpec").val(fileName);
     // console.log('txtet', filename);
     reader.onload = function (v) {
-      if (isSubmitting) {
-        return false; // prevent multiple clicks if already submitting
-      }
+      // if (isSubmitting) {
+      //   return false; // prevent multiple clicks if already submitting
+      // }
 
-      isSubmitting = true;
+      // isSubmitting = true;
       $(this).prop("disabled", true);
       contents = v.target.result;
       if (contents) {
