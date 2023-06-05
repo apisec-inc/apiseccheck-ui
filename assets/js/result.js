@@ -60,7 +60,11 @@ $(document).ready(function () {
             viewResult.data.testSummary.brokenAuthentication;
           var basicAuthentication =
             viewResult.data.testSummary.basicAuthentication;
- 
+          var valueFlag =  localStorage.getItem("valueFlag");
+          if(valueFlag == 1){
+            $('#resultNote').removeClass('d-none');
+            localStorage.removeItem("valueFlag");
+          }
            barchart();
            if (APIdescription.length > 450) {
              let resultDescription = APIdescription.substring(0, 400);

@@ -149,6 +149,9 @@ function scan() {
           // }
         }
         if (result.errors === false) {
+          if(result.messages[0].value == 'A scan was recently run for this API'){
+            localStorage.setItem("valueFlag", 1);
+          }
           var intervalId = setInterval(function () {
             $.ajax({
               url:
