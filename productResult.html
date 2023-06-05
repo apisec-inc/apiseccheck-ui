@@ -56,11 +56,12 @@
             font-size: 16px;
             text-align: center;
         }
-        button#previousBtn{
+
+        button#previousBtn {
             position: relative;
             top: 22px;
             left: 96px;
-            color:#34495e;
+            color: #34495e;
             font-size: 48px;
         }
     </style>
@@ -79,7 +80,7 @@
 
     <section class="resultPage p-0">
         <div class="container">
-            <button class="border-0 bg-none" id="previousBtn" ><ion-icon name="arrow-back-circle"></ion-icon></button>
+            <button class="border-0 bg-none" id="previousBtn"><ion-icon name="arrow-back-circle"></ion-icon></button>
 
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
                 <p class="text-center fw-bold" id="name"></p>
@@ -292,18 +293,18 @@
 
     </section>
 
-  
 
 
 
-<script>
-    window.addEventListener('load', function () {
-        let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
-        window.top.postMessage(message, "*");
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.min.js"
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        window.addEventListener('load', function () {
+            let message = { height: document.body.scrollHeight, width: document.body.scrollWidth };
+            window.top.postMessage(message, "*");
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.6/iframeResizer.contentWindow.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- ======= Footer ======= -->
 
@@ -322,7 +323,7 @@
     <script src="assets/js/main.js"></script>
     <!-- <script src="assets/js/app.js" type="module"></script> -->
     <script src="assets/js/result.js"></script>
-    <script src="assets/js/productResult.js"></script>
+    <script type="module" src="assets/js/productResult.js"></script>
 
     <script src="assets/js/jquery.slim.min.js"></script>
 
