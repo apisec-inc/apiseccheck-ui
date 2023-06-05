@@ -1,3 +1,5 @@
+import { getServer } from "./environment.js";
+
 $(document).ready(function () {
   // runAsampleAPI();
   scan();
@@ -19,6 +21,8 @@ $(document).ready(function () {
     window.location.replace("product.html");
   });
 });
+
+var s = getServer();
 
 var isSubmitting = false;
 var apiCallCounter = 0;
@@ -102,7 +106,7 @@ function scan() {
     }
 
     $.ajax({
-      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck",
+      url: s + "/api/v1/apiseccheck",
       method: "POST",
       dataType: "json",
       headers: {
@@ -159,7 +163,7 @@ function scan() {
           var intervalId = setInterval(function () {
             $.ajax({
               url:
-                "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=" +
+                s + "/api/v1/apiseccheck/status?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -229,7 +233,7 @@ function scan() {
             $("#errorresult").addClass("d-none");
             $.ajax({
               url:
-                "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=" +
+                s + "/api/v1/apiseccheck/results?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -1079,7 +1083,7 @@ function runAsampleAPI() {
     window.location.replace = "/sampleResult.html";
     $("#errorresult").addClass("d-none");
     $.ajax({
-      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
+      url: s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
       method: "GET",
       dataType: "json",
       headers: {

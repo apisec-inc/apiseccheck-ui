@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -56,37 +57,40 @@
             text-align: center;
 
         }
-        button#previousBtn{
+
+        button#previousBtn {
             position: relative;
             top: 22px;
             left: 96px;
-            color:#34495e;
+            color: #34495e;
             font-size: 48px;
         }
     </style>
 </head>
+
 <body>
     <section id="hero"></section>
     <main id="main">
         <section class="resultPage p-0">
             <div class="container">
                 <div class="section-title  aos-init aos-animate " data-aos="fade-up">
-                    <button class="border-0 bg-none" id="previousBtn" onclick="history.back()"><ion-icon name="arrow-back-circle"></ion-icon></button>
+                    <button class="border-0 bg-none" id="previousBtn" onclick="history.back()"><ion-icon
+                            name="arrow-back-circle"></ion-icon></button>
                     <p class="text-center fw-bold" id="name"></p>
                 </div>
                 <!-- <div class="row py-2">
                     <div class="col-md-2 py-2"></div> -->
-                    <!-- <div class="col-md-2 py-2">
+                <!-- <div class="col-md-2 py-2">
                         <div class="gradeScore">
                             <h1 class="text-danger bigscore" id="overallScore"></h1>
                             <p class="score"> Overall Score</p>
                         </div>
                     </div> -->
-                    <!-- <div class="col-md-7 ml-5">
+                <!-- <div class="col-md-7 ml-5">
                         <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
 
                     </div> -->
-                    <!-- <div class="col-md-1 py-2"></div> -->
+                <!-- <div class="col-md-1 py-2"></div> -->
 
                 <!-- </div> -->
                 <div class="row">
@@ -290,7 +294,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/sample.js"></script>
+    <script type="module" src="assets/js/sample.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -299,4 +303,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
