@@ -28,6 +28,7 @@ var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
 var jsonData;
+
 var baseURL = null;
 $("#fileUploadModal").click(function () {
   $("#getFile").val("");
@@ -44,8 +45,8 @@ function callAPI() {
   // scan();
 }
 $("#uploadLink").click(function () {
-  $("#free").css('height', '400px');
-})
+  $("#free").css("height", "400px");
+});
 function scan() {
   apiCallCounter = 0;
   $("#btn").click(function () {
@@ -142,8 +143,8 @@ function scan() {
           // if (!resultMessages) {
           for (var i = 0; i < result.messages.length; i++) {
             if (result.messages[i].type === "ERROR" || resultMessages) {
-              keyMessage = result.messages[i].key;
-              messageValue = result.messages[i].value;
+              var keyMessage = result.messages[i].key;
+              var messageValue = result.messages[i].value;
               $("#keyerror").text(keyMessage);
               $("#errorvalue").html(messageValue);
             }
@@ -163,7 +164,8 @@ function scan() {
           var intervalId = setInterval(function () {
             $.ajax({
               url:
-                s + "/api/v1/apiseccheck/status?project-name=" +
+                s +
+                "/api/v1/apiseccheck/status?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -233,7 +235,8 @@ function scan() {
             $("#errorresult").addClass("d-none");
             $.ajax({
               url:
-                s + "/api/v1/apiseccheck/results?project-name=" +
+                s +
+                "/api/v1/apiseccheck/results?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -245,7 +248,6 @@ function scan() {
                 var apispecification = viewResult.data.openAPISpec;
                 var name = viewResult.data.name;
                 var APIdescription = viewResult.data.description;
-
 
                 var score = viewResult.data.testSummary.overallScore;
                 var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
