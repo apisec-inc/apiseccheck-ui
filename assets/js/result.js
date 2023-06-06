@@ -64,10 +64,10 @@ $(document).ready(function () {
           viewResult.data.testSummary.basicAuthentication;
         var valueFlag = localStorage.getItem("valueFlag");
         if (valueFlag == 1) {
-          $('#resultNote').removeClass('d-none');
+          $("#resultNote").removeClass("d-none");
           localStorage.removeItem("valueFlag");
         }
-        barchart();
+
         if (APIdescription.length > 450) {
           let resultDescription = APIdescription.substring(0, 400);
           // $("#descriptionForAPI").replace(resultDescription);
@@ -239,61 +239,6 @@ $(document).ready(function () {
         $("#totalEndpoints").text(totalEndpoints);
         $("#testEnvironment").text(testEnvironment);
         $("#overallScore").text(score);
-
-        function barchart() {
-          var mychart;
-          var xValues = [
-            "Vulnerable",
-            "Valuable",
-            "Configuration",
-            "Authentication",
-          ];
-          var yValues = [
-            vulnerabilityScore,
-            valueDataScore,
-            configurationScore,
-            authenticationScore,
-          ];
-
-          // var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
-          const backgroundColor = [];
-          for (let i = 0; i < yValues.length; i++) {
-            if (yValues[i] >= 0 && yValues[i] < 49) {
-              backgroundColor.push("green");
-            }
-            if (yValues[i] >= 50 && yValues[i] <= 75) {
-              backgroundColor.push("yellow");
-            }
-            if (yValues[i] > 75) {
-              backgroundColor.push("red");
-            }
-          }
-          mychart = new Chart("myChart", {
-            type: "bar",
-
-            data: {
-              labels: xValues,
-              fontColor: ["#dec15a"],
-              datasets: [
-                {
-                  backgroundColor: backgroundColor,
-                  data: yValues,
-                },
-              ],
-            },
-
-            options: {
-              legend: { display: false },
-              title: {
-                display: true,
-              },
-
-              scales: {
-                yAxes: [{ ticks: { min: 0, stepSize: 10, max: 100 } }],
-              },
-            },
-          });
-        }
       },
       error: function (xhr, status, error) {
         // Handle any API errors here
