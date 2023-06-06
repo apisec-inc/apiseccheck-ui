@@ -15,49 +15,48 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 
-<style>
-    /*other css*/
-    .hr-theme-slash-2 {
-        display: flex;
-    }
+    <style>
+        /*other css*/
+        .hr-theme-slash-2 {
+            display: flex;
+        }
 
-    .hr-line1 {
-        width: 100%;
-        position: relative;
-        margin: 15px;
-        border-bottom: 3px solid #025c7a;
-        margin-bottom: 16%;
-    }
+        .hr-line1 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #025c7a;
+            margin-bottom: 16%;
+        }
 
-    .hr-line2 {
-        width: 100%;
-        position: relative;
-        margin: 15px;
-        border-bottom: 3px solid #666;
-        margin-bottom: 16%;
-    }
+        .hr-line2 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #666;
+            margin-bottom: 16%;
+        }
 
-    .hr-line3 {
-        width: 100%;
-        position: relative;
-        margin: 15px;
-        border-bottom: 3px solid #666;
-        margin-bottom: 16%;
-    }
+        .hr-line3 {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #666;
+            margin-bottom: 16%;
+        }
 
-    .hr-icon img {
-        position: relative;
-        top: 3px;
-        color: #ff0000;
-        text-align: center;
-    }
+        .hr-icon img {
+            position: relative;
+            top: 3px;
+            color: #ff0000;
+            text-align: center;
+        }
 
-    .progressText {
-        font-size: 16px;
-        text-align: center;
-    }
-
-</style>
+        .progressText {
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
 
 </head>
 
@@ -69,8 +68,8 @@
         <div class="container  d-flex align-items-center justify-content-between">
             <div class="logo">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="index.html"><img src="assets/img/betalogo@0.5x.png" alt="APIsecScan"
-                        class="img-fluid mt-5" width="237px"></a>
+                <a href="index.html"><img src="assets/img/betalogo@0.5x.png" alt="APIsecScan" class="img-fluid mt-5"
+                        width="237px"></a>
             </div>
             <nav id="navbar" class="navbar ">
                 <ul>
@@ -121,11 +120,11 @@
     <section class="resultPage p-0">
         <div class="container">
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
-                           <p class="text-center fw-bold" id="name"></p>
+                <p class="text-center fw-bold" id="name"></p>
             </div>
-             <h5 class="text-center d-none" id="resultNote">
+            <h5 class="text-center d-none" id="resultNote">
                 The API has already been scanned within the last 24 hours;the result remains the same.
-             </h5>
+            </h5>
             <!-- <div class="row py-2">
                 <div class="col-md-2 py-2"></div>
                 <div class="col-md-2 py-2">
@@ -182,7 +181,7 @@
         </div>
     </section>
 
-    
+
     <div class="spacing1"></div>
     <section class="vulnerabilitySection">
         <div class="container">
@@ -202,13 +201,13 @@
                         <tr>
                             <td class="vulnerbilityLeft py-2">Fuzzing</td>
                             <td class="vulnerbilityRight">
-                              <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
+                                <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
                                       <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
                                       <p id="na"></p> -->
-                              <p id="6fuzz"></p>
+                                <p id="6fuzz"></p>
                             </td>
-                
-                          </tr>
+
+                        </tr>
                         <!-- <tr>
                             <td class="vulnerbilityLeft py-2">6x Fuzz for endpoints without auth</td>
                             <td class="vulnerbilityRight">
@@ -231,11 +230,11 @@
                         <tr>
                             <td class="vulnerbilityLeft py-2">Reflected Injection:</td>
                             <td class="vulnerbilityRight">
-                              <p id="reflectedget"></p>
-                              <p id="na"></p>
+                                <p id="reflectedget"></p>
+                                <p id="na"></p>
                             </td>
-                
-                          </tr>
+
+                        </tr>
 
                     </table>
                 </div>
@@ -271,19 +270,19 @@
             </div> -->
             <div class="row mt-5">
                 <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-                  <h3 class="Vulnerability float-left mb-3">Valuable</h3>
-                  <table class="vulnerabilityData" style="width: 100%;">
-                    <tr>
-                      <td class="vulnerbilityLeft py-2">Personal Data
-                      </td>
-                      <td class="vulnerbilityRight">
-                      <p id="piiData"></p>
-                        <p id="na"></p>
-                      </td>
-                    </tr>
-                  </table>
+                    <h3 class="Vulnerability float-left mb-3">Valuable</h3>
+                    <table class="vulnerabilityData" style="width: 100%;">
+                        <tr>
+                            <td class="vulnerbilityLeft py-2">Personal Data
+                            </td>
+                            <td class="vulnerbilityRight">
+                                <p id="piiData"></p>
+                                <p id="na"></p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-              </div>
+            </div>
             <div class="row mt-5">
                 <div class=" col-md-7 mx-auto vulnerabiltyHeading">
                     <h3 class="Vulnerability float-left mb-3">Configuration </h3>
@@ -337,8 +336,8 @@
                             <td class="vulnerbilityLeft py-2">Incremental IDs for Endpoint:</td>
                             <td class="vulnerbilityRight">
                                 <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
-                                    <p id="incremental"></p>
-                                     <p id="na"></p>
+                                <p id="incremental"></p>
+                                <p id="na"></p>
                             </td>
 
                         </tr>
@@ -397,7 +396,8 @@
                             information an attacker can discover through automated/bot scans. Note, APIsec Check does
                             not perform authenticated
                             tests. We strongly recommend performing authenticated testing of APIs, which can be
-                            performed by APIsec. <a href="https://www.apisec.ai/contact" class="anchortag" target="_blank">Contact us</a> for
+                            performed by APIsec. <a href="https://www.apisec.ai/contact" class="anchortag"
+                                target="_blank">Contact us</a> for
                             a free scan.
                         </p>
                     </div>
@@ -484,7 +484,7 @@
         </div>
     </section> -->
 
-    
+
 
 
     <!-- ======= Footer ======= -->
@@ -515,7 +515,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
             class="	fa fa-angle-up"></i></a>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
 
     <!-- End Footer -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -525,7 +525,7 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <!-- <script src="assets/js/app.js" type="module"></script> -->
-    <script src="assets/js/result.js"></script>
+    <script type="module" src="assets/js/result.js"></script>
 
     <script src="assets/js/jquery.slim.min.js"></script>
 
