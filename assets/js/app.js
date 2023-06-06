@@ -1,3 +1,4 @@
+import { getServer } from "./environment.js";
 $(document).ready(function () {
   // runAsampleAPI();
   scan();
@@ -16,6 +17,7 @@ $(document).ready(function () {
   // });
 });
 
+var s = getServer();
 var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
@@ -95,7 +97,7 @@ function scan() {
     }
 
     $.ajax({
-      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck",
+      url: s + "/api/v1/apiseccheck",
       method: "POST",
       dataType: "json",
       headers: {
@@ -149,13 +151,12 @@ function scan() {
           // }
         }
         if (result.errors === false) {
-          if(result.messages[0].value == 'A scan was recently run for this API'){
+          if (result.messages[0].value == 'A scan was recently run for this API') {
             localStorage.setItem("valueFlag", 1);
           }
           var intervalId = setInterval(function () {
             $.ajax({
-              url:
-                "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/status?project-name=" +
+              url: s + "/api/v1/apiseccheck/status?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -226,8 +227,7 @@ function scan() {
             clearInterval(intervalId);
             $("#errorresult").addClass("d-none");
             $.ajax({
-              url:
-                "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=" +
+              url: s + "/api/v1/apiseccheck/results?project-name=" +
                 result.data.name,
               method: "GET",
               dataType: "json",
@@ -1063,7 +1063,7 @@ function runAsampleAPI() {
     window.location.replace = "/sampleResult.html";
     $("#errorresult").addClass("d-none");
     $.ajax({
-      url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
+      url: s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
       method: "GET",
       dataType: "json",
       headers: {
