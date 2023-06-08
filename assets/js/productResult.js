@@ -554,10 +554,19 @@ function scan() {
 
 window.dataCleanup = function () {
   contents = "";
-  $("#openAPISpec").val('');
-  $("#email").val('');
+  $("#openAPISpec").val("");
+  $("#email").val("");
   $("#exampleModalCenterGoback").modal("hide");
-}
+  $("#openAPISpec").val("");
+  $("#email").val("");
+  $("#errorresult").addClass("d-none");
+  $("#errorresult1").addClass("d-none");
+  $("#messageValue").addClass("d-none");
+  $("#loadingresultfree").addClass("d-none");
+  $("#progressIcons").addClass("d-none");
+  $("#scantime").addClass("d-none");
+  $("#btn").prop("disabled", false);
+};
 var isSubmitting = false;
 function fileupload() {
   $(".testdomain").text("");
@@ -1067,16 +1076,13 @@ function fileupload() {
 }
 window.callAPI = function (modalType) {
   console.log("modaltype", modalType);
-  if (modalType == 'missing') {
+  if (modalType == "missing") {
     baseURL = $("#baseUrlInput").val();
     $("#exampleModalCenterUnabletoLoad").hide();
-  }
-  else {
+  } else {
     baseURL = $("#baseUrlNotReachable").val();
     $("#exampleModalCenter").hide();
   }
-
-
 
   $(".modal-backdrop").addClass("d-none");
   // $(".modal").modal("hide");
