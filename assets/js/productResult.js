@@ -4,6 +4,7 @@ $(document).ready(function () {
   // runAsampleAPI();
   scan();
   fileupload();
+
   $("#apiurl").addClass("d-none");
   $("[rel=tooltip]").tooltip({ placement: "right" });
   $(".api-invalid-tooltip").hide();
@@ -17,7 +18,7 @@ $(document).ready(function () {
   //     }
   // });
   $("#previousBtn").click(function (event) {
-    console.log('clicked')
+    console.log("clicked");
     window.location.replace("product.html");
   });
 });
@@ -37,13 +38,7 @@ $("#fileUploadModal").click(function () {
   $("body").addClass("modal-open");
   fileupload();
 });
-function callAPI() {
-  $("#exampleModalCenterUnabletoLoad").hide();
-  $(".modal-backdrop").addClass("d-none");
-  // $(".modal").modal("hide");
-  document.getElementById("btn").click();
-  // scan();
-}
+
 $("#uploadLink").click(function () {
   $("#free").css("height", "400px");
 });
@@ -83,6 +78,7 @@ function scan() {
     $("#scantime").removeClass("d-none");
 
     baseURL = $("#baseUrlInput").val();
+    // $("#baseUrlValue").text(baseURL);
     // progressStats();
     // $('.report').hide();
     // var jsonData = {
@@ -95,14 +91,14 @@ function scan() {
         email: email,
         openAPISpec: contents,
         isFileUpload: true,
-        // host: baseURL,
+        host: baseURL,
       };
     } else {
       jsonData = {
         email: email,
         openAPISpec: openAPISpec,
         isFileUpload: false,
-        // host: baseURL,
+        host: baseURL,
       };
     }
 
@@ -119,46 +115,46 @@ function scan() {
           errorDisplay();
         }
         function errorDisplay() {
-          // var resultMessages = result.messages[0].key === "Missing Base URL";
-          // console.log(resultMessages);
-          // if (resultMessages) {
-          //   apiCallCounter = 0 + 1;
-          //   if (apiCallCounter == 1) {
-          //     $("#missingBaseUrlPop").removeClass("d-none");
-          //     $("#exampleModalCenterUnabletoLoad").modal("show");
-          //     $("#errorresult").addClass("d-none");
-          //     $("#errorresult1").addClass("d-none");
-          //     $("#messageValue").addClass("d-none");
-          //     $("#loadingresultfree").addClass("d-none");
-          //     $("#progressIcons").addClass("d-none");
-          //     $("#scantime").addClass("d-none");
-          //     $("#btn").prop("disabled", false);
-          //   } else if (apiCallCounter > 1 && apiCallCounter <= 3) {
-          //     $("#missingBaseUrlPop").removeClass("d-none");
-          //     $("#exampleModalCenter").modal("show");
-          //   } else if (apiCallCounter > 3) {
-          //     $("#exampleModalCenterGoback").modal("show");
-          //   }
-          // }
-          // if (!resultMessages) {
-          for (var i = 0; i < result.messages.length; i++) {
-            if (result.messages[i].type === "ERROR" || resultMessages) {
-              var keyMessage = result.messages[i].key;
-              var messageValue = result.messages[i].value;
-              $("#keyerror").text(keyMessage);
-              $("#errorvalue").html(messageValue);
-            }
+          var resultMessages = result.messages[0].key.split(",")[0];
+
+          console.log(resultMessages);
+          if (resultMessages == "Missing Base URL") {
+            $("#missingBaseUrlPop").removeClass("d-none");
+            $("#exampleModalCenterUnabletoLoad").modal("show");
+            $("#errorresult").addClass("d-none");
+            $("#errorresult1").addClass("d-none");
+            $("#messageValue").addClass("d-none");
+            $("#loadingresultfree").addClass("d-none");
+            $("#progressIcons").addClass("d-none");
+            $("#scantime").addClass("d-none");
+            $("#btn").prop("disabled", false);
+          } else if (resultMessages == "Invalid Base URL") {
+            $("#missingBaseUrlPop").removeClass("d-none");
+            $("#exampleModalCenter").modal("show");
+            $("#baseUrlValue").text(baseURL);
           }
-          $("#errorresult").removeClass("d-none");
-          $("#errorresult1").addClass("d-none");
-          $("#messageValue").addClass("d-none");
-          $("#loadingresultfree").addClass("d-none");
-          $("#progressIcons").addClass("d-none");
-          $("#scantime").addClass("d-none");
-          $("#btn").prop("disabled", false);
-          $("#openAPISpec").prop("disabled", false);
-          $("#email").prop("disabled", false);
+          // else if (apiCallCounter > 3) {
+          //   $("#exampleModalCenterGoback").modal("show");
           // }
+          if (!resultMessages) {
+            for (var i = 0; i < result.messages.length; i++) {
+              if (result.messages[i].type === "ERROR" || resultMessages) {
+                var keyMessage = result.messages[i].key;
+                var messageValue = result.messages[i].value;
+                $("#keyerror").text(keyMessage);
+                $("#errorvalue").html(messageValue);
+              }
+            }
+            $("#errorresult").removeClass("d-none");
+            $("#errorresult1").addClass("d-none");
+            $("#messageValue").addClass("d-none");
+            $("#loadingresultfree").addClass("d-none");
+            $("#progressIcons").addClass("d-none");
+            $("#scantime").addClass("d-none");
+            $("#btn").prop("disabled", false);
+            $("#openAPISpec").prop("disabled", false);
+            $("#email").prop("disabled", false);
+          }
         }
         if (result.errors === false) {
           var intervalId = setInterval(function () {
@@ -555,9 +551,6 @@ function scan() {
   });
 }
 
-
-
-
 var isSubmitting = false;
 function fileupload() {
   $(".testdomain").text("");
@@ -593,7 +586,7 @@ function fileupload() {
     };
     reader.readAsText(file);
     $("#fileUploadModal").hide();
-    $("#free").css('height', 'auto');
+    $("#free").css("height", "auto");
     $(".modal-backdrop").addClass("d-none");
   });
   // $("#btn").click(function () {
@@ -1065,6 +1058,22 @@ function fileupload() {
   //   });
   // });
 }
+window.callAPI = function (modalType) {
+  console.log("modaltype", modalType);
+  $("#exampleModalCenterUnabletoLoad").hide();
+  $("#exampleModalCenter").hide();
+  $(".modal-backdrop").addClass("d-none");
+  // $(".modal").modal("hide");
+  document.getElementById("btn").click();
+  // scan();
+};
+// function callAPI() {
+//   $("#exampleModalCenterUnabletoLoad").hide();
+//   $(".modal-backdrop").addClass("d-none");
+//   // $(".modal").modal("hide");
+//   document.getElementById("btn").click();
+//   // scan();
+// }
 function IsEmail(email) {
   var regex =
     /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -1085,7 +1094,9 @@ function runAsampleAPI() {
     window.location.replace = "/sampleResult.html";
     $("#errorresult").addClass("d-none");
     $.ajax({
-      url: s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
+      url:
+        s +
+        "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20jsPi",
       method: "GET",
       dataType: "json",
       headers: {

@@ -124,6 +124,17 @@ input#baseUrlInput {
   padding: 12px;
 }
 
+input#baseUrlNotReachable {
+  width: 450px;
+  height: 44px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(205, 214, 225);
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 12px;
+}
+
 .uploadFileBody {
   border: 5px dotted #c0d6de;
   margin: 25px;
