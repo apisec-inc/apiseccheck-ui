@@ -4,7 +4,6 @@ $(document).ready(function () {
   // runAsampleAPI();
   scan();
   fileupload();
-  dataCleanup();
   $("#apiurl").addClass("d-none");
   $("[rel=tooltip]").tooltip({ placement: "right" });
   $(".api-invalid-tooltip").hide();
@@ -22,30 +21,32 @@ $(document).ready(function () {
     window.location.replace("product.html");
   });
 });
-var dropArea = document.querySelector(".uploadFileBody");
-dropArea.addEventListener("dragover", (event) => {
-  event.preventDefault(); //preventing from default behaviour
-});
-dropArea.addEventListener("dragleave", () => {
-  console.log("if user leaves from drop area");
-});
-dropArea.addEventListener("drop", (event) => {
-  event.preventDefault();
-  let file = event.dataTransfer.files[0];
-  var reader = new FileReader();
-  var fileName = file.name;
-  $("#openAPISpec").val(fileName);
-  reader.onload = function (v) {
-    $(this).prop("disabled", true);
-    contents = v.target.result;
-    if (contents) {
-      $(".modal").modal("hide");
-    }
-  };
-  reader.readAsText(file);
-  // $("#getFile").val(fileName);
-  $("#fileUploadModal").hide();
-  $(".modal-backdrop").addClass("d-none");
+window.addEventListener("DOMContentLoaded", (event) => {
+  var dropArea = document.querySelector(".uploadFileBody");
+  dropArea.addEventListener("dragover", (event) => {
+    event.preventDefault(); //preventing from default behaviour
+  });
+  dropArea.addEventListener("dragleave", () => {
+    console.log("if user leaves from drop area");
+  });
+  dropArea.addEventListener("drop", (event) => {
+    event.preventDefault();
+    let file = event.dataTransfer.files[0];
+    var reader = new FileReader();
+    var fileName = file.name;
+    $("#openAPISpec").val(fileName);
+    reader.onload = function (v) {
+      $(this).prop("disabled", true);
+      contents = v.target.result;
+      if (contents) {
+        $(".modal").modal("hide");
+      }
+    };
+    reader.readAsText(file);
+    // $("#getFile").val(fileName);
+    $("#fileUploadModal").hide();
+    $(".modal-backdrop").addClass("d-none");
+  });
 });
 var s = getServer();
 
@@ -152,16 +153,22 @@ function scan() {
             $("#progressIcons").addClass("d-none");
             $("#scantime").addClass("d-none");
             $("#btn").prop("disabled", false);
-          } else if ((apiCallCounter == 1 || apiCallCounter == 2) && resultMessages == "Invalid Base URL") {
+          } else if (
+            (apiCallCounter == 1 || apiCallCounter == 2) &&
+            resultMessages == "Invalid Base URL"
+          ) {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenter").modal("show");
             $("#btn").prop("disabled", false);
-            $("#notReachableBaseUrl").text(result.messages[0].key.split(",")[1]);
-          }
-          else if (apiCallCounter == 3 && resultMessages == "Invalid Base URL") {
+            $("#notReachableBaseUrl").text(
+              result.messages[0].key.split(",")[1]
+            );
+          } else if (
+            apiCallCounter == 3 &&
+            resultMessages == "Invalid Base URL"
+          ) {
             $("#exampleModalCenterGoback").modal("show");
-          }
-          else {
+          } else {
             $("#errorresult1").removeClass("d-none");
 
             $("#keyerror1").html(result.messages[0].value);
@@ -570,7 +577,9 @@ function scan() {
         var errmsg = error.responseText;
         if (err.status == "500") {
           $("#errorresult1").removeClass("d-none");
-          $("#keyerror1").html("Trouble scanning the API. For help, please contact us at sales@apisec.ai");
+          $("#keyerror1").html(
+            "Trouble scanning the API. For help, please contact us at sales@apisec.ai"
+          );
           $("#openAPISpec").val("");
           $("#messageValue").addClass("d-none");
           $("#loadingresultfree").addClass("d-none");
@@ -603,6 +612,8 @@ window.dataCleanup = function () {
   $("#progressIcons").addClass("d-none");
   $("#scantime").addClass("d-none");
   $("#btn").prop("disabled", false);
+  $("#openAPISpec").prop("disabled", false);
+  $("#email").prop("disabled", false);
 };
 var isSubmitting = false;
 function fileupload() {
