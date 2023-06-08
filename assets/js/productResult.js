@@ -139,7 +139,9 @@ function scan() {
           }
           else {
             $("#errorresult1").removeClass("d-none");
-            $("#keyerror1").html("Trouble scanning the API " + $("#openAPISpec").val() + ". For help, please contact us at <a href=mailto:sales@apisec.ai\>sales@apisec.ai</a>.");
+
+            $("#keyerror1").html(result.messages[0].value);
+
             $("#openAPISpec").val("");
             $("#messageValue").addClass("d-none");
             $("#loadingresultfree").addClass("d-none");
