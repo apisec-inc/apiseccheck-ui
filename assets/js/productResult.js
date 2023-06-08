@@ -134,8 +134,19 @@ function scan() {
             $("#btn").prop("disabled", false);
             $("#notReachableBaseUrl").text(result.messages[0].key.split(",")[1]);
           }
-          else if (apiCallCounter == 3) {
+          else if (apiCallCounter == 3 && resultMessages == "Invalid Base URL") {
             $("#exampleModalCenterGoback").modal("show");
+          }
+          else {
+            $("#errorresult1").removeClass("d-none");
+            $("#keyerror1").html("Trouble scanning the API " + $("#openAPISpec").val() + ". For help, please contact us at <a href=mailto:sales@apisec.ai\>sales@apisec.ai</a>.");
+            $("#openAPISpec").val("");
+            $("#messageValue").addClass("d-none");
+            $("#loadingresultfree").addClass("d-none");
+            $("#progressIcons").addClass("d-none");
+            $("#scantime").addClass("d-none");
+            $("#btn").prop("disabled", false);
+            $("#errorresult").addClass("d-none");
           }
           if (!resultMessages) {
             for (var i = 0; i < result.messages.length; i++) {
@@ -533,7 +544,7 @@ function scan() {
         var errmsg = error.responseText;
         if (err.status == "500") {
           $("#errorresult1").removeClass("d-none");
-          $("#keyerror1").html("Internal Server Error");
+          $("#keyerror1").html("Trouble scanning the API. For help, please contact us at sales@apisec.ai");
           $("#openAPISpec").val("");
           $("#messageValue").addClass("d-none");
           $("#loadingresultfree").addClass("d-none");
