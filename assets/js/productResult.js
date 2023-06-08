@@ -77,7 +77,7 @@ function scan() {
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
 
-    baseURL = $("#baseUrlInput").val();
+    // baseURL = $("#baseUrlInput").val();
     // $("#baseUrlValue").text(baseURL);
     // progressStats();
     // $('.report').hide();
@@ -117,7 +117,7 @@ function scan() {
         function errorDisplay() {
           var resultMessages = result.messages[0].key.split(",")[0];
 
-          console.log(resultMessages);
+
           if (resultMessages == "Missing Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenterUnabletoLoad").modal("show");
@@ -131,6 +131,7 @@ function scan() {
           } else if (resultMessages == "Invalid Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenter").modal("show");
+            $("#btn").prop("disabled", false);
             $("#baseUrlValue").text(baseURL);
           }
           // else if (apiCallCounter > 3) {
@@ -1060,8 +1061,17 @@ function fileupload() {
 }
 window.callAPI = function (modalType) {
   console.log("modaltype", modalType);
-  $("#exampleModalCenterUnabletoLoad").hide();
-  $("#exampleModalCenter").hide();
+  if (modalType == 'missing') {
+    baseURL = $("#baseUrlInput").val();
+    $("#exampleModalCenterUnabletoLoad").hide();
+  }
+  else {
+    baseURL = $("#baseUrlNotReachable").val();
+    $("#exampleModalCenter").hide();
+  }
+
+
+
   $(".modal-backdrop").addClass("d-none");
   // $(".modal").modal("hide");
   document.getElementById("btn").click();
