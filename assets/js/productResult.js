@@ -128,11 +128,11 @@ function scan() {
             $("#progressIcons").addClass("d-none");
             $("#scantime").addClass("d-none");
             $("#btn").prop("disabled", false);
-          } else if (apiCallCounter == 2 && resultMessages == "Invalid Base URL") {
+          } else if ((apiCallCounter == 1 || apiCallCounter == 2) && resultMessages == "Invalid Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenter").modal("show");
             $("#btn").prop("disabled", false);
-            $("#notReachableBaseUrl").text(baseURL);
+            $("#notReachableBaseUrl").text(result.messages[0].key.split(",")[1]);
           }
           else if (apiCallCounter == 3) {
             $("#exampleModalCenterGoback").modal("show");
