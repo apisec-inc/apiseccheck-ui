@@ -22,7 +22,31 @@ $(document).ready(function () {
     window.location.replace("product.html");
   });
 });
-
+var dropArea = document.querySelector(".uploadFileBody");
+dropArea.addEventListener("dragover", (event) => {
+  event.preventDefault(); //preventing from default behaviour
+});
+dropArea.addEventListener("dragleave", () => {
+  console.log("if user leaves from drop area");
+});
+dropArea.addEventListener("drop", (event) => {
+  event.preventDefault();
+  let file = event.dataTransfer.files[0];
+  var reader = new FileReader();
+  var fileName = file.name;
+  $("#openAPISpec").val(fileName);
+  reader.onload = function (v) {
+    $(this).prop("disabled", true);
+    contents = v.target.result;
+    if (contents) {
+      $(".modal").modal("hide");
+    }
+  };
+  reader.readAsText(file);
+  // $("#getFile").val(fileName);
+  $("#fileUploadModal").hide();
+  $(".modal-backdrop").addClass("d-none");
+});
 var s = getServer();
 
 var isSubmitting = false;
