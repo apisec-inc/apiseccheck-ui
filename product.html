@@ -258,7 +258,7 @@
                             <div class="bodyContent">
                                 <h2 class="text-center fw-bold">Hmm...</h2>
                                 <p>APIsec Scan found a "base URL" for your API in the specifications!</p>
-                                <p class="fw-bold" id="baseUrlValue"></p>
+                                <p class="fw-bold" id="notReachableBaseUrl"></p>
                                 <p>However when it tried to call this URL. it was unable to reach your API</p>
                                 <p class="text-center fw-bold scanContent">APIsec Scan runs in the cloud, so the
                                     provided URL for this API
@@ -274,7 +274,8 @@
                                         placeholder="Enter a Publicly - accessible URL for this API">
                                     <br>
                                     <br>
-                                    <button type="button" class="btn btn-primary testBaseUrl mt-2" onclick="callAPI('notreachable')">Continue Scan</button>
+                                    <button type="button" class="btn btn-primary testBaseUrl mt-2"
+                                        onclick="callAPI('notreachable')">Continue Scan</button>
                                     <br>
                                     <br>
                                     <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel
@@ -307,7 +308,7 @@
                                 </p>
                                 <p>Need help, or need to scan an internal API?</p>
                                 <p>Reach out to <a href="#">sales@apisec.ai</a> and we'll get you started.</p>
-                                <button type="button" class="btn btn-basic goback mt-2" data-dismiss="modal">Go
+                                <button type="button" class="btn btn-basic goback mt-2" onclick="dataCleanup()">Go
                                     Back</button>
                             </div>
                         </div>
@@ -339,7 +340,8 @@
                                         placeholder="Enter a Publicly - accessible URL for this API">
                                     <br>
                                     <br>
-                                    <button type="button" class="btn btn-primary testBaseUrl mt-2" onclick="callAPI('missing')">Continue Scan</button>
+                                    <button type="button" class="btn btn-primary testBaseUrl mt-2"
+                                        onclick="callAPI('missing')">Continue Scan</button>
                                     <br>
                                     <br>
                                     <button class="text-muted fw-bold cancel mt-2" data-dismiss="modal">Cancel

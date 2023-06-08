@@ -4,7 +4,7 @@ $(document).ready(function () {
   // runAsampleAPI();
   scan();
   fileupload();
-
+  dataCleanup();
   $("#apiurl").addClass("d-none");
   $("[rel=tooltip]").tooltip({ placement: "right" });
   $(".api-invalid-tooltip").hide();
@@ -117,8 +117,8 @@ function scan() {
         function errorDisplay() {
           var resultMessages = result.messages[0].key.split(",")[0];
 
-
-          if (resultMessages == "Missing Base URL") {
+          apiCallCounter = apiCallCounter + 1;
+          if (apiCallCounter == 1 && resultMessages == "Missing Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenterUnabletoLoad").modal("show");
             $("#errorresult").addClass("d-none");
@@ -128,15 +128,15 @@ function scan() {
             $("#progressIcons").addClass("d-none");
             $("#scantime").addClass("d-none");
             $("#btn").prop("disabled", false);
-          } else if (resultMessages == "Invalid Base URL") {
+          } else if (apiCallCounter == 2 && resultMessages == "Invalid Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenter").modal("show");
             $("#btn").prop("disabled", false);
-            $("#baseUrlValue").text(baseURL);
+            $("#notReachableBaseUrl").text(baseURL);
           }
-          // else if (apiCallCounter > 3) {
-          //   $("#exampleModalCenterGoback").modal("show");
-          // }
+          else if (apiCallCounter == 3) {
+            $("#exampleModalCenterGoback").modal("show");
+          }
           if (!resultMessages) {
             for (var i = 0; i < result.messages.length; i++) {
               if (result.messages[i].type === "ERROR" || resultMessages) {
@@ -552,6 +552,12 @@ function scan() {
   });
 }
 
+window.dataCleanup = function () {
+  contents = "";
+  $("#openAPISpec").val('');
+  $("#email").val('');
+  $("#exampleModalCenterGoback").modal("hide");
+}
 var isSubmitting = false;
 function fileupload() {
   $(".testdomain").text("");
