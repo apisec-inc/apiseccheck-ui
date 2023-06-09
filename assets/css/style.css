@@ -112,7 +112,13 @@ button.btn.btn-primary.testBaseUrl {
   font-size: 20px;
   font-family: "Inter";
 }
+.modal{
+    pointer-events: none;
+}
 
+.modal-dialog{
+    pointer-events: all;
+ }
 input#baseUrlInput {
   width: 450px;
   height: 44px;
