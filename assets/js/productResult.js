@@ -137,6 +137,7 @@ function scan() {
       },
       data: JSON.stringify(jsonData),
       success: function (result) {
+        contents = "";
         if (result.errors === true) {
           errorDisplay();
         }
@@ -583,6 +584,7 @@ function scan() {
       },
       error: function (error) {
         var err = eval("(" + error.responseText + ")");
+        contents = "";
 
         var errmsg = error.responseText;
         if (err.status == "500") {
