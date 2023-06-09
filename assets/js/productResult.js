@@ -54,7 +54,7 @@ var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
 var jsonData;
-
+var fileName = "";
 var baseURL = null;
 $("#fileUploadModal").click(function () {
   $("#getFile").val("");
@@ -103,15 +103,10 @@ function scan() {
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
 
-    // baseURL = $("#baseUrlInput").val();
-    // $("#baseUrlValue").text(baseURL);
-    // progressStats();
-    // $('.report').hide();
-    // var jsonData = {
-    //   email: email,
-    //   openAPISpec: openAPISpec,
-    //   isFileUpload: false,
-    // };
+    // check user has modified the input fields
+
+    if (fileName != $("#openAPISpec").val())
+      contents = "";
     if (contents != "") {
       jsonData = {
         email: email,
@@ -137,7 +132,7 @@ function scan() {
       },
       data: JSON.stringify(jsonData),
       success: function (result) {
-        contents = "";
+        // contents = "";
         if (result.errors === true) {
           errorDisplay();
         }
@@ -584,7 +579,7 @@ function scan() {
       },
       error: function (error) {
         var err = eval("(" + error.responseText + ")");
-        contents = "";
+        // contents = "";
 
         var errmsg = error.responseText;
         if (err.status == "500") {
@@ -647,7 +642,7 @@ function fileupload() {
   $("#getFile").on("change", function () {
     var file = this.files[0];
     var reader = new FileReader();
-    var fileName = file.name;
+    fileName = file.name;
 
     // $('#openAPISpec').text(fileName).val
     $("#openAPISpec").val(fileName);
@@ -1140,7 +1135,6 @@ function fileupload() {
   // });
 }
 window.callAPI = function (modalType) {
-  console.log("modaltype", modalType);
   if (modalType == "missing") {
     baseURL = $("#baseUrlInput").val();
     $("#exampleModalCenterUnabletoLoad").hide();
