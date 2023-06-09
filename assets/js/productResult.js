@@ -173,12 +173,14 @@ function scan() {
 
             $("#keyerror1").html(result.messages[0].value);
 
-            $("#openAPISpec").val("");
+            // $("#openAPISpec").val("");
             $("#messageValue").addClass("d-none");
             $("#loadingresultfree").addClass("d-none");
             $("#progressIcons").addClass("d-none");
             $("#scantime").addClass("d-none");
             $("#btn").prop("disabled", false);
+            $("#openAPISpec").prop("disabled", false);
+            $("#email").prop("disabled", false);
             $("#errorresult").addClass("d-none");
           }
           if (!resultMessages) {
