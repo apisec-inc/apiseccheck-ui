@@ -590,13 +590,18 @@ function scan() {
           $("#keyerror1").html(
             "Trouble scanning the API. For help, please contact us at sales@apisec.ai"
           );
-          $("#openAPISpec").val("");
+
           $("#messageValue").addClass("d-none");
           $("#loadingresultfree").addClass("d-none");
           $("#progressIcons").addClass("d-none");
           $("#scantime").addClass("d-none");
-          $("#btn").prop("disabled", false);
+
+
           $("#errorresult").addClass("d-none");
+          $("#btn").prop("disabled", false);
+          $("#openAPISpec").prop("disabled", false);
+          $("#email").prop("disabled", false);
+          $("#uploadLink").removeClass("disabled");
 
           // $("#errorscreen").removeClass("d-none")
         } else {
