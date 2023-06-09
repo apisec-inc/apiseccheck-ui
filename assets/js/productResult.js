@@ -246,7 +246,7 @@ function scan() {
                   testresult.data ==
                   "Please check your OAS URL is valid, and the API is not too large."
                 ) {
-                  $("#openAPISpec").val("");
+                  // $("#openAPISpec").val("");
                   $("#btn").prop("disabled", false);
                   $("#loadingresultfree").addClass("d-none");
                   $("#progressIcons").addClass("d-none");
@@ -615,7 +615,6 @@ function scan() {
 
 window.dataCleanup = function () {
   contents = "";
-  $("#openAPISpec").val("");
   $("#email").val("");
   $("#exampleModalCenterGoback").modal("hide");
   $("#openAPISpec").val("");
