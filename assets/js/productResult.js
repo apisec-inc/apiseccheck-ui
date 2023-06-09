@@ -23,30 +23,30 @@ $(document).ready(function () {
 });
 window.addEventListener("DOMContentLoaded", (event) => {
   var dropArea = document.querySelector(".uploadFileBody");
-  dropArea.addEventListener("dragover", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-  });
-  dropArea.addEventListener("dragleave", () => {
-    console.log("if user leaves from drop area");
-  });
-  dropArea.addEventListener("drop", (event) => {
-    event.preventDefault();
-    let file = event.dataTransfer.files[0];
-    var reader = new FileReader();
-    var fileName = file.name;
-    $("#openAPISpec").val(fileName);
-    reader.onload = function (v) {
-      $(this).prop("disabled", true);
-      contents = v.target.result;
-      if (contents) {
-        $(".modal").modal("hide");
-      }
-    };
-    reader.readAsText(file);
-    // $("#getFile").val(fileName);
-    $("#fileUploadModal").hide();
-    $(".modal-backdrop").addClass("d-none");
-  });
+  // dropArea.addEventListener("dragover", (event) => {
+  //   event.preventDefault(); //preventing from default behaviour
+  // });
+  // dropArea.addEventListener("dragleave", () => {
+  //   console.log("if user leaves from drop area");
+  // });
+  // dropArea.addEventListener("drop", (event) => {
+  //   event.preventDefault();
+  //   let file = event.dataTransfer.files[0];
+  //   var reader = new FileReader();
+  //   var fileName = file.name;
+  //   $("#openAPISpec").val(fileName);
+  //   reader.onload = function (v) {
+  //     $(this).prop("disabled", true);
+  //     contents = v.target.result;
+  //     if (contents) {
+  //       $(".modal").modal("hide");
+  //     }
+  //   };
+  //   reader.readAsText(file);
+  //   // $("#getFile").val(fileName);
+  //   $("#fileUploadModal").hide();
+  //   $(".modal-backdrop").addClass("d-none");
+  // });
 });
 var s = getServer();
 
@@ -207,6 +207,8 @@ function scan() {
           }
         }
         if (result.errors === false) {
+          if (result.messages[0].key = 'APIsec-Scan - A scan was recently run for this API')
+            localStorage.setItem("recentRun", result.messages[0].value);
           var intervalId = setInterval(function () {
             $.ajax({
               url:
@@ -290,6 +292,8 @@ function scan() {
                 "Content-Type": "application/json",
               },
               success: function (resultData) {
+
+
                 var viewResult = resultData;
                 var apispecification = viewResult.data.openAPISpec;
                 var name = viewResult.data.name;
@@ -341,12 +345,13 @@ function scan() {
                   viewResult.data.testSummary.brokenAuthentication;
                 var basicAuthentication =
                   viewResult.data.testSummary.basicAuthentication;
+
                 let mainURL = window.location.origin + "/productResult.html";
                 let url2 = new URL(mainURL.replace("index.html", ""));
                 url2.searchParams.set("project-name", name);
                 window.location.replace(url2);
                 console.log("length", APIdescription.length);
-                barchart();
+
 
                 if (APIdescription.length > 450) {
                   let resultDescription = APIdescription.substring(0, 400);
@@ -1384,58 +1389,7 @@ function runAsampleAPI() {
         $("#testEnvironment").text(testEnvironment);
         $("#overallScore").text(score);
 
-        function barchart() {
-          var xValues = [
-            "Vulnerable",
-            "Valuable",
-            "Configuration",
-            "Authentication",
-          ];
-          var yValues = [
-            vulnerabilityScore,
-            valueDataScore,
-            configurationScore,
-            authenticationScore,
-          ];
-          var barColors = ["#dec15a", "#d65745", "#72ba2c", "#d65745"];
-          const backgroundColor = [];
-          for (i = 0; i < yValues.length; i++) {
-            if (yValues[i] >= 0 && yValues[i] < 49) {
-              backgroundColor.push("green");
-            }
-            if (yValues[i] >= 50 && yValues[i] <= 75) {
-              backgroundColor.push("yellow");
-            }
-            if (yValues[i] > 75) {
-              backgroundColor.push("red");
-            }
-          }
-          // var ctx = document.getElementById("myChart").getContext("2d");
-          // var mychart = new Chart(ctx, {
-          //   type: "bar",
-          //   data: {
-          //     labels: xValues,
-          //     fontColor: ["#dec15a"],
-          //     datasets: [
-          //       {
-          //         data: yValues,
-          //         backgroundColor: backgroundColor,
-          //       },
-          //     ],
-          //   },
 
-          //   options: {
-          //     legend: { display: false },
-          //     title: {
-          //       display: true,
-          //     },
-
-          //     scales: {
-          //       yAxes: [{ ticks: { min: 0, stepSize: 10, max: 100 } }],
-          //     },
-          //   },
-          // });
-        }
       },
       error: function (xhr, status, error) {
         // Handle any API errors here

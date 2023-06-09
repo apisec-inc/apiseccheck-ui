@@ -15,6 +15,12 @@ $(document).ready(function () {
         "Content-Type": "application/json",
       },
       success: function (resultData) {
+        // show msg if already run 
+        if (localStorage.getItem("recentRun")) {
+          $("#recentRunMsg").text(localStorage.getItem("recentRun"));
+          localStorage.removeItem("recentRun")
+
+        }
         var viewResult = resultData;
         //   var apispecification = 'file';
         var name = viewResult.data.name;
