@@ -818,6 +818,9 @@ a.nav-link.scrollto.logo {
   }
 }
 
+.disabled {
+  pointer-events: none;
+}
 
 
 
@@ -826,7 +829,9 @@ a.nav-link.scrollto.logo {
 
 
 
-input#openAPISpec,input#email {
+
+input#openAPISpec,
+input#email {
   border-style: solid;
   border-width: 1px;
   border-color: rgb(205, 214, 225);

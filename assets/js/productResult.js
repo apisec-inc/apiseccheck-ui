@@ -75,6 +75,7 @@ function scan() {
     $("#errorresult").addClass("d-none");
     $("#errorresult2").addClass("d-none");
     $("#errorresult1").addClass("d-none");
+    $("#uploadLink").addClass("disabled");
     var email = $("#email").val();
     var testStart = Date.now();
     var openAPISpectemp = $("#openAPISpec").val();
@@ -181,6 +182,7 @@ function scan() {
             $("#btn").prop("disabled", false);
             $("#openAPISpec").prop("disabled", false);
             $("#email").prop("disabled", false);
+            $("#uploadLink").removeClass("disabled");
             $("#errorresult").addClass("d-none");
           }
           if (!resultMessages) {
@@ -201,6 +203,7 @@ function scan() {
             $("#btn").prop("disabled", false);
             $("#openAPISpec").prop("disabled", false);
             $("#email").prop("disabled", false);
+            $("#uploadLink").removeClass("disabled");
           }
         }
         if (result.errors === false) {
@@ -616,6 +619,7 @@ window.dataCleanup = function () {
   $("#btn").prop("disabled", false);
   $("#openAPISpec").prop("disabled", false);
   $("#email").prop("disabled", false);
+  $("#uploadLink").removeClass("disabled");
 };
 var isSubmitting = false;
 function fileupload() {
