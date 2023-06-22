@@ -21,41 +21,42 @@ $(document).ready(function () {
     window.location.replace("product.html");
   });
 });
-window.addEventListener("DOMContentLoaded", (event) => {
-  var dropArea = document.querySelector(".uploadFileBody");
-  // dropArea.addEventListener("dragover", (event) => {
-  //   event.preventDefault(); //preventing from default behaviour
-  // });
-  // dropArea.addEventListener("dragleave", () => {
-  //   console.log("if user leaves from drop area");
-  // });
-  // dropArea.addEventListener("drop", (event) => {
-  //   event.preventDefault();
-  //   let file = event.dataTransfer.files[0];
-  //   var reader = new FileReader();
-  //   var fileName = file.name;
-  //   $("#openAPISpec").val(fileName);
-  //   reader.onload = function (v) {
-  //     $(this).prop("disabled", true);
-  //     contents = v.target.result;
-  //     if (contents) {
-  //       $(".modal").modal("hide");
-  //     }
-  //   };
-  //   reader.readAsText(file);
-  //   // $("#getFile").val(fileName);
-  //   $("#fileUploadModal").hide();
-  //   $(".modal-backdrop").addClass("d-none");
-  // });
-});
-var s = getServer();
-
 var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
 var jsonData;
 var fileName = "";
 var baseURL = null;
+window.addEventListener("DOMContentLoaded", (event) => {
+  var dropArea = document.querySelector(".uploadFileBody");
+  dropArea.addEventListener("dragover", (event) => {
+    event.preventDefault(); //preventing from default behaviour
+  });
+  dropArea.addEventListener("dragleave", () => {
+    console.log("if user leaves from drop area");
+  });
+  dropArea.addEventListener("drop", (event) => {
+    event.preventDefault();
+    let file = event.dataTransfer.files[0];
+    var reader = new FileReader();
+    var fileName = file.name;
+    $("#openAPISpec").val(fileName);
+    reader.onload = function (v) {
+      // $(this).prop("disabled", true);
+      contents = v.target.result;
+      if (contents) {
+        $(".modal").modal("hide");
+      }
+    };
+    reader.readAsText(file);
+    // $("#getFile").val(fileName);
+    $("#fileUploadModal").addClass("d-none");
+    $(".modal-backdrop").addClass("d-none");
+  });
+});
+
+var s = getServer();
+
 $("#fileUploadModal").click(function () {
   $("#getFile").val("");
   $("#fileUploadModal").removeClass("d-none");
@@ -105,8 +106,8 @@ function scan() {
 
     // check user has modified the input fields
 
-    if (fileName != $("#openAPISpec").val())
-      contents = "";
+    // if (fileName != $("#openAPISpec").val())
+    //   contents = "";
     if (contents != "") {
       jsonData = {
         email: email,
@@ -203,7 +204,10 @@ function scan() {
           }
         }
         if (result.errors === false) {
-          if (result.messages[0].key = 'APIsec-Scan - A scan was recently run for this API')
+          if (
+            (result.messages[0].key =
+              "APIsec-Scan - A scan was recently run for this API")
+          )
             localStorage.setItem("recentRun", result.messages[0].value);
           var intervalId = setInterval(function () {
             $.ajax({
@@ -288,8 +292,6 @@ function scan() {
                 "Content-Type": "application/json",
               },
               success: function (resultData) {
-
-
                 var viewResult = resultData;
                 var apispecification = viewResult.data.openAPISpec;
                 var name = viewResult.data.name;
@@ -347,7 +349,6 @@ function scan() {
                 url2.searchParams.set("project-name", name);
                 window.location.replace(url2);
                 console.log("length", APIdescription.length);
-
 
                 if (APIdescription.length > 450) {
                   let resultDescription = APIdescription.substring(0, 400);
@@ -592,7 +593,6 @@ function scan() {
           $("#loadingresultfree").addClass("d-none");
           $("#progressIcons").addClass("d-none");
           $("#scantime").addClass("d-none");
-
 
           $("#errorresult").addClass("d-none");
           $("#btn").prop("disabled", false);
