@@ -29,6 +29,7 @@ var fileName = "";
 var baseURL = null;
 window.addEventListener("DOMContentLoaded", (event) => {
   var dropArea = document.querySelector(".uploadFileBody");
+  if(dropArea){
   dropArea.addEventListener("dragover", (event) => {
     event.preventDefault(); //preventing from default behaviour
   });
@@ -52,7 +53,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // $("#getFile").val(fileName);
     $("#fileUploadModal").addClass("d-none");
     $(".modal-backdrop").addClass("d-none");
+    $("body").addClass("modal-open");
+    $("#uploadLink").click(function () {
+      $("#fileUploadModal").removeClass("d-none");
+    });
   });
+  }
 });
 
 var s = getServer();
