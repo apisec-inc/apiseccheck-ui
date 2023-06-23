@@ -150,6 +150,7 @@ function scan() {
           if (apiCallCounter == 1 && resultMessages == "Missing Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenterUnabletoLoad").modal("show");
+            $('#main').css('height','auto')
             $("#errorresult").addClass("d-none");
             $("#errorresult1").addClass("d-none");
             $("#messageValue").addClass("d-none");
