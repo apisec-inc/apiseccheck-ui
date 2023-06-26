@@ -41,7 +41,34 @@ a {
   color: rgb(2, 92, 122);
   text-decoration: none;
 }
+.card {
+    border: none;
+}
+div#headingOne {
+    background-color: #fff !important;
+    border: none;
+    padding: 0;
+}
+.btn:focus  {
+ color: #34495e !important;
+font-weight: 600;
+}
+/* .btn:visited  {
+ color: #34495e !important;
+ font-weight: bold;
+} */
+.btn:focus {
 
+  box-shadow: none;}
+button.btn.btn-link{
+  font-size: 16px;
+    font-family: "Inter";
+    color: rgb(0, 0, 0);
+    line-height: 1.778;
+    text-align: left;
+    width: 90%;
+    text-decoration: none;
+}
 .samplecheck a {
   border-bottom: 1px solid rgb(2, 92, 122);
   font-family: 'Inter';

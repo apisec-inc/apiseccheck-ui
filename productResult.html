@@ -80,33 +80,29 @@
 
     <section class="resultPage p-0">
         <div class="container">
-            <!-- <a href="./product.html">
-                                                    <ion-icon name="arrow-back-circle"></ion-icon>
-                                                </a> -->
-            <button class="border-0 bg-none" id="previousBtn">
-                <ion-icon name="arrow-back-circle"></ion-icon>
-            </button>
-
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
+                <button class="border-0 bg-none" id="previousBtn" onclick="history.back()">
+                    <ion-icon name="arrow-back-circle"></ion-icon>
+                </button>
                 <p class="text-center fw-bold" id="name"></p>
             </div>
             <!-- <div class="row py-2">
-                <div class="col-md-2 py-2"></div>
-                <div class="col-md-2 py-2">
-                    <div class="gradeScore">
-                        <h1 class="text-danger bigscore" id="overallScore"></h1>
-                        <p class="score"> Overall Score</p>
-                    </div>
-                </div>
-                <div class="col-md-7 ml-5">
-                    <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
-
-                </div>
-                <div class="col-md-1 py-2"></div>
-
-            </div> -->
+                        <div class="col-md-2 py-2"></div> -->
+                        <!-- <div class="col-md-2 py-2">
+                                                                            <div class="gradeScore">
+                                                                                <h1 class="text-danger bigscore" id="overallScore"></h1>
+                                                                                <p class="score"> Overall Score</p>
+                                                                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-7 ml-5">
+                                                                            <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+                                                    
+                        </div> -->
+            <!-- <div class="col-md-1 py-2"></div> -->
+            
+            <!-- </div> -->
             <div class="row">
-                <p class="text-center fw-bold" id="recentRunMsg"></p>
+                <p id="test123" class="d-none"></p>
             </div>
             <div class="spacing1"></div>
             <div class="row">
@@ -115,189 +111,455 @@
                         <table class="data" style="width: 100%;">
                             <tr>
                                 <th>Description:</th>
-                                <td id="descriptionForAPI"></td>
-
+                                <td id="descriptionForAPI"> </td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <th>API Specification:</th>
                                 <td id="apispecification"></td>
-
-                            </tr> -->
+    
+                            </tr>
                             <tr>
                                 <th>API Base URL:</th>
                                 <td id="testEnvironment"></td>
-
+    
                             </tr>
                             <tr>
                                 <th>Number of Endpoints:</th>
                                 <td id="totalEndpoints"></td>
-
+    
                             </tr>
                             <tr>
                                 <th>Date Tested:</th>
                                 <td id="dateTested"></td>
-
+    
                             </tr>
-
+                            <!-- <tr>
+                                                                                                                                                                                                                                                                                                        <th>Your Ip is :</th>
+                                                                                                                                                                                                                                                                                                        <td id="ipAddress"></td>
+                                                                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                      </tr> -->
+    
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="spacing1"></div>
+        <section class="vulnerabilitySection">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                        <h3 class="Vulnerability float-left mb-2">Vulnerable</h3>
+                        <p class="Test_passed mb-2">Test Passed</p>
+                        <table class="vulnerabilityData" style="width: 100%;">
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse10"
+                                                        aria-expanded="true" aria-controls="collapse10">
+                                                        Injection (Log4J)
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse10" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    Log4j Injection is an attack in which the attacker is able to invoke a
+                                                    remote server by injecting
+                                                    JNDI lookup string to
+                                                    perform a remote LDAP lookup via vulnerable application.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="injection"></p>
+                                </td>
+                                
+                                </tr>
+                                <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse9"
+                                                        aria-expanded="true" aria-controls="collapse9">
+                                                        Fuzzing
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse9" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    Simple GET is a suite to test the plain GET APIs with no query or path
+                                                    params. It's a utility/info
+                                                    category and it won't
+                                                    log a vulnerability
+                                                </div>
+                                            </div>
+                                        </div>
+                                            </div>
+                                            </td>
+                                            <td class="vulnerbilityRight">
+                                                <!-- <i class="fa fa-check-circle check d-none" aria-hidden="true" id="passed"></i>
+                                                                                                                    <i class="fa fa-times-circle d-none" aria-hidden="true" id="failed"></i>
+                                                                                                                    <p id="na"></p> -->
+                                                <p id="6fuzz"></p>
+                                            </td>
+                                            
+                                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse8"
+                                                        aria-expanded="true" aria-controls="collapse8">
+                                                        Reflected Injection
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse8" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    Post parameters are inherently stored somewhere and should be carefully
+                                                    scrubbed so that they cannot
+                                                    be show to in the
+                                                    future in a UI.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="reflectedget"></p>
+                                    <p id="na"></p>
+                                    </td>
+                                    
+                                    </tr>
+                            <!-- <tr>
+                                                                          <td class="vulnerbilityLeft py-2">Reflected POST Injection:</td>
+                                                                          <td class="vulnerbilityRight">
+                                                                        <p id="reflectedpost"></p>
+                                                                            <p id="na"></p>
+                                                                          </td>
+                                
+                                            </tr> -->
+    </table>
+    </div>
+    </div>
+                <div class="row mt-5">
+                    <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                        <h3 class="Vulnerability float-left mb-3">Valuable</h3>
+                        <table class="vulnerabilityData" style="width: 100%;">
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse7"
+                                                        aria-expanded="true" aria-controls="collapse7">
+                                                        Personal Data
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse7" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    Any data that can be used to break the anonymity of a interaction. It is
+                                                    closely tied to privacy and
+                                                    tracking
+                                                    regulations
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="piiData"></p>
+                                    <p id="na"></p>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                                            <h3 class="Vulnerability float-left mb-3">Configuration </h3>
+                                            <table class="vulnerabilityData" style="width: 100%;">
+                                                <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse6"
+                                                        aria-expanded="true" aria-controls="collapse6">
+                                                        SSL Certificate
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse6" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    It will fail if the certificate is seen as invalid, weak or expiring
+                                                    soon.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="ssl"></p>
+                                    <p id="na"></p>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse5"
+                                                        aria-expanded="true" aria-controls="collapse5">
+                                                        SSL Required
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse5" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                
+                                                    It will fail if the certificate is seen as invalid, weak or expiring
+                                                    soon.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="missing"></p>
+                                    <p id="na"></p>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse4"
+                                                        aria-expanded="true" aria-controls="collapse4">
+                                                        Server Properties Leak
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse4" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                
+                                                    Benefit attackers looking for what technology they are trying to attack
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="serverprop"></p>
+                                    <p id="na"></p>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3"
+                                                        aria-expanded="true" aria-controls="collapse3">
+                                                        HTTP Options
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse3" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    HTTP methods that are advertised or allowed that are either insecure or
+                                                    likely a mistake. If an
+                                                    attacker finds these
+                                                    methods available they will be at the top of the list for targets.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="httpoption"></p>
+                                    <p id="na"></p>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                        aria-expanded="true" aria-controls="collapseTwo">
+                                                        CORS Configuration
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    API Specifying CORS
+                                                    origins reduces the chance of XSS
+                                                    attacks being used to gain unauthorized access to your API through an
+                                                    existing customer
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="cors"></p>
+                                    <p id="na"></p>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header " id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        Incremental IDs
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                                    Incremental Ids scanning checks if the Auto generated IDs associated
+                                                    with the resources in
+                                                    sequential. Resources with
+                                                    Sequential IDs are vulnerable since they are easy to guess.
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="incremental"></p>
+                                    <p id="na"></p>
+                                    </td>
+                                    
+                                    </tr>
+                        </table>
+                        </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class=" col-md-7 mx-auto vulnerabiltyHeading">
+                                <h3 class="Vulnerability float-left mb-3">Authentication</h3>
+                                <table class="vulnerabilityData" style="width: 100%;">
+                                    <!-- <tr>
+                                                                  <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
+                                                                    "status" ):
+                                                                  </td>
+                <td class="vulnerbilityRight">
+                    <p id="noauth"></p>
+                    <p id="na"></p>
+                </td>
+                
+                </tr> -->
+                <tr>
+                                <td class="vulnerbilityLeft py-2">
+                                
+                                    <div class="accordion" id="faqExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse0"
+                                                        aria-expanded="true" aria-controls="collapse0">
+                                                        Broken Authentication
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                
+                                            <div id="collapse0" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                                <div class="card-body">
+                                
+                                                    Identifies vulnerabilities resulting from either skipping or using
+                                                    cached
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                
+                                
+                                    </div>
+                                </td>
+                                <td class="vulnerbilityRight">
+                                    <p id="brokenauth"></p>
+                                    <p id="na"></p>
+                                    </td>
+                                    
+                                    </tr>
+                                    <!-- <tr>
+                                                                                          <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
+                <td class="vulnerbilityRight">
+                    <p id="basicauth"></p>
+                    <p id="na"></p>
+                </td>
+                
+                </tr> -->
+                        </table>
+                        </div>
+                        </div>
+                        </div>
+        </section>
     </section>
 
-
-    <div class="spacing1"></div>
-    <section class="vulnerabilitySection">
-        <div class="container">
-            <div class="row">
-                <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-                    <h3 class="Vulnerability float-left mb-2">Vulnerability</h3>
-                    <p class="Test_passed mb-2">Test Passed</p>
-                    <table class="vulnerabilityData" style="width: 100%;">
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Injection for endpoints (Log4J):
-                            </td>
-                            <td class="vulnerbilityRight" id="injection">
-                                <!-- <i class="fa fa-check-circle check" aria-hidden="true"></i> -->
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft ">Fuzzing</td>
-                            <td class="vulnerbilityRight">
-
-                                <p id="6fuzz" class="m-0"></p>
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Reflected Injection:</td>
-                            <td class="vulnerbilityRight">
-                                <p id="reflectedget" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-                    <h3 class="Vulnerability float-left mb-3">Valuable</h3>
-                    <table class="vulnerabilityData" style="width: 100%;">
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Personal Data
-                            </td>
-                            <td class="vulnerbilityRight">
-                                <p id="piiData" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-                    <h3 class="Vulnerability float-left mb-3">Configuration </h3>
-                    <table class="vulnerabilityData" style="width: 100%;">
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">SSL Certificate Issues</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"></i> -->
-                                <p id="ssl" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Missing TLS HSTS Headers</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true">-->
-                                <p id="missing" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Server Properties Leak in Headers</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
-                                <p id="serverprop" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Http Options</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"></i> -->
-                                <p id="httpoption" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Cors Config</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
-                                <p id="cors" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Incremental IDs for Endpoint:</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-times-circle cross" aria-hidden="true"> -->
-                                <p id="incremental" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-
-
-                    </table>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class=" col-md-7 mx-auto vulnerabiltyHeading">
-                    <h3 class="Vulnerability float-left mb-3">Authentication</h3>
-                    <table class="vulnerabilityData" style="width: 100%;">
-                        <!-- <tr>
-                            <td class="vulnerbilityLeft py-2">No Auth (Minus things like "health check", "login",
-                                "status" ):
-                            </td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></i>
-                            </td>
-
-                        </tr> -->
-                        <tr>
-                            <td class="vulnerbilityLeft py-2">Broken Authentication</td>
-                            <td class="vulnerbilityRight">
-                                <!-- <i class="fa fa-check-circle check" aria-hidden="true"></i> -->
-                                <p id="brokenauth" class="m-0"></p>
-                                <p id="na" class="m-0"></p>
-                            </td>
-
-                        </tr>
-                        <!-- <tr>
-                            <td class="vulnerbilityLeft py-2">Basic Authentication:</td>
-                            <td class="vulnerbilityRight"><i class="fa fa-times-circle cross" aria-hidden="true"></td>
-
-                        </tr> -->
-
-
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
+    
 
 
 
