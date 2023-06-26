@@ -889,6 +889,12 @@ input#email {
   margin-top: 5px;
 }
 
+.baseurl-invalid-tooltip{
+  color: red;
+  text-align: left;
+  margin-top: 5px;
+} 
+
 input#email {
   height: 45px;
   border-radius: 10px;

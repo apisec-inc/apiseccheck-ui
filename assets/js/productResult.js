@@ -1162,6 +1162,29 @@ window.callAPI = function (modalType) {
 //   document.getElementById("btn").click();
 //   // scan();
 // }
+
+function IsValidDomain(domainPublic) {
+  let regex = new RegExp(
+    /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/
+  );
+  if (regex.test(domainPublic)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+$(".testBaseUrl").eq(0).prop("disabled", "true");
+$("#baseUrlNotReachable").on("input", function () {
+  if (IsValidDomain($("#baseUrlNotReachable").val()) == true) {
+    $(".testBaseUrl").removeAttr("disabled");
+    $('.baseurl-invalid-tooltip').hide();
+  } else {
+    $(".testBaseUrl").prop("disabled", "true");
+    $('.baseurl-invalid-tooltip').show();
+  }
+});
+
 function IsEmail(email) {
   var regex =
     /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
