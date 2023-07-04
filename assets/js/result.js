@@ -25,6 +25,7 @@ $(document).ready(function () {
         //   var apispecification = 'file';
         var name = viewResult.data.name;
         var APIdescription = viewResult.data.description;
+        var apispecification = viewResult.data.openAPISpec;
         var score = viewResult.data.testSummary.overallScore;
         var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
         // var dateTested = viewResult.data.dateTested
@@ -83,6 +84,14 @@ $(document).ready(function () {
           $("#descriptionForAPI").text("No Description");
         } else {
           $("#descriptionForAPI").text(APIdescription);
+        }
+        if(localStorage.getItem('fileName')){
+          $("#apispecification").text(localStorage.getItem('fileName'));
+          // localStorage.removeItem('fileName')
+        }
+        else{
+          $("#apispecification").text(apispecification);
+
         }
         if (injectionsForEndpoints === "Passed") {
           $("#injection").html(

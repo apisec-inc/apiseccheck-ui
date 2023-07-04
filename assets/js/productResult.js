@@ -216,6 +216,8 @@ function scan() {
               "APIsec-Scan - A scan was recently run for this API")
           )
             localStorage.setItem("recentRun", result.messages[0].value);
+            localStorage.setItem('fileName',fileName)
+
           var intervalId = setInterval(function () {
             $.ajax({
               url:
@@ -635,6 +637,7 @@ window.dataCleanup = function () {
   $("#uploadLink").removeClass("disabled");
 };
 var isSubmitting = false;
+var FileName;
 function fileupload() {
   $(".testdomain").text("");
 
