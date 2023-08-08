@@ -1168,7 +1168,7 @@ window.callAPI = function (modalType) {
 
 function IsValidDomain(domainPublic) {
   let regex = new RegExp(
-    /^(?!-)[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/
+    /^(?!-)(https:\/\/|http:\/\/|ftp:\/\/)?[A-Za-z0-9-]+([\-\.]{1}[a-z0-9]+)*\.[A-Za-z]{2,6}$/
   );
   if (regex.test(domainPublic)) {
     return true;
