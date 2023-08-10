@@ -74,6 +74,11 @@ $(document).ready(function () {
           $("#resultNote").removeClass("d-none");
           localStorage.removeItem("valueFlag");
         }
+       
+        $("#headingOne .btn").click(function() {
+          console.log( $(this).find('.fas'))
+          $(this).find('.fas').toggleClass("fa-plus fa-minus");
+      });
 
         if (APIdescription.length > 450) {
           let resultDescription = APIdescription.substring(0, 400);
