@@ -75,6 +75,10 @@ function runAsampleAPI() {
       } else {
         $("#descriptionForAPI").text(APIdescription);
       }
+      $("#headingOne .btn").click(function() {
+        console.log( $(this).find('.fas'))
+        $(this).find('.fas').toggleClass("fa-plus fa-minus");
+      });
       if (injectionsForEndpoints === "Passed") {
         $("#injection").html(
           '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
