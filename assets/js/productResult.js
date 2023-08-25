@@ -231,48 +231,79 @@ function scan() {
               },
 
               success: function (testresult) {
+                let flag = 0;
                 $("#errorresult").addClass("d-none");
                 $("#messageValue").text(testresult.data);
+                console.log(testresult.data)
                 if (testresult.data == "API Security Test case Generation") {
+                  flag =0;
                   $("#progre").removeClass("d-none");
                   $("#analyse").css("color", "#025c7a", "font-weight", "600");
                   $(".hr-line").css("border-bottom", "3px solid #025c7a");
                   $("#runasamplescan").addClass("d-none");
+                  console.log("analyse")
                 }
-                if (testresult.data == "Security Test Execution") {
-                  $("#settingdark").css("filter", "none");
-                  $("#generate").removeClass("d-none");
-                  $("#generate").css("color", "#025c7a", "font-weight", "600");
-                  $(".hr-line1").css("border-bottom", "3px solid #025c7a");
-                }
-                if (testresult.data == "Preparing Test Results") {
-                  $("#targetNew").css("filter", "none");
-                  $("#running").removeClass("d-none");
-                  $("#running").css("color", "#025c7a", "font-weight", "600");
-                  $(".hr-line2").css("border-bottom", "3px solid #025c7a");
-                }
-                if (
-                  testresult.data ==
-                  "Please check your OAS URL is valid, and the API is not too large."
-                ) {
-                  // $("#openAPISpec").val("");
-                  $("#btn").prop("disabled", false);
-                  $("#loadingresultfree").addClass("d-none");
-                  $("#progressIcons").addClass("d-none");
-                  $("#errorresult2").removeClass("d-none");
+                if(testresult.data == "Test Case Generation Completed"){
+                  console.log("Security Test Case Completion")
                   clearInterval(intervalId);
+                                    showDetails();
+
                 }
-                if (testresult.data == "Scan completed") {
-                  $("#reporticon").css("filter", "none");
-                  $("#preparing").removeClass("d-none");
-                  $("#preparing").css("color", "#025c7a", "font-weight", "600");
-                  $("#openAPISpec").val("");
-                  $("#btn").prop("disabled", false);
-                  $("#loadingresultfree").addClass("d-none");
-                  $("#progressIcons").addClass("d-none");
-                  clearInterval(intervalId);
-                  resultAPI();
-                }
+                // if (testresult.data == "Security Test Execution") {
+                //   $("#settingdark").css("filter", "none");
+                //   flag = 1;
+                //   $("#generate").removeClass("d-none");
+                //   $("#generate").css("color", "#025c7a", "font-weight", "600");
+                //   $(".hr-line1").css("border-bottom", "3px solid #025c7a");
+                  
+                //   console.log("Test!",result.data.name)
+                //   // clearInterval(intervalId);
+                //   // showDetails();
+                //   // window.location.replace('details.html')
+
+                // }
+                // if(testresult.data == "Security Test Case Completion"){
+                //   console.log("Security Test Case Completion")
+                //   clearInterval(intervalId);
+                //                     // showDetails();
+
+                // }
+                // if (testresult.data == "Preparing Test Results") {
+                //   flag = 0;
+                //   $("#targetNew").css("filter", "none");
+                //   $("#running").removeClass("d-none");
+                //   $("#running").css("color", "#025c7a", "font-weight", "600");
+                //   $(".hr-line2").css("border-bottom", "3px solid #025c7a");
+                //    console.log("preparing ")
+                // }
+                // if (
+                //   testresult.data ==
+                //   "Please check your OAS URL is valid, and the API is not too large."
+                // ) {
+                //   // $("#openAPISpec").val("");
+                //   $("#btn").prop("disabled", false);
+                //   $("#loadingresultfree").addClass("d-none");
+                //   $("#progressIcons").addClass("d-none");
+                //   $("#errorresult2").removeClass("d-none");
+                //   console.log("check")
+
+                //   clearInterval(intervalId);
+                // }
+                // if (testresult.data == "Scan completed") {
+                //   flag = 0;
+                //   $("#reporticon").css("filter", "none");
+                //   $("#preparing").removeClass("d-none");
+                //   $("#preparing").css("color", "#025c7a", "font-weight", "600");
+                //   $("#openAPISpec").val("");
+                //   $("#btn").prop("disabled", false);
+                //   $("#loadingresultfree").addClass("d-none");
+                //   $("#progressIcons").addClass("d-none");
+                //   console.log("scan completed")
+                //   // clearInterval(intervalId);
+                //   // resultAPI();
+                //   clearInterval(intervalId);
+                //   // showDetails();
+                // }
                 // if (testresult.data == 'Please check your OAS URL is valid, and the API is not too large') {
                 //     clearInterval(intervalId);
                 // }
@@ -286,7 +317,14 @@ function scan() {
               },
             });
           }, 10000);
-
+           function showDetails(){
+            console.log("Show Details");
+            let mainURLDetail2 = window.location.origin + "/details.html";
+            let urlDetail = new URL(mainURLDetail2.replace("index.html", ""));
+            urlDetail.searchParams.set("project-name", result.data.name);
+            window.location.replace(urlDetail);
+            console.log("length", APIdescription.length);
+           }
           function resultAPI() {
             clearInterval(intervalId);
             $("#errorresult").addClass("d-none");
