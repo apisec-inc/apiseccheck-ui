@@ -920,7 +920,7 @@ input#email {
   margin-top: 30px;
   font-size: 18px;
   font-family: "Inter" !important;
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255) !important;
   font-weight: bold;
   line-height: 1.2;
   text-align: center;

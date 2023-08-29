@@ -18,7 +18,9 @@ $(document).ready(function () {
   // });
   $("#previousBtn").click(function (event) {
     console.log("clicked");
-    window.location.replace("product.html");
+    // window.location.replace("product.html");
+    window.location.replace(localStorage.getItem("detailsURL"))
+    localStorage.removeItem('detailsURL')
   });
 });
 var isSubmitting = false;
@@ -102,6 +104,7 @@ function scan() {
       return false;
     }
     $(this).prop("disabled", true);
+    $(this).css("color", "#ffff");
     $("#openAPISpec").prop("disabled", true);
     $("#email").prop("disabled", true);
     $("#testresultfree").addClass("d-none");
@@ -318,12 +321,11 @@ function scan() {
             });
           }, 10000);
            function showDetails(){
-            console.log("Show Details");
-            let mainURLDetail2 = window.location.origin + "/details.html";
+            let mainURLDetail2 = window.location.origin + "/SpecAnalysisResults.html";
             let urlDetail = new URL(mainURLDetail2.replace("index.html", ""));
             urlDetail.searchParams.set("project-name", result.data.name);
             window.location.replace(urlDetail);
-            console.log("length", APIdescription.length);
+            // console.log("length", APIdescription.length);
            }
           function resultAPI() {
             clearInterval(intervalId);
