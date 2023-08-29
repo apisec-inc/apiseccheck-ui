@@ -64,7 +64,7 @@ $(document).ready(function () {
       }
       $('#basicInfo .basicinfo-table').append(tableDataMethod);
       $('#description').html("<span class='font-weight-bold fs-6'>Description:</span>" + resultData.data.description)
-      $('#openApiSec').html("<span class='font-weight-bold fs-6'>OpenAPI Spec:</span>" + resultData.data.openAPISpec)
+      $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + resultData.data.openAPISpec)
 
       //to go back to details page from product page 
       

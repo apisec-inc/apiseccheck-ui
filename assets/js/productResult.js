@@ -237,17 +237,17 @@ function scan() {
                 let flag = 0;
                 $("#errorresult").addClass("d-none");
                 $("#messageValue").text(testresult.data);
-                console.log(testresult.data)
+                // console.log(testresult.data)
                 if (testresult.data == "API Security Test case Generation") {
                   flag =0;
                   $("#progre").removeClass("d-none");
                   $("#analyse").css("color", "#025c7a", "font-weight", "600");
                   $(".hr-line").css("border-bottom", "3px solid #025c7a");
                   $("#runasamplescan").addClass("d-none");
-                  console.log("analyse")
+                  // console.log("analyse")
                 }
                 if(testresult.data == "Test Case Generation Completed"){
-                  console.log("Security Test Case Completion")
+                  // console.log("Security Test Case Completion")
                   clearInterval(intervalId);
                                     showDetails();
 
