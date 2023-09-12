@@ -112,7 +112,18 @@ function scan() {
     $("#loadingresultfree").removeClass("d-none");
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
+    $('#runSample').on("click", function(e) {
+      e.preventDefault();
+    
+    });
 
+    $('#runSample').css('color','rgb(133 168 180)');
+    $('#runSampleSpecAnalysis').on("click", function(e) {
+      e.preventDefault();
+    
+    });
+
+    $('#runSampleSpecAnalysis').css('color','rgb(133 168 180)');
     // check user has modified the input fields
 
     // if (fileName != $("#openAPISpec").val())
@@ -148,7 +159,7 @@ function scan() {
         }
         function errorDisplay() {
           var resultMessages = result.messages[0].key.split(",")[0];
-
+          
           apiCallCounter = apiCallCounter + 1;
           if (apiCallCounter == 1 && resultMessages == "Missing Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");

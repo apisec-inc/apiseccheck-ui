@@ -12,7 +12,7 @@ function runAsampleAPI() {
   //   e.preventDefault();
   $("#errorresult").addClass("d-none");
   $.ajax({
-    url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
+    url:s+ "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20zSBb",
     method: "GET",
     dataType: "json",
     headers: {

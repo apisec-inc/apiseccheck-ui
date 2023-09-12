@@ -1,14 +1,9 @@
 import { getServer } from "./environment.js";
-// import {resultAPI} from "./productResult.js";
 $(document).ready(function () {
-  let url2 = new URL(window.location.href);
-  let projectName = url2.searchParams.get("project-name");
   var s = getServer();
   $.ajax({
     url:
-      s +
-      "/api/v1/apiseccheck/results?project-name=" +
-      projectName,
+    s +'/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20zSBb',
     method: "GET",
     dataType: "json",
     headers: {
@@ -41,7 +36,6 @@ $(document).ready(function () {
         });
       }
       let output = sortJSON(resultData.data.specAnalysis.categoryWisePlaybookCountList, "owaspRank", true);
-     
       for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
         let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
         if (testsGenerated > 0) {
@@ -67,7 +61,7 @@ $(document).ready(function () {
             csv_data.push(csvrow.join(","));
         }
         csv_data = csv_data.join('\n');
-        // console.log(csv_data)
+        console.log(csv_data)
         downloadCSVFileOWASPRanking(csv_data);
       }
 
@@ -97,7 +91,7 @@ $(document).ready(function () {
             csv_data.push(csvrow.join(","));
         }
         csv_data = csv_data.join('\n');
-        // console.log(csv_data)
+        console.log(csv_data)
         downloadCSVFileVariables(csv_data);
       }
 
@@ -138,120 +132,15 @@ $(document).ready(function () {
         tableToCSVVariables();
       });
 
+        
+
     },
     error: function (xhr, status, error) {
-      // Handle any API errors here
     },
   });
-  $("#runbtn").click(function () {
-    $(this).prop('disabled', true);
-    $('#progressIcons').removeClass('d-none')
-    $('#loadingresultfree').removeClass('d-none')
-
-    runTests();
+  $("#sampleRunBtn").click(function () {
+   window.location.replace('sample.html')
   });
-  function runTests() {
-    $.ajax({
-      url:
-        s +
-        "/api/v1/apiseccheck/scan?project-name=" +
-        projectName,
-      method: "POST",
-      dataType: "json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      success: function (resultData) {
-      if(resultData.errors === true){
-        // console.log("errors",resultData);
-        errorDisplay(resultData);
-      }
-      else{
-        if (resultData.data == "Scan Request Submitted" || resultData.data == "Scan completed") {
-          // $("#scantime").removeClass("d-none");
-            $('#progressIcons').removeClass('d-none')
-            $('#loadingresultfree').removeClass('d-none')
-          var intervalId = setInterval(function () {
-            $.ajax({
-              url:
-                s +
-                "/api/v1/apiseccheck/status?project-name=" +
-                projectName,
-              method: "GET",
-              dataType: "json",
-              headers: {
-                "Content-Type": "application/json",
-              },
-
-              success: function (testresult) {
-                let flag = 0;
-                $("#messageValue").text(testresult.data);
-                // console.log(testresult.data);
-                if (testresult.data == "Security Test Execution") {
-                  
-                  $("#targetNew").css("filter", "none");
-                  $("#running").removeClass("d-none");
-                  $("#running").css("color", "#025c7a", "font-weight", "600");
-                  $(".hr-line2").css("border-bottom", "3px solid #025c7a");
-
-                }
-
-                if (testresult.data == "Preparing Test Results") {
-                 
-                  $("#reporticon").css("filter", "none");
-                  $("#preparing").removeClass("d-none");
-                  $("#preparing").css("color", "#025c7a", "font-weight", "600");
-                }
-
-                if (testresult.data == "Scan completed") {
-                  flag = 0;
-                
-                  $("#openAPISpec").val("");
-                  $("#btn").prop("disabled", false);
-                  $("#loadingresultfree").addClass("d-none");
-                  $("#progressIcons").addClass("d-none");
-                  $("#runbtn").prop('disabled',false)
-                  resultAPI();
-
-                  clearInterval(intervalId);
-
-                }
-
-
-              },
-              error: function (xhr, status, error) {
-                // Handle any API errors here
-              },
-            });
-          }, 10000);
-        }
-      }
-      },
-      error: function (xhr, status, error) {
-
-      },
-    });
-
-  }
-
-  function resultAPI() {
-    let mainURL = window.location.origin + "/productResult.html";
-    let url3 = new URL(mainURL.replace("index.html", ""));
-    url3.searchParams.set("project-name", projectName);
-    window.location.replace(url3);
-  }
-   
-  function errorDisplay(resultData){
-    var resultMessages = resultData.messages[0].key.split(",")[0];
-    // console.log(resultData,resultMessages);
-    $('#runbtn').prop('disabled', false);
-    $('#progressIcons').addClass('d-none')
-    $('#loadingresultfree').addClass('d-none')
-    $("#errorresult1").removeClass("d-none");
-    $("#keyerror1").html(resultData.messages[0].value)
-
-  }
-
   $("#previousBtn2").click(function (event) {
     window.location.replace("product.html");
   });

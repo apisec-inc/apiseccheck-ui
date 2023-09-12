@@ -14,42 +14,19 @@
     <!-- Google Fonts -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
+    
+    <!-- <script src="table-sortable.js"></script> -->
+
 
     <style>
-        .hr-theme-slash-2 {
-            display: flex;
-        }
-
-        .hr-line {
-            width: 100%;
-            position: relative;
-            margin: 15px;
-            border-bottom: 3px solid #025c7a;
-            margin-bottom: 17%;
-        }
-
-
-        .hr-line2 {
-            width: 40%;
-            position: relative;
-            margin: 15px;
-            border-bottom: 3px solid #ccc;
-            margin-bottom: 8%;
-        }
-
-        .hr-icon img {
-            position: relative;
-            top: 3px;
-            color: #ff0000;
-            text-align: center;
-        }
+ 
 
         .progressText {
             font-size: 16px;
             text-align: center;
         }
 
-        #runbtn {
+        #sampleRunBtn {
             background-color: #025c7a;
             font-size: 18px;
             font-family: "Inter" !important;
@@ -179,8 +156,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex my-3" style="max-width: 14rem;">
-                                <button id="runbtn" class="btn btn-block1 w-100 text-light">
+                            <div class="d-flex my-3" style="max-width: 14rem;" >
+                                <button id="sampleRunBtn" class="btn btn-block1 w-100 text-light" aria-hidden="true" data-toggle="tooltip" title="This is a sample run">
                                     <i class="fa fa-play p-2" aria-hidden="true"></i>Run Tests
                                 </button>
                             </div>
@@ -193,90 +170,9 @@
             </div>
             <div class="row justify-content-between">
                 <div class="col-lg-12 pt-lg-0 order-2 text-center">
-                    <div class="d-none" id="loadingresultfree">
-                        <h3 class="mt-5" style="  color: rgb(2, 92, 122);
-                                            ;">
-                            APIsec
-                            scanning your API</h3>
-                        <button class="btn btn-primary" type="button"
-                            style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                                id=""></span>
-                            <span id="messageValue" class="mt-4"></span>
-                        </button>
-                        <div class=" mt-4" id="scantime">
-                            <p class="text-center" style="color: #025c7a;">The scan will take
-                                approximately 2-3 minutes to complete. Please leave
-                                window open to complete the scanning.
-                            </p>
-                        </div>
-                    </div>
                     <div>
                         <div class="my-3">
-                            <div class="d-none d-flex flex-row my-5 align-items-center justify-content-center" id="progressIcons">
-
-                                <div class="hr-icon1">
-                                    <img src="assets/img/ellipse_1_copy_3.png" alt="" width="60px" height="60px"
-                                        id="targetNew" style="
-                        filter: grayscale(100%) brightness(10%) contrast(10%);
-                      " />
-                                    <div class="progressText2 pt-2" id="running" style="color: #b8b9b9">
-                                        Running Security Tests
-                                    </div>
-                                </div>
-                                <div class="hr-line2"></div>
-                                <div class="hr-icon2">
-                                    <img src="assets/img/rectangle_4.png" alt="" width="60px" height="60px"
-                                        id="reporticon" style="
-                        filter: grayscale(100%) brightness(10%) contrast(10%);
-                      " />
-                                    <div class="progressText3 pt-2" id="preparing" style="color: #b8b9b9">
-                                        Preparing Results Report
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-none" id="errorresult">
-                                <hr class="my-4" />
-                                <div class="alert alert-basic" role="alert"
-                                    style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
-                                    <h4 class="pt-2 alert alert-basic text-center"><i class="fa fa-exclamation-triangle text-danger"
-                                            aria-hidden="true"></i>
-                                        <span id="keyerror"></span> <span class="testdomain">&#8203;</span>
-                                    </h4>
-                                    <p class="text-basic text-center" id="errorvalue">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-none" id="errorresult1">
-                                <hr class="my-4" />
-                                <div class="alert alert-basic d-flex align-items-center justify-content-center flex-row" role="alert"
-                                    style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
-                                    <h4 class="pt-2 alert alert-basic text-center m-0"><i class="fa fa-times-circle text-danger fs-1"
-                                            aria-hidden="true"></i>
-                                        <!-- <span class="testdomain">&#8203;</span> -->
-                                    </h4>
-                                    <span id="keyerror1" class="fs-5">We are sorry you are having trouble scanning your API. Missing Base URL in OAS or Base URL is not reachable</span>
-
-                                    <p class="text-basic text-center" id="errorvalue1">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="d-none" id="errorresult2">
-                                <hr class="my-4" />
-                                <div class="alert alert-basic" role="alert"
-                                    style="background-color: #fff; border-radius:10px; box-shadow: 0 0 24px rgb(0 0 0 / 15%);">
-                                    <h4 class="pt-2 alert alert-basic text-center"><i class="fa fa-exclamation-triangle text-danger"
-                                            aria-hidden="true"></i>
-                                        <span id="">
-                                            Please check your OAS URL is valid, and the API is not too large.
-                                        </span>
-                                    </h4>
-                                    <p class="text-basic text-center" id="">
-                                        Please provide another URL/File
-                                    </p>
-                                </div>
-                            </div>
+                          
                             
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs mr-5" id="myTab" role="tablist">
@@ -320,6 +216,7 @@
                                     <button class="btn p-0 py-3 h-100" id="OWASPRankingDownloadBtn">
                                         <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
                                     </button>
+                                    
                                   </div>
                                 </div>
                                 <div class="tab-pane" id="parameters" role="tabpanel" aria-labelledby="profile-tab">
@@ -357,6 +254,7 @@
                     </div>
                 </div>
             </div>
+          
         </div>
     </main>
     <!-- End Footer -->
@@ -378,7 +276,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script type="module" src="./assets/js/SpecAnalysisResults.js"></script>
+    <script type="module" src="./assets/js/sampleSpecAnalysis.js"></script>
 </body>
 
 </html>
