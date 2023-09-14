@@ -5,6 +5,7 @@ $(document).ready(function () {
   let projectName = url2.searchParams.get("project-name");
   var s = getServer();
   $.ajax({
+    async: false,
     url:
       s +
       "/api/v1/apiseccheck/results?project-name=" +
@@ -15,51 +16,116 @@ $(document).ready(function () {
       "Content-Type": "application/json",
     },
     success: function (resultData) {
-    
+      if(resultData == ''){
+        console.log("jjjjjkf")
+      }
       $('#subTitle').html(resultData.data.name);
-      let tableDataParameters = '';
+      let tableDataParameters = [];
       for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
         let variableFormat = resultData.data.specAnalysis.variablesList[i].format;
-        tableDataParameters += `<tr><td class="text-center">${resultData.data.specAnalysis.variablesList[i].name}</td>
-        <td class="text-center">${resultData.data.specAnalysis.variablesList[i].type}</td>
-        <td class="text-center">${variableFormat == null ? "-" : variableFormat}</td>
-        </tr>`;
+        if(variableFormat == null) 
+                 variableFormat = "-";
+        resultData.data.specAnalysis.variablesList[i].format = variableFormat;
+        tableDataParameters.push(resultData.data.specAnalysis.variablesList[i]);
       }
-      $('#parameters .parameter-table').append(tableDataParameters);
+    
+      // for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
+      //   let variableFormat = resultData.data.specAnalysis.variablesList[i].format;
+      //   tableDataParameters += `<tr><td class="text-center">${resultData.data.specAnalysis.variablesList[i].name}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.variablesList[i].type}</td>
+      //   <td class="text-center">${variableFormat == null ? "-" : variableFormat}</td>
+      //   </tr>`;
+      // }
+      // $('#parameters .parameter-table').append(tableDataParameters);
 
       $('#endpointCount').html(resultData.data.specAnalysis.totalEndpoints);
       $('#testsCount').html(resultData.data.specAnalysis.totalPlaybooks);
 
-      let tableDataCategory = '';
+      let tableDataCategory = [];
       
-      function sortJSON(arr, key, asc=true) {
-        return arr.sort((a, b) => {
-          let x = a[key];
-          let y = b[key];
-          if (asc) { return ((x < y) ? -1 : ((x > y) ? 1 : 0)); }
-          else { return ((x > y) ? -1 : ((x < y) ? 1 : 0)); }
-        });
-      }
-      let output = sortJSON(resultData.data.specAnalysis.categoryWisePlaybookCountList, "owaspRank", true);
+      // function sortJSON(arr, key, asc=true) {
+      //   return arr.sort((a, b) => {
+      //     let x = a[key];
+      //     let y = b[key];
+      //     if (asc) { return ((x < y) ? -1 : ((x > y) ? 1 : 0)); }
+      //     else { return ((x > y) ? -1 : ((x < y) ? 1 : 0)); }
+      //   });
+      // }
+      // let output = sortJSON(resultData.data.specAnalysis.categoryWisePlaybookCountList, "owaspRank", true);
      
-      for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
+      // for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
+      //   let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
+      //   if (testsGenerated > 0) {
+      //     tableDataCategory += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
+      //   </tr>`;
+      //   }
+      // }
+    
+      // $('#OWASP .owasp-table').append(tableDataCategory);
+       
+        for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
         let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
         if (testsGenerated > 0) {
-          tableDataCategory += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
-        </tr>`;
+            tableDataCategory.push(resultData.data.specAnalysis.categoryWisePlaybookCountList[i]);
         }
       }
-    
-      $('#OWASP .owasp-table').append(tableDataCategory);
+
+      var columnsCategory = {
+        owaspRank: "OWASP Ranking",
+        label: "Category",
+        count: "Number of Tests Generated",
+       
+      };
+      var columnsParameters = {
+        name: "Name",
+        type: "Type",
+        format: "Format",
+      };
+
+        var tableCategory = $("#OWASP .owasp-table").tableSortable({
+          data: tableDataCategory,
+          sorting: true,
+          columns: columnsCategory,
+          searchField: "#searchFieldCategory",
+          rowsPerPage: 5,
+          pagination: true,
+          sortingIcons: {
+             asc:'<span>▼</span>',
+             desc:'<span>▲</span>',
+                },
+
+        });
+        $("#changeRowsCategory").on("change", function () {
+          tableCategory.updateRowsPerPage(parseInt($(this).val(), 10));
+        });
+
+        var tableParameters = $("#parameters .parameter-table").tableSortable({
+          data: tableDataParameters,
+          sorting: true,
+          columns: columnsParameters,
+          searchField: "#searchFieldVariables",
+          rowsPerPage: 5,
+          pagination: true,
+          sortingIcons: {
+             asc:'<span>▼</span>',
+             desc:'<span>▲</span>',
+                },
+
+        });
+        $("#changeRowsVariables").on("change", function () {
+          tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
+        });
+     
        
    
       function tableToCSVOWASPRanking() {
         var csv_data = [];
-        var rows = $('#OWASP .owasp-table')[0].rows;
+        console.log($('#OWASP .owasp-table .gs-table')[0])
+        var rows = $('#OWASP .owasp-table .gs-table')[0].rows;
         for (var i = 0; i < rows.length; i++) {
-            var cols = rows[i].querySelectorAll('td,th');
+            var cols = rows[i].querySelectorAll('td,th span');
             var csvrow = [];
             for (var j = 0; j < cols.length; j++) {
               csvrow.push(cols[j].innerHTML);
@@ -87,9 +153,10 @@ $(document).ready(function () {
       
       function tableToCSVVariables() {
         var csv_data = [];
-        var rows = $('#parameters .parameter-table')[0].rows;
+        console.log($('#parameters .parameter-table .gs-table')[0])
+        var rows = $('#parameters .parameter-table .gs-table')[0].rows;
         for (var i = 0; i < rows.length; i++) {
-            var cols = rows[i].querySelectorAll('td,th');
+            var cols = rows[i].querySelectorAll('td,th span');
             var csvrow = [];
             for (var j = 0; j < cols.length; j++) {
               csvrow.push(cols[j].innerHTML);
@@ -117,16 +184,45 @@ $(document).ready(function () {
       
 
 
-      let tableDataMethod = '';
-      for (let i = 0; i < resultData.data.specAnalysis.countEndpointsByMethodList.length; i++) {
-        tableDataMethod += `<tr><td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].method}</td>
-        <td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].count}</td>
+      // let tableDataMethod = '';
+      // for (let i = 0; i < resultData.data.specAnalysis.countEndpointsByMethodList.length; i++) {
+      //   tableDataMethod += `<tr><td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].method}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].count}</td>
        
-        </tr>`;
+      //   </tr>`;
+      // }
+
+      
+      let tableDataMethod = [];
+      for (let i = 0; i < resultData.data.specAnalysis.countEndpointsByMethodList.length; i++) {
+        tableDataMethod.push(resultData.data.specAnalysis.countEndpointsByMethodList[i])
       }
-      $('#basicInfo .basicinfo-table').append(tableDataMethod);
+   
+      var columnsMethod = {
+        method:"Method",
+        count:"Count"
+      }
+
+      var tableMethod = $("#basicInfo .basicinfo-table").tableSortable({
+        data: tableDataMethod,
+        sorting: true,
+        columns: columnsMethod,
+        // searchField: "#searchField",
+        rowsPerPage: 5,
+        pagination: true,
+        // sortingIcons: {
+        //    asc:'<span>▼</span>',
+        //    desc:'<span>▲</span>',
+        //       },
+
+      });
+
+      // $('#basicInfo .basicinfo-table').append(tableDataMethod);
       $('#description').html("<span class='font-weight-bold fs-6'>Description:</span>" + resultData.data.description)
+      // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
       $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + resultData.data.openAPISpec)
+
+      // console.log(localStorage.getItem("fileName"))
 
     
       

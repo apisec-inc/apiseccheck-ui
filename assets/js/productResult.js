@@ -112,18 +112,19 @@ function scan() {
     $("#loadingresultfree").removeClass("d-none");
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
-    $('#runSample').on("click", function(e) {
-      e.preventDefault();
+    $("#runasamplescan").addClass("d-none")
+    // $('#runSample').on("click", function(e) {
+    //   e.preventDefault();
     
-    });
+    // });
 
-    $('#runSample').css('color','rgb(133 168 180)');
-    $('#runSampleSpecAnalysis').on("click", function(e) {
-      e.preventDefault();
+    // $('#runSample').css('color','rgb(133 168 180)');
+    // $('#runSampleSpecAnalysis').on("click", function(e) {
+    //   e.preventDefault();
     
-    });
+    // });
 
-    $('#runSampleSpecAnalysis').css('color','rgb(133 168 180)');
+    // $('#runSampleSpecAnalysis').css('color','rgb(133 168 180)');
     // check user has modified the input fields
 
     // if (fileName != $("#openAPISpec").val())
@@ -202,6 +203,8 @@ function scan() {
             $("#email").prop("disabled", false);
             $("#uploadLink").removeClass("disabled");
             $("#errorresult").addClass("d-none");
+            $("#runasamplescan").removeClass("d-none")
+
           }
           if (!resultMessages) {
             for (var i = 0; i < result.messages.length; i++) {
@@ -231,6 +234,7 @@ function scan() {
           )
             localStorage.setItem("recentRun", result.messages[0].value);
             localStorage.setItem('fileName',fileName)
+            $("#runasamplescan").addClass("d-none");
 
           var intervalId = setInterval(function () {
             $.ajax({
@@ -251,8 +255,10 @@ function scan() {
                 // console.log(testresult.data)
                 if (testresult.data == "API Security Test case Generation") {
                   flag =0;
-                  $("#progre").removeClass("d-none");
-                  $("#analyse").css("color", "#025c7a", "font-weight", "600");
+                  $("#settingdark").css("filter", "none");
+                  $(".hr-line").css("filter", "none");
+                  $("#generate").removeClass("d-none");
+                  $("#generate").css("color", "#025c7a", "font-weight", "600");
                   $(".hr-line").css("border-bottom", "3px solid #025c7a");
                   $("#runasamplescan").addClass("d-none");
                   // console.log("analyse")
