@@ -220,10 +220,35 @@ $(document).ready(function () {
       // $('#basicInfo .basicinfo-table').append(tableDataMethod);
       $('#description').html("<span class='font-weight-bold fs-6'>Description:</span>" + resultData.data.description)
       // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
-      $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + resultData.data.openAPISpec)
+      $('#openApiSecContent').html(resultData.data.isFileUpload ? showOpenAPISpec():resultData.data.openAPISpec)
+      
+      function showOpenAPISpec(){
+        // console.log("openAPIsec",resultData.data.openAPISpec.length);
+        if(resultData.data.openAPISpec.length > 250){
+          let dataopenAPISpec = `${resultData.data.openAPISpec.substring(1,250)}...`
+          $('#openApiSecContent').html(dataopenAPISpec);
+          $('#openApiSecContentMore').html(resultData.data.openAPISpec);
+          $('.show-more').removeClass('d-none');
+          $('.show-more').click(function(){
+            $('#openApiSecContentMore').removeClass('d-none')
+            $('.show-less').removeClass('d-none')
+            $(this).addClass('d-none')
+            $('#openApiSecContent').addClass('d-none');
 
-      // console.log(localStorage.getItem("fileName"))
+          })
+          $('.show-less').click(function(){
+            $(this).addClass('d-none')
+            $('#openApiSecContentMore').addClass('d-none')
+            $('#openApiSecContent').removeClass('d-none');
+            $('.show-more').removeClass('d-none');
 
+          })
+        }
+        else{
+          $('#openApiSecContent').html(resultData.data.openAPISpec)
+
+        }
+      }
     
       
       localStorage.setItem("detailsURL",window.location.href)

@@ -200,8 +200,12 @@
                         border-bottom:2px solid #a7a5a58a;
         }
 
-
-      
+      .show-more,.show-less{
+        color:#025c7a;
+      }
+      .more-content{
+        overflow-wrap:break-word;
+      }
     </style>
 </head>
 
@@ -438,7 +442,14 @@
                                 </div>
                                 <div class="tab-pane" id="basicInfo" role="tabpanel" aria-labelledby="basicinfo-tab">
                                     <div id="description" class="text-left  p-2"></div>
-                                    <div id="openApiSec" class="text-left  p-2"></div>
+                                    <div id="openApiSec" class="text-left  p-2">
+                                        <span class='font-weight-bold fs-6'>API Specification:</span>
+                                        <span id="openApiSecContent" class="less-content"></span>
+                                        <div id="openApiSecContentMore" class="more-content d-none"></div>
+                                        <button class="border-0 bg-none show-more d-none">Show more</button>
+                                        <button class="border-0 bg-none show-less d-none">Show less</button>
+
+                                    </div>
                                     <div class="basicinfo-table"></div>
                                     <!-- <div class="table-responsive my-3">
                                         <table class="basicinfo-table m-auto dataTable">
