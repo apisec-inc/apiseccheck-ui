@@ -16,9 +16,11 @@ $(document).ready(function () {
       "Content-Type": "application/json",
     },
     success: function (resultData) {
-      if(resultData == ''){
-        console.log("jjjjjkf")
+      if(resultData){
+        $("#loader").addClass('d-none')
+        $('#main').removeClass('d-none')
       }
+
       $('#subTitle').html(resultData.data.name);
       let tableDataParameters = [];
       for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
@@ -258,6 +260,14 @@ $(document).ready(function () {
       $("#variablesDownloadBtn").click(function(){
         tableToCSVVariables();
       });
+
+
+      let piiData ='';
+      console.log(resultData.data.specAnalysis.piiList)
+      for (let i = 0; i < resultData.data.specAnalysis.piiList.length; i++) {
+        piiData  +=`<div class="pii-elements">${resultData.data.specAnalysis.piiList[i]}</div>`
+      }
+      $('.pii-ele-wrapper').append(piiData)
 
     },
     error: function (xhr, status, error) {

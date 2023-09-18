@@ -15,6 +15,10 @@ $(document).ready(function () {
         "Content-Type": "application/json",
       },
       success: function (resultData) {
+        if(resultData){
+          $("#loader").addClass('d-none')
+          $('.resultPage').removeClass('d-none')
+        }
         // show msg if already run 
         if (localStorage.getItem("recentRun")) {
           $("#recentRunMsg").text(localStorage.getItem("recentRun"));

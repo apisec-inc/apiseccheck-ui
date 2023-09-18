@@ -206,11 +206,39 @@
       .more-content{
         overflow-wrap:break-word;
       }
+      .pii-elements{
+    /* border: 2px solid #025c7a; */
+    /* border-radius: 25px; */
+    /* padding: 5px 10px; */
+    /* margin: 5px 10px; */
+    /* color:#025c7a;
+    background-color:#c0d8e0 ; */
+      }
+      .pii-elements{
+           font-weight: 800;
+           color:#025c7a;
+           padding: 5px 10px;
+           margin: 5px 10px;
+           background-color:#c0d8e0 ; 
+
+      }
+      #loader{
+        height:100vh;
+      }
     </style>
 </head>
 
 <body>
-    <main id="main">
+    <!-- MUTLI SPINNER -->
+    <div id="loader">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="nb-spinner"></div>
+            </div>
+            <!-- <div class="font-weight-bolder fs-5 text-center">Loading...</div> -->
+        </div>
+    </div>
+    <main id="main" class="d-none">
         <div class="container col-lg-6">
             <button class="border-0 bg-none" id="previousBtn2">
                 <ion-icon name="arrow-back-circle"></ion-icon>
@@ -366,6 +394,13 @@
                                         Basic Info
                                     </button>
                                 </li>
+                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
+                                    <button class="nav-link py-4 w-100 font-weight-bold text-light "
+                                        id="pii-tab" data-bs-toggle="tab" data-bs-target="#piiInfo"
+                                        type="button" role="tab" aria-controls="messages" aria-selected="false">
+                                        PII Elements
+                                    </button>
+                                </li>
                             </ul>
                           
                             <!-- Tab panes -->
@@ -459,6 +494,24 @@
                                             </tr>
                                         </table>
                                     </div> -->
+                                </div>
+                                <div class="tab-pane" id="piiInfo" role="tabpanel" aria-labelledby="pii-tab">
+                                    <div class="piiInfo-child">
+                                        <div class = "piiInfo-description text-left">
+                                            <span class="font-weight-bolder">PII Data Exposure:</span>
+                                           Personally Identifiable Information or PII is any data that can be used to break the anonymity of a interaction. It is closely tied to privacy and tracking regulations. Examples of PII are government ID numbers, address, phone numbers.
+                                        </div>
+                                        <div class="piiInfo-keywords d-flex flex-column align-items-start ">
+                                            <div class="font-weight-bold">For the given specification,the PII elements are:</div>
+                                            <!-- <div class="pii-ele-wrapper d-flex"></div> -->
+                                            <table class="pii-ele-wrapper">
+                                                <!-- <tr><th></th></tr> -->
+                                                <tbody class=""></tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                 
                                 </div>
 
                             </div>
