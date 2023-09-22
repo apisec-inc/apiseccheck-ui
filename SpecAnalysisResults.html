@@ -128,26 +128,16 @@
       
 
         th {
-            /* text-align: center !important;
-            background-color: #c0d8e0 !important;
-            color: #025c7a !important; */
+        
             text-align: center;
             border-bottom-width: 1px;
-    /* border-bottom-style: solid; */
     border-bottom-color: #0000001f !important;
     color: #0000008a;
-    /* font-size: 12px; */
     font-weight: 500;
     border-top: none !important;
     border-bottom: none !important;
 
         }
-/* 
-        .table-responsive {
-            max-height: 300px;
-            box-sizing: border-box;
-            width: fit-content;
-        } */
 
         .table-responsive::-webkit-scrollbar {
             width: 4px;
@@ -177,14 +167,9 @@
         }
         .search-field{
             border: none;
-            /* border-bottom:2px solid #a7a5a58a; */
-            /* position: relative; */
-            /* float: left; */
-            /* bottom: 20px; */
             outline: none;
             caret-color: rgb(107, 119, 140);
-            /* color: #0000008a !important; */
-            /* margin: 10px; */
+
         }
         label{
             margin:0 ;
@@ -196,8 +181,7 @@
         }
         .input-wrapper{
             color: #0000008a !important;
-
-                        border-bottom:2px solid #a7a5a58a;
+            border-bottom:2px solid #a7a5a58a;
         }
 
       .show-more,.show-less{
@@ -207,14 +191,6 @@
         overflow-wrap:break-word;
       }
       .pii-elements{
-    /* border: 2px solid #025c7a; */
-    /* border-radius: 25px; */
-    /* padding: 5px 10px; */
-    /* margin: 5px 10px; */
-    /* color:#025c7a;
-    background-color:#c0d8e0 ; */
-      }
-      .pii-elements{
            font-weight: 800;
            color:#025c7a;
            padding: 5px 10px;
@@ -222,9 +198,7 @@
            background-color:#c0d8e0 ; 
 
       }
-      #loader{
-        height:100vh;
-      }
+    
     </style>
 </head>
 
@@ -426,20 +400,25 @@
                                        
                                         <div class="owasp-table"></div>
                                       
-                                        <!-- <table class="owasp-table  dataTable w-100">
+                                        <table class="owasp-table-virtual d-none dataTable w-100">
                                             <tr>
                                                 <th class=" font-weight-bold text-center">OWASP Ranking</th>
                                                 <th class=" font-weight-bold text-center">Category</th>
                                                 <th class=" font-weight-bold text-center">Number of Tests Generated</th>
 
                                             </tr>
-                                        </table> -->
+                                        </table>
                                     </div>
                                     <button class="btn p-0 py-3 h-100 float-lg-right" id="OWASPRankingDownloadBtn">
                                         <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
                                         Download as CSV
                                     </button>
                                   </div>
+                                <div>
+                                </div>
+                                                
+                                      
+                                  
                                 </div>
                                 <div class="tab-pane" id="parameters" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="">
@@ -460,13 +439,13 @@
                                         </div>
                                           <div class="parameter-table"></div>
                                          
-                                        <!-- <table class="parameter-table m-auto dataTable ">
+                                        <table class="parameter-table-virtual d-none m-auto dataTable ">
                                             <tr>
                                                 <th class=" font-weight-bold text-center">Name</th>
                                                 <th class=" font-weight-bold text-center">Type</th>
                                                 <th class=" font-weight-bold text-center">Format</th>
                                             </tr>
-                                        </table> -->
+                                        </table>
                                     </div>
                                     <button class="btn p-0 py-3 h-100 float-lg-right" id="variablesDownloadBtn">
                                         <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
@@ -479,10 +458,8 @@
                                     <div id="description" class="text-left  p-2"></div>
                                     <div id="openApiSec" class="text-left  p-2">
                                         <span class='font-weight-bold fs-6'>API Specification:</span>
-                                        <span id="openApiSecContent" class="less-content"></span>
-                                        <div id="openApiSecContentMore" class="more-content d-none"></div>
-                                        <button class="border-0 bg-none show-more d-none">Show more</button>
-                                        <button class="border-0 bg-none show-less d-none">Show less</button>
+                                        <span id="openApiSecContent"></span>
+                                      
 
                                     </div>
                                     <div class="basicinfo-table"></div>
@@ -502,7 +479,7 @@
                                            Personally Identifiable Information or PII is any data that can be used to break the anonymity of a interaction. It is closely tied to privacy and tracking regulations. Examples of PII are government ID numbers, address, phone numbers.
                                         </div>
                                         <div class="piiInfo-keywords d-flex flex-column align-items-start ">
-                                            <div class="font-weight-bold">For the given specification,the PII elements are:</div>
+                                            <div class="font-weight-bold" id="piiStatus">For the given specification,the PII elements are:</div>
                                             <!-- <div class="pii-ele-wrapper d-flex"></div> -->
                                             <table class="pii-ele-wrapper">
                                                 <!-- <tr><th></th></tr> -->

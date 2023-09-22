@@ -23,6 +23,7 @@ $(document).ready(function () {
 
       $('#subTitle').html(resultData.data.name);
       let tableDataParameters = [];
+      let tableDataParameters2='';
       for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
         let variableFormat = resultData.data.specAnalysis.variablesList[i].format;
         if(variableFormat == null) 
@@ -31,20 +32,21 @@ $(document).ready(function () {
         tableDataParameters.push(resultData.data.specAnalysis.variablesList[i]);
       }
     
-      // for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
-      //   let variableFormat = resultData.data.specAnalysis.variablesList[i].format;
-      //   tableDataParameters += `<tr><td class="text-center">${resultData.data.specAnalysis.variablesList[i].name}</td>
-      //   <td class="text-center">${resultData.data.specAnalysis.variablesList[i].type}</td>
-      //   <td class="text-center">${variableFormat == null ? "-" : variableFormat}</td>
-      //   </tr>`;
-      // }
-      // $('#parameters .parameter-table').append(tableDataParameters);
+      for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
+        let variableFormat = resultData.data.specAnalysis.variablesList[i].format;
+        tableDataParameters2 += `<tr><td class="text-center">${resultData.data.specAnalysis.variablesList[i].name}</td>
+        <td class="text-center">${resultData.data.specAnalysis.variablesList[i].type}</td>
+        <td class="text-center">${variableFormat == null ? "-" : variableFormat}</td>
+        </tr>`;
+      }
+      $('.parameter-table-virtual').append(tableDataParameters2);
 
       $('#endpointCount').html(resultData.data.specAnalysis.totalEndpoints);
       $('#testsCount').html(resultData.data.specAnalysis.totalPlaybooks);
 
       let tableDataCategory = [];
       
+      let tableDataCategory2 = '';
       // function sortJSON(arr, key, asc=true) {
       //   return arr.sort((a, b) => {
       //     let x = a[key];
@@ -55,17 +57,17 @@ $(document).ready(function () {
       // }
       // let output = sortJSON(resultData.data.specAnalysis.categoryWisePlaybookCountList, "owaspRank", true);
      
-      // for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
-      //   let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
-      //   if (testsGenerated > 0) {
-      //     tableDataCategory += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
-      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
-      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
-      //   </tr>`;
-      //   }
-      // }
+      for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
+        let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
+        if (testsGenerated > 0) {
+          tableDataCategory2 += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
+        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
+        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
+        </tr>`;
+        }
+      }
     
-      // $('#OWASP .owasp-table').append(tableDataCategory);
+      $(".owasp-table-virtual").append(tableDataCategory2);
        
         for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
         let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
@@ -119,15 +121,17 @@ $(document).ready(function () {
         $("#changeRowsVariables").on("change", function () {
           tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
         });
-     
-       
-   
+        
+  
       function tableToCSVOWASPRanking() {
         var csv_data = [];
-        console.log($('#OWASP .owasp-table .gs-table')[0])
-        var rows = $('#OWASP .owasp-table .gs-table')[0].rows;
+        // console.log($('#OWASP .owasp-table .gs-table')[0])
+        // var rows = $('#OWASP .owasp-table .gs-table')[0].rows;
+        console.log($('.owasp-table-virtual')[0])
+        var rows = $('.owasp-table-virtual')[0].rows;
         for (var i = 0; i < rows.length; i++) {
-            var cols = rows[i].querySelectorAll('td,th span');
+            var cols = rows[i].querySelectorAll('td,th');
+            console.log(cols)
             var csvrow = [];
             for (var j = 0; j < cols.length; j++) {
               csvrow.push(cols[j].innerHTML);
@@ -155,10 +159,12 @@ $(document).ready(function () {
       
       function tableToCSVVariables() {
         var csv_data = [];
-        console.log($('#parameters .parameter-table .gs-table')[0])
-        var rows = $('#parameters .parameter-table .gs-table')[0].rows;
+        // console.log($('#parameters .parameter-table .gs-table')[0])
+        // var rows = $('#parameters .parameter-table .gs-table')[0].rows;
+         console.log($('.parameter-table-virtual')[0])
+        var rows = $('.parameter-table-virtual')[0].rows;
         for (var i = 0; i < rows.length; i++) {
-            var cols = rows[i].querySelectorAll('td,th span');
+            var cols = rows[i].querySelectorAll('td,th');
             var csvrow = [];
             for (var j = 0; j < cols.length; j++) {
               csvrow.push(cols[j].innerHTML);
@@ -222,35 +228,10 @@ $(document).ready(function () {
       // $('#basicInfo .basicinfo-table').append(tableDataMethod);
       $('#description').html("<span class='font-weight-bold fs-6'>Description:</span>" + resultData.data.description)
       // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
-      $('#openApiSecContent').html(resultData.data.isFileUpload ? showOpenAPISpec():resultData.data.openAPISpec)
+      // console.log(resultData.data.isFileUpload,resultData.data.openAPISpec)
+      $('#openApiSecContent').html(resultData.data.isFileUpload === "true"? localStorage.getItem("fileName"):resultData.data.openAPISpec)
       
-      function showOpenAPISpec(){
-        // console.log("openAPIsec",resultData.data.openAPISpec.length);
-        if(resultData.data.openAPISpec.length > 250){
-          let dataopenAPISpec = `${resultData.data.openAPISpec.substring(1,250)}...`
-          $('#openApiSecContent').html(dataopenAPISpec);
-          $('#openApiSecContentMore').html(resultData.data.openAPISpec);
-          $('.show-more').removeClass('d-none');
-          $('.show-more').click(function(){
-            $('#openApiSecContentMore').removeClass('d-none')
-            $('.show-less').removeClass('d-none')
-            $(this).addClass('d-none')
-            $('#openApiSecContent').addClass('d-none');
 
-          })
-          $('.show-less').click(function(){
-            $(this).addClass('d-none')
-            $('#openApiSecContentMore').addClass('d-none')
-            $('#openApiSecContent').removeClass('d-none');
-            $('.show-more').removeClass('d-none');
-
-          })
-        }
-        else{
-          $('#openApiSecContent').html(resultData.data.openAPISpec)
-
-        }
-      }
     
       
       localStorage.setItem("detailsURL",window.location.href)
@@ -263,7 +244,9 @@ $(document).ready(function () {
 
 
       let piiData ='';
-      console.log(resultData.data.specAnalysis.piiList)
+      if(resultData.data.specAnalysis.piiList.length ==0 )
+          $('#piiStatus').html("No PII element found for the given specification!")
+      else
       for (let i = 0; i < resultData.data.specAnalysis.piiList.length; i++) {
         piiData  +=`<div class="pii-elements">${resultData.data.specAnalysis.piiList[i]}</div>`
       }

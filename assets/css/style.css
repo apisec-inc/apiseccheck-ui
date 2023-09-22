@@ -639,6 +639,10 @@ section#faqs {
 }
 
 /* spinner starts*/
+
+#loader{
+  height:100vh;
+}
 .nb-spinner {
   width: 75px;
   height: 75px;
