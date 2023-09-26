@@ -253,7 +253,7 @@ function scan() {
                 $("#errorresult").addClass("d-none");
                 $("#messageValue").text(testresult.data);
                 // console.log(testresult.data)
-                if (testresult.data == "API Security Test case Generation") {
+                if (testresult.data == "Automatically Generating API Security Tests") {
                   flag =0;
                   $("#settingdark").css("filter", "none");
                   $(".hr-line").css("filter", "none");

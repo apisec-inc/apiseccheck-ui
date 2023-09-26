@@ -20,8 +20,7 @@ $(document).ready(function () {
         $("#loader").addClass('d-none')
         $('#main').removeClass('d-none')
       }
-
-      $('#subTitle').html(resultData.data.name);
+      $('#subTitle').html("API Name:"+resultData.data.name);
       let tableDataParameters = [];
       let tableDataParameters2='';
       for (let i = 0; i < resultData.data.specAnalysis.variablesList.length; i++) {
@@ -46,7 +45,7 @@ $(document).ready(function () {
 
       let tableDataCategory = [];
       
-      let tableDataCategory2 = '';
+      // let tableDataCategory2 = '';
       // function sortJSON(arr, key, asc=true) {
       //   return arr.sort((a, b) => {
       //     let x = a[key];
@@ -57,17 +56,17 @@ $(document).ready(function () {
       // }
       // let output = sortJSON(resultData.data.specAnalysis.categoryWisePlaybookCountList, "owaspRank", true);
      
-      for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
-        let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
-        if (testsGenerated > 0) {
-          tableDataCategory2 += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
-        </tr>`;
-        }
-      }
+      // for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
+      //   let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
+      //   if (testsGenerated > 0) {
+      //     tableDataCategory2 += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
+      //   <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
+      //   </tr>`;
+      //   }
+      // }
     
-      $(".owasp-table-virtual").append(tableDataCategory2);
+      // $(".owasp-table-virtual").append(tableDataCategory2);
        
         for (let i = 0; i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length; i++) {
         let testsGenerated = resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
@@ -76,34 +75,56 @@ $(document).ready(function () {
         }
       }
 
-      var columnsCategory = {
-        owaspRank: "OWASP Ranking",
-        label: "Category",
-        count: "Number of Tests Generated",
-       
+      const groupByCategory = (tableDataCategory,owaspRank) => {
+        return tableDataCategory.reduce((result, currentValue) => {
+          (result[currentValue.owaspRank] = result[currentValue.owaspRank] || []).push(
+            currentValue
+          );
+          return result;
+        }, {});
       };
+      var sortedCategory = groupByCategory(tableDataCategory,"owaspRank");
+      let totalCountArray=[];
+      for(const ele in sortedCategory){
+       let totalCount =0;
+       for(let i=0 ;i< sortedCategory[ele].length;i++){
+            totalCount+= sortedCategory[ele][i]["count"];
+       }
+       totalCountArray.push(totalCount);
+      }
+      $('.test-count').each(function(e){
+          $(this).html(totalCountArray[e])
+      })
+
+
+      // var columnsCategory = {
+      //   owaspRank: "OWASP Ranking",
+      //   label: "Category",
+      //   count: "Number of Tests Generated",
+       
+      // };
       var columnsParameters = {
         name: "Name",
         type: "Type",
         format: "Format",
       };
 
-        var tableCategory = $("#OWASP .owasp-table").tableSortable({
-          data: tableDataCategory,
-          sorting: true,
-          columns: columnsCategory,
-          searchField: "#searchFieldCategory",
-          rowsPerPage: 5,
-          pagination: true,
-          sortingIcons: {
-             asc:'<span>▼</span>',
-             desc:'<span>▲</span>',
-                },
+        // var tableCategory = $("#OWASP .owasp-table").tableSortable({
+        //   data: tableDataCategory,
+        //   sorting: true,
+        //   columns: columnsCategory,
+        //   searchField: "#searchFieldCategory",
+        //   rowsPerPage: 5,
+        //   pagination: true,
+        //   sortingIcons: {
+        //      asc:'<span>▼</span>',
+        //      desc:'<span>▲</span>',
+        //         },
 
-        });
-        $("#changeRowsCategory").on("change", function () {
-          tableCategory.updateRowsPerPage(parseInt($(this).val(), 10));
-        });
+        // });
+        // $("#changeRowsCategory").on("change", function () {
+        //   tableCategory.updateRowsPerPage(parseInt($(this).val(), 10));
+        // });
 
         var tableParameters = $("#parameters .parameter-table").tableSortable({
           data: tableDataParameters,
@@ -201,30 +222,68 @@ $(document).ready(function () {
       // }
 
       
-      let tableDataMethod = [];
-      for (let i = 0; i < resultData.data.specAnalysis.countEndpointsByMethodList.length; i++) {
-        tableDataMethod.push(resultData.data.specAnalysis.countEndpointsByMethodList[i])
-      }
+      // let tableDataMethod = [];
+      // for (let i = 0; i < resultData.data.specAnalysis.countEndpointsByMethodList.length; i++) {
+      //   tableDataMethod.push(resultData.data.specAnalysis.countEndpointsByMethodList[i])
+      // }
    
-      var columnsMethod = {
-        method:"Method",
-        count:"Count"
-      }
+      // var columnsMethod = {
+      //   method:"Method",
+      //   count:"Count"
+      // }
 
-      var tableMethod = $("#basicInfo .basicinfo-table").tableSortable({
-        data: tableDataMethod,
-        sorting: true,
-        columns: columnsMethod,
-        // searchField: "#searchField",
-        rowsPerPage: 5,
-        pagination: true,
-        // sortingIcons: {
-        //    asc:'<span>▼</span>',
-        //    desc:'<span>▲</span>',
-        //       },
+      // var tableMethod = $("#basicInfo .basicinfo-table").tableSortable({
+      //   data: tableDataMethod,
+      //   sorting: true,
+      //   columns: columnsMethod,
+      //   // searchField: "#searchField",
+      //   rowsPerPage: 5,
+      //   pagination: true,
+      //   // sortingIcons: {
+      //   //    asc:'<span>▼</span>',
+      //   //    desc:'<span>▲</span>',
+      //   //       },
 
+      // });
+
+      $(".basicinfo-table").CanvasJSChart({ 
+        // title: { 
+        //   text: "API Composition",
+        //   fontSize: 24
+        // }, 
+        axisY: { 
+          title: " Number of Endpoints" 
+        }, 
+        legend :{ 
+          verticalAlign: "center", 
+          horizontalAlign: "right" 
+        }, 
+        animationEnabled: true,
+        animationDuration: 2000,
+        theme: "light2",
+      
+        data: [ 
+        { 
+          type: "pie", 
+          // showInLegend: true, 
+          radius: "100%",
+          center: ["50%", "50%"],
+          toolTipContent: "{label}  {y} ", 
+          indexLabel: "{label}({y})", 
+          dataPoints: [ 
+            { label: "DELETE", y:resultData.data.specAnalysis.countEndpointsByMethodList[0].count , legendText: "DELETE",color: "#f93e3e"  }, 
+            { label: "GET", y: resultData.data.specAnalysis.countEndpointsByMethodList[1].count,  legendText: "GET",color:"#61affe" }, 
+            { label: "POST", y: resultData.data.specAnalysis.countEndpointsByMethodList[2].count,  legendText: "POST",color:"#fca130" }, 
+            { label: "PUT", y: resultData.data.specAnalysis.countEndpointsByMethodList[3].count,  legendText: "PUT",color:"#49cc90" }
+          ] 
+        } 
+           ] 
+      }); 
+       
+      $("#headingOne .btn").click(function() {
+        // console.log( $(this).find('.fas'))
+        $(this).find('.fas').toggleClass("fa-plus fa-minus");
       });
-
       // $('#basicInfo .basicinfo-table').append(tableDataMethod);
       $('#description').html("<span class='font-weight-bold fs-6'>Description:</span>" + resultData.data.description)
       // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
