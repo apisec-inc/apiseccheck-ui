@@ -19,7 +19,13 @@
         .hr-theme-slash-2 {
             display: flex;
         }
-
+div#loadingresultfree {
+    text-align: center;
+    padding: 25px;
+}
+#parametersTab{
+color: #b8b9b9 !important;
+}
         .hr-line {
             width: 100%;
             position: relative;
@@ -112,7 +118,7 @@
             bottom: 8px;
         }
         .btn.active{
-            background-color: #025c7a !important;
+            background-color: #025c7a;
         }
         
         .fa.fa-list,
@@ -204,14 +210,14 @@
 
 <body>
     <!-- MUTLI SPINNER -->
-    <div id="loader">
+    <!-- <div id="loader">
         <div class="d-flex justify-content-center align-items-center h-100">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="nb-spinner"></div>
             </div>
-            <!-- <div class="font-weight-bolder fs-5 text-center">Loading...</div> -->
+            <div class="font-weight-bolder fs-5 text-center">Loading...</div>
         </div>
-    </div>
+    </div> -->
     <main id="main" class="d-none">
         <div class="container col-lg-6">
             <button class="border-0 bg-none" id="previousBtn2">
@@ -236,14 +242,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-tiles border-info m-2 rounded-end" style="max-width: 14rem;height:7rem;">
+                            <div class="card-tiles border-info m-2 rounded-end"
+                                style="max-width: 14rem;height:7rem; border-left: 6px solid #b8b9b9 ;" id="borderLeft">
                                 <div class="align-items-center card-body d-flex justify-content-center ">
                                     <h5 class="card-title d-flex flex-grow-1 justify-content-center"><i
-                                            class="fa fa-code rounded-circle p-3 m-1" aria-hidden="true"></i>
+                                            class="fa fa-code rounded-circle p-3 m-1" aria-hidden="true" style="color: #b8b9b9 !important;"></i>
                                     </h5>
                                     <div class="card-text d-flex flex-grow-1 flex-lg-column p-2">
-                                        <h3 id="testsCount"></h3>
-                                        <span class="text-nowrap">Tests Generated</span>
+                                        <h3 id="testsCount" style="color: #b8b9b9;"></h3>
+                                        <span class="text-nowrap" id="genText" style="color: #b8b9b9 ;">Tests Generated</span>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +265,58 @@
                   </div>
                 </div>
                 
-            </div>
+                </div>
+                <div class="testresult pb-1">
+                    <div class="d-none" id="loadingresultfree">
+                        <!-- <h3 class="mt-5"
+                                                                                                                                                                                                                                                                                                                                                            style="  color: rgb(2, 92, 122);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;">
+                                                                                                                                                                                                                                                                                                                                                            APIsec is
+                                                                                                                                                                                                                                                                                                                                                            Analyzing your API</h3> -->
+                        <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
+                        <button class="btn btn-primary" type="button" style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span>
+                            <span id="messageValue" class="mt-4"></span>
+                        </button>
+                        <!-- <div class="d-none mt-4" id="scantime">
+                                                                                                                                            <p class="text-center" style="color: #025c7a;">APIsec Spec Analysis will take approximately 2-3 minutes to
+                                                                                                                                                complete. Please remain on this page for your results.
+                                                                                                                                            </p>
+                                                                                                                                        </div> -->
+                
+                    </div>
+                    <div class="d-none d-flex flex-row align-items-center justify-content-center" id="progressIcons">
+                        <!-- <div class="hr-icon text-center"><img src="assets/img/rectangle_3.png"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            alt="" width="48px;" height="60px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="progressText mt-2" id="analyse" style="color: #025c7a;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Analyzing API Specification</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="hr-line" style="filter: grayscale(100%) brightness(10%) contrast(10%);"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="hr-icon1"><img src="assets/img/settingsDark.png"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            alt="" width="60px" height="60px" id="settingdark">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="progressText1 pt-2" id="generate"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="color: #b8b9b9;">Generating Test Scenarios</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                        <!-- <div class="hr-line1"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="hr-icon1"><img src="assets/img/ellipse_1_copy_3.png" alt=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            width="60px" height="60px" id="targetNew"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="progressText2 pt-2 " id="running"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="color: #b8b9b9;">Running Security Tests</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                        <!-- <div class="hr-line2"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="hr-icon2"><img src="assets/img/rectangle_4.png" alt=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            width="60px" height="60px" id="reporticon"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="filter: grayscale(100%) brightness(10%) contrast(10%);">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="progressText3 pt-2 " id="preparing"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="color: #b8b9b9;">Preparing Results Report</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                    </div>
+                
+                    <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            style="color: #72ba2c"></i> Scan Completed</p> -->
+    </div>
             <div class="row justify-content-between">
                 <div class="col-lg-12 pt-lg-0 order-2 text-center">
                     <div class="d-none" id="loadingresultfree">
@@ -356,23 +414,23 @@
                                 </li>
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
                                     <button class="nav-link py-4 w-100 font-weight-bold text-light  "
-                                    id="parameters-tab" data-bs-toggle="tab" data-bs-target="#parameters"
-                                    type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                     Parameters
+                                    id="parametersTab" data-bs-toggle="tab" data-bs-target="#parameters"
+                                    type="button" role="tab" aria-controls="profile" aria-selected="false" >
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="paramsSpinner"></span>  Parameters
                                 </button>
                                 </li>
-                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
+                                <!-- <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
                                     <button class="nav-link py-4 w-100 font-weight-bold text-light "
                                         id="pii-tab" data-bs-toggle="tab" data-bs-target="#piiInfo"
                                         type="button" role="tab" aria-controls="messages" aria-selected="false">
                                         PII Elements
                                     </button>
-                                </li>
+                                </li> -->
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
                                     <button class="nav-link py-4 w-100 font-weight-bold text-light "
-                                        id="OWASP-tab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button"
-                                        role="tab" aria-controls="home" aria-selected="true">
-                                        OWASP API Test Coverage
+                                        id="owaspTab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button" 
+                                        role="tab" aria-controls="home" aria-selected="true"  style="color: #b8b9b9 !important;">
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="owaspSpinner"></span> OWASP API Test Coverage
                                     </button>
                                 </li>
                                 
@@ -419,16 +477,16 @@
                                          
                                         <table class="parameter-table-virtual d-none m-auto dataTable ">
                                             <tr>
-                                                <th class=" font-weight-bold text-center">Name</th>
+                                                <th class=" font-weight-bold text-center">Parameters</th>
                                                 <th class=" font-weight-bold text-center">Type</th>
-                                                <th class=" font-weight-bold text-center">Format</th>
+                                                <!-- <th class=" font-weight-bold text-center">Format</th> -->
                                             </tr>
                                         </table>
                                     </div>
-                                    <button class="btn p-0 py-3 h-100 float-lg-right" id="variablesDownloadBtn">
+                                    <!-- <button class="btn p-0 py-3 h-100 float-lg-right" id="variablesDownloadBtn">
                                         <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
                                         Download as CSV
-                                    </button>
+                                    </button> -->
                                     </div>
                                    
                                 </div>
