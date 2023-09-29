@@ -9,6 +9,7 @@ $(document).ready(function () {
   // Window.onload = callStatusApiOnIntervals();
   // document.getElementById("runbtn").disabled = true;
   // document.getElementById("runbtn").disabled = false;
+  
   function resultAPITest() {
     $.ajax({
       async: false,
@@ -168,8 +169,6 @@ $(document).ready(function () {
         $("#endpointCount").html(resultData.data.specAnalysis.totalEndpoints);
         $("#testsCount").html(resultData.data.specAnalysis.totalPlaybooks);
 
-        let tableDataCategory = [];
-
         // let tableDataCategory2 = '';
         // function sortJSON(arr, key, asc=true) {
         //   return arr.sort((a, b) => {
@@ -192,40 +191,6 @@ $(document).ready(function () {
         // }
 
         // $(".owasp-table-virtual").append(tableDataCategory2);
-
-        // for (
-        //   let i = 0;
-        //   i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length;
-        //   i++
-        // ) {
-        //   let testsGenerated =
-        //     resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
-        //   if (testsGenerated > 0) {
-        //     tableDataCategory.push(
-        //       resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
-        //     );
-        //   }
-        // }
-
-        const groupByCategory = (tableDataCategory, owaspRank) => {
-          return tableDataCategory.reduce((result, currentValue) => {
-            (result[currentValue.owaspRank] =
-              result[currentValue.owaspRank] || []).push(currentValue);
-            return result;
-          }, {});
-        };
-        var sortedCategory = groupByCategory(tableDataCategory, "owaspRank");
-        let totalCountArray = [];
-        for (const ele in sortedCategory) {
-          let totalCount = 0;
-          for (let i = 0; i < sortedCategory[ele].length; i++) {
-            totalCount += sortedCategory[ele][i]["count"];
-          }
-          totalCountArray.push(totalCount);
-        }
-        $(".test-count").each(function (e) {
-          $(this).html(totalCountArray[e]);
-        });
 
         // var columnsCategory = {
         //   owaspRank: "OWASP Ranking",
@@ -469,6 +434,7 @@ $(document).ready(function () {
         // Handle any API errors here
       },
     });
+
     statusAPITest();
   }
   function showDetails() {
@@ -497,70 +463,64 @@ $(document).ready(function () {
           // console.log("errors",resultData);
           errorDisplay(resultData);
         } else {
-          if (
-            resultData.data == "Scan Request Submitted" ||
-            resultData.data == "Scan completed"
-          ) {
-            // $("#scantime").removeClass("d-none");
-            $("#progressIcons").removeClass("d-none");
-            $("#loadingresultfree").removeClass("d-none");
-            var intervalId = setInterval(function () {
-              $.ajax({
-                url:
-                  s + "/api/v1/apiseccheck/status?project-name=" + projectName,
-                method: "GET",
-                dataType: "json",
-                headers: {
-                  "Content-Type": "application/json",
-                },
+          // if (
+          //   resultData.data == "Scan Request Submitted" ||
+          //   resultData.data == "Scan completed"
+          // )
+          // $("#scantime").removeClass("d-none");
+          // $("#progressIcons").removeClass("d-none");
+          $("#loadingresultfree").removeClass("d-none");
+          var intervalId1 = setInterval(function () {
+            $.ajax({
+              url: s + "/api/v1/apiseccheck/status?project-name=" + projectName,
+              method: "GET",
+              dataType: "json",
+              headers: {
+                "Content-Type": "application/json",
+              },
 
-                success: function (testresult) {
-                  let flag = 0;
-                  $("#messageValue").text(testresult.data);
-                  // console.log(testresult.data);
-                  if (testresult.data == "Security Test Execution") {
-                    $("#targetNew").css("filter", "none");
-                    $("#running").removeClass("d-none");
-                    $("#running").css("color", "#025c7a", "font-weight", "600");
-                    $(".hr-line2").css("border-bottom", "3px solid #025c7a");
-                  }
-
-                  if (testresult.data == "Preparing Test Results") {
-                    $("#reporticon").css("filter", "none");
-                    $("#preparing").removeClass("d-none");
-                    $("#preparing").css(
-                      "color",
-                      "#025c7a",
-                      "font-weight",
-                      "600"
-                    );
-                  }
-
-                  if (testresult.data == "Scan completed") {
-                    flag = 0;
-
-                    $("#openAPISpec").val("");
-                    $("#btn").prop("disabled", false);
-                    $("#loadingresultfree").addClass("d-none");
-                    $("#progressIcons").addClass("d-none");
-                    $("#runbtn").prop("disabled", false);
-                    resultAPI();
-
-                    clearInterval(intervalId);
-                  }
-                },
-                error: function (xhr, status, error) {
-                  // Handle any API errors here
-                },
-              });
-            }, 10000);
-          }
+              success: function (testresult) {
+                // let flag = 0;
+                $("#messageValue").text(testresult.data);
+                // console.log(testresult.data);
+                if (testresult.data == "Security Test Execution") {
+                  $("#targetNew").css("filter", "none");
+                  $("#running").removeClass("d-none");
+                  $("#running").css("color", "#025c7a", "font-weight", "600");
+                  $(".hr-line2").css("border-bottom", "3px solid #025c7a");
+                } else if (testresult.data == "Preparing Test Results") {
+                  $("#reporticon").css("filter", "none");
+                  $("#preparing").removeClass("d-none");
+                  $("#preparing").css("color", "#025c7a", "font-weight", "600");
+                } else if (testresult.data == "Scan completed") {
+                  // flag = 0;
+                  $("#loadingresultfree").addClass("d-none");
+                  $("#progressIcons").addClass("d-none");
+                  $("#runbtn").prop("disabled", false);
+                  document.getElementById("runbtn").disabled = false;
+                  resultAPI();
+                  clearInterval(intervalId1);
+                  clearInterval(intervalId);
+                } else if (
+                  testresult.data ==
+                  "Please check your OAS URL is valid, and the API is not too large."
+                ) {
+                  clearInterval(intervalId1);
+                }
+              },
+              error: function (xhr, status, error) {
+                // Handle any API errors here
+              },
+            });
+          }, 7000);
         }
       },
       error: function (xhr, status, error) {},
     });
   }
+
   function getOwaspCoverage() {
+    let tableDataCategory = [];
     $.ajax({
       async: false,
       url: s + "/api/v1/apiseccheck/results?project-name=" + projectName,
@@ -570,12 +530,56 @@ $(document).ready(function () {
         "Content-Type": "application/json",
       },
       success: function (resultData) {
-        document.getElementById("runbtn").disabled = true;
+        document.getElementById("runbtn").disabled = false;
         if (resultData) {
           $("#loader").addClass("d-none");
           $("#main").removeClass("d-none");
           $("#testsCount").html(resultData.data.specAnalysis.totalPlaybooks);
         }
+        if (
+          resultData &&
+          resultData.data &&
+          resultData.data.specAnalysis.categoryWisePlaybookCountList
+        ) {
+          for (
+            let i = 0;
+            i <
+            resultData.data.specAnalysis.categoryWisePlaybookCountList.length;
+            i++
+          ) {
+            let testsGenerated =
+              resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
+                .count;
+            console.log(
+              "testsGenerated",
+              resultData.data.specAnalysis.categoryWisePlaybookCountList
+            );
+            if (testsGenerated > 0) {
+              tableDataCategory.push(
+                resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
+              );
+            }
+          }
+        }
+        const groupByCategory = (tableDataCategory, owaspRank) => {
+          return tableDataCategory.reduce((result, currentValue) => {
+            (result[currentValue.owaspRank] =
+              result[currentValue.owaspRank] || []).push(currentValue);
+            return result;
+          }, {});
+        };
+        var sortedCategory = groupByCategory(tableDataCategory, "owaspRank");
+        let totalCountArray = [];
+        for (const ele in sortedCategory) {
+          let totalCount = 0;
+          for (let i = 0; i < sortedCategory[ele].length; i++) {
+            totalCount += sortedCategory[ele][i]["count"];
+          }
+          totalCountArray.push(totalCount);
+        }
+        $(".test-count").each(function (e) {
+          $(this).html(totalCountArray[e]);
+        });
       },
     });
   }
@@ -589,7 +593,7 @@ $(document).ready(function () {
         "Content-Type": "application/json",
       },
       success: function (resultData) {
-        document.getElementById("runbtn").disabled = true;
+        // document.getElementById("runbtn").disabled = true;
         if (resultData) {
           $("#loader").addClass("d-none");
           $("#main").removeClass("d-none");
@@ -610,7 +614,14 @@ $(document).ready(function () {
         success: function (testresult) {
           let flag = 0;
           $("#messageValue").text(testresult.data);
-          $("#loadingresultfree").removeClass("d-none");
+          if (testresult.data != "Scan completed") {
+            $("#loadingresultfree").removeClass("d-none");
+          }
+          if (testresult.data == "Scan completed") {
+            $("#loadingresultfree").addClass("d-none");
+            resultAPI();
+            clearInterval(intervalId);
+          }
           // console.log(testresult.data);
           if (testresult.data == "AI is identifying PII elements") {
             $("#paramsSpinner").removeClass("d-none");
@@ -624,21 +635,33 @@ $(document).ready(function () {
           ) {
             $("#paramsSpinner").addClass("d-none");
             $("#owaspSpinner").removeClass("d-none");
-            $('#myTab a[href="#parameters"]').tab("show");
-            $("#parametersTab").css("color", "#025c7a !important;");
-            clearInterval(intervalId);
+            $("#parametersTab").tab("show");
+            $("#parametersTab")
+              .css("color", "#025c7a")
+              .css("important", "true");
+            // location.reload();
+            getParameters();
             // showDetails();
             // getParameters();
             // resultAPITest();
           }
           if (testresult.data == "Test Case Generation Completed") {
             $("#owaspTab").css("color", "#025c7a !important;");
+
+            $("#parametersTab")
+              .css("color", "#025c7a")
+              .css("important", "true");
+            $("#owaspTab").css("color", "#025c7a").css("important", "true");
             $("#owaspSpinner").addClass("d-none");
             $("#loadingresultfree").addClass("d-none");
-            $('#myTab a[href="#OWASP"]').tab("show");
+            // #6B778C
+            $("#owaspTab").tab("show");
             document.getElementById("runbtn").disabled = false;
-
+            getOwaspCoverage();
+            getParameters();
+            // location.reload();
             clearInterval(intervalId);
+
             // getOwaspCoverage();
             // showDetails();
           }
@@ -647,7 +670,7 @@ $(document).ready(function () {
           // Handle any API errors here
         },
       });
-    }, 10000);
+    }, 7000);
   }
   // function callResultAPI() {}
   function resultAPI() {
