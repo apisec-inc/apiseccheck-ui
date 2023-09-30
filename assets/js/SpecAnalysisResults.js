@@ -11,6 +11,11 @@ $(document).ready(function () {
   // document.getElementById("runbtn").disabled = false;
   
   function resultAPITest() {
+    // .nav - tabs.nav - link.active
+    // #b8b9b9
+    // $(".nav - tabs.nav - link.active").css("color", "#b8b9b9");
+    // $(".nav-tabs .nav-link").css("color", "#b8b9b9");
+    $("#basicInfoTab.active").css("color", "#025c7a;");
     $.ajax({
       async: false,
       url: s + "/api/v1/apiseccheck/results?project-name=" + projectName,
@@ -626,6 +631,9 @@ $(document).ready(function () {
           if (testresult.data == "AI is identifying PII elements") {
             $("#paramsSpinner").removeClass("d-none");
             $("#targetNew").css("filter", "none");
+            $(".nav-tabs .nav-link").css("color", "#b8b9b9");
+            $("#basicInfoTab").css("color", "#025c7a !important;");
+            $("#basicInfoTab.active").css("color", "#025c7a !important;");
             // showDetails();
             // resultAPITest();
           }
@@ -636,6 +644,10 @@ $(document).ready(function () {
             $("#paramsSpinner").addClass("d-none");
             $("#owaspSpinner").removeClass("d-none");
             $("#parametersTab").tab("show");
+            $("#owaspTab").css("color", "#b8b9b9 !important;");
+            $("#owaspTab").css("color", "#b8b9b9").css("important", "true");
+            $("#basicInfoTab").css("color", "#025c7a !important;");
+            $("#basicInfoTab.active").css("color", "#025c7a !important;");
             $("#parametersTab")
               .css("color", "#025c7a")
               .css("important", "true");
@@ -646,11 +658,17 @@ $(document).ready(function () {
             // resultAPITest();
           }
           if (testresult.data == "Test Case Generation Completed") {
-            $("#owaspTab").css("color", "#025c7a !important;");
-
+            $("#owaspTab.active").css("color", "rgb(2, 92, 122) !important;");
+            $("#basicInfoTab").css("color", "#025c7a !important;");
+            $("#basicInfoTab.active").css("color", "#025c7a !important;");
             $("#parametersTab")
               .css("color", "#025c7a")
               .css("important", "true");
+            $(".nav-tabs .nav-link")
+              .css("color", "#025c7a")
+              .css("important", "true");
+            $(".nav - tabs.nav - link.active").css("color", "#025c7a");
+            $(".nav-tabs .nav-link").css("color", "#025c7a");
             $("#owaspTab").css("color", "#025c7a").css("important", "true");
             $("#owaspSpinner").addClass("d-none");
             $("#loadingresultfree").addClass("d-none");
