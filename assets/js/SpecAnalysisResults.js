@@ -652,6 +652,8 @@ $(document).ready(function () {
                 tableDataParameters.push({name: paraName, type:paraValue})
               }
             }
+            let sortedParameters = tableDataParameters.sort(
+              (p1, p2) => (p1.type < p2.type) ? 1 : (p1.type > p2.type) ? -1 : 0);
             // console.log(tableDataParameters)
             var columnsParameters = {
               name: "Name",
@@ -660,7 +662,7 @@ $(document).ready(function () {
             };
             // console.log(resultData.data.specAnalysis.piiList)
             var tableParameters = $("#parameters .parameter-table").tableSortable({
-              data: tableDataParameters,
+              data: sortedParameters,
               // sorting: true,
               sorting: ['type'],
               columns: columnsParameters,
