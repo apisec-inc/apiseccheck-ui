@@ -18,6 +18,7 @@ $(document).ready(function () {
   // });
   $("#previousBtn").click(function (event) {
     console.log("clicked");
+    localStorage.setItem("resultPage", "true");
     // window.location.replace("product.html");
     window.location.replace(localStorage.getItem("detailsURL"))
     localStorage.removeItem('detailsURL')
