@@ -205,11 +205,11 @@ $(document).ready(function () {
           //   count: "Number of Tests Generated",
 
           // };
-          var columnsParameters = {
-            name: "Parameters",
-            type: "Type",
-            // format: "Format",
-          };
+          // var columnsParameters = {
+          //   name: "Parameters",
+          //   type: "Type",
+          //   // format: "Format",
+          // };
 
           // var tableCategory = $("#OWASP .owasp-table").tableSortable({
           //   data: tableDataCategory,
@@ -228,23 +228,23 @@ $(document).ready(function () {
           //   tableCategory.updateRowsPerPage(parseInt($(this).val(), 10));
           // });
 
-          var tableParameters = $("#parameters .parameter-table").tableSortable(
-            {
-              data: tableDataParameters,
-              sorting: true,
-              columns: columnsParameters,
-              searchField: "#searchFieldVariables",
-              rowsPerPage: 5,
-              pagination: true,
-              sortingIcons: {
-                asc: "<span>▼</span>",
-                desc: "<span>▲</span>",
-              },
-            }
-          );
-          $("#changeRowsVariables").on("change", function () {
-            tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
-          });
+          // var tableParameters = $("#parameters .parameter-table").tableSortable(
+          //   {
+          //     data: tableDataParameters,
+          //     sorting: true,
+          //     columns: columnsParameters,
+          //     searchField: "#searchFieldVariables",
+          //     rowsPerPage: 5,
+          //     pagination: true,
+          //     sortingIcons: {
+          //       asc: "<span>▼</span>",
+          //       desc: "<span>▲</span>",
+          //     },
+          //   }
+          // );
+          // $("#changeRowsVariables").on("change", function () {
+          //   tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
+          // });
 
           function tableToCSVOWASPRanking() {
             var csv_data = [];
@@ -612,6 +612,43 @@ $(document).ready(function () {
           if (resultData) {
             $("#loader").addClass("d-none");
             $("#main").removeClass("d-none");
+            let tableDataParameters = [];
+            for (const key in resultData.data.specAnalysis.piiList) {
+              if (resultData.data.specAnalysis.piiList.hasOwnProperty(key)) {
+                let paraName = key;
+                let paraValue = resultData.data.specAnalysis.piiList[key];
+                if(paraValue == false)
+                      paraValue = '-';
+                else
+                    paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
+                    // paraValue = 'PII'
+                console.log(paraName,paraValue)
+                tableDataParameters.push({name: paraName, type:paraValue})
+              }
+            }
+            // console.log(tableDataParameters)
+            var columnsParameters = {
+              name: "Name",
+              type: "Category",
+              // format: "Format",
+            };
+            console.log(resultData.data.specAnalysis.piiList)
+            var tableParameters = $("#parameters .parameter-table").tableSortable({
+              data: tableDataParameters,
+              // sorting: true,
+              sorting: ['type'],
+              columns: columnsParameters,
+              searchField: "#searchFieldVariables",
+              rowsPerPage: 5,
+              pagination: true,
+              sortingIcons: {
+                asc: "<span>▼</span>",
+                desc: "<span>▲</span>",
+              },
+            });
+            $("#changeRowsVariables").on("change", function () {
+              tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
+            });
           }
         },
       });
