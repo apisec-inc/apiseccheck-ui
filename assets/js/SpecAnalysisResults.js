@@ -405,9 +405,35 @@ $(document).ready(function () {
           });
           // $('#basicInfo .basicinfo-table').append(tableDataMethod);
           $("#description").html(
-            "<span class='font-weight-bold fs-6'>Description:</span>" +
-              resultData.data.description
+            
+            showDescription()
           );
+          function showDescription(){
+            if(resultData.data.description.length > 240){
+              let dataDescription = `${resultData.data.description.substring(1,240)}...`
+              $('#openDescription').html(dataDescription);
+              $('#openDescriptionMore').html(resultData.data.description);
+              $('.show-more').removeClass('d-none');
+              $('.show-more').click(function(){
+                $('#openDescriptionMore').removeClass('d-none')
+                $('.show-less').removeClass('d-none')
+                $(this).addClass('d-none')
+                $('#openDescription').addClass('d-none');
+    
+              })
+              $('.show-less').click(function(){
+                $(this).addClass('d-none')
+                $('#openDescriptionMore').addClass('d-none')
+                $('#openDescription').removeClass('d-none');
+                $('.show-more').removeClass('d-none');
+    
+              })
+            }
+            else{
+              $('#openDescription').html(resultData.data.description)
+                // return resultData.data.openAPISpec;
+            }
+          }
           // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
           // console.log(resultData.data.isFileUpload,resultData.data.openAPISpec)
           $("#openApiSecContent").html(

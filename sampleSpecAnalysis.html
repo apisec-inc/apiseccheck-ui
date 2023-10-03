@@ -14,12 +14,39 @@
     <!-- Google Fonts -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
-    
-    <!-- <script src="table-sortable.js"></script> -->
-
 
     <style>
- 
+        .hr-theme-slash-2 {
+            display: flex;
+        }
+div#loadingresultfree {
+    text-align: center;
+    padding: 25px;
+}
+
+        .hr-line {
+            width: 100%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #025c7a;
+            margin-bottom: 17%;
+        }
+
+
+        .hr-line2 {
+            width: 40%;
+            position: relative;
+            margin: 15px;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 8%;
+        }
+
+        .hr-icon img {
+            position: relative;
+            top: 3px;
+            color: #ff0000;
+            text-align: center;
+        }
 
         .progressText {
             font-size: 16px;
@@ -49,28 +76,49 @@
 
         }
         .nav-tabs .nav-link.active {
-            color: #025c7a !important;
+            /* color: #025c7a !important; */
             background-color: #c0d8e0;
             border: 1px solid #e1eaed;
 
         }
 
-        .card { color: #6B778C;
+        .card-tiles { color: #6B778C;
             box-shadow: 0 1px 12px rgba(7,7,8,.08);
             border-left: 6px solid   #025c7a !important;
             border-radius: 4px;
         }
 
-        tr:nth-child(even) {
+        .parameter-table tr:hover {
             background-color: #f2f2f2
         }
 
         table {
             border-spacing: 2px;
-            border-collapse: separate;
+            /* border-collapse: separate; */
             border-radius: 10px;
         }
+        tr{
+            border-bottom: 2px solid #e8e8e8 !important;
+        }
+        td,th{
+            padding:12px 0 !important;
+        }
 
+        .gs-pagination{
+            padding: 8px !important;
+            color: #0000008a;
+            font-size: 0.8rem;
+        }
+        .btn-group{
+            color: #0000008a;
+            font-size: 0.8rem !important; 
+            position: relative;
+            bottom: 8px;
+        }
+        .btn.active{
+            background-color: #025c7a !important;
+        }
+        
         .fa.fa-list,
         .fa.fa-code{
             color: #025c7a;
@@ -81,16 +129,18 @@
             background-color: #c0d8e0;
 
         }
+      
 
         th {
-            background-color: #c0d8e0;
-            color: #025c7a !important;
-        }
+        
+            text-align: center;
+            border-bottom-width: 1px;
+    border-bottom-color: #0000001f !important;
+    color: #0000008a;
+    font-weight: 500;
+    border-top: none !important;
+    border-bottom: none !important;
 
-        .table-responsive {
-            max-height: 300px;
-            box-sizing: border-box;
-            width: fit-content;
         }
 
         .table-responsive::-webkit-scrollbar {
@@ -106,7 +156,7 @@
             background-color: #025c7a;
             border-radius: 20px;
         }
-        .title,#subTitle{
+        .title,#subTitle,#OWASPRankingDownloadBtn,#variablesDownloadBtn{
             color: #025c7a;
         }
         button#previousBtn2 {
@@ -116,25 +166,62 @@
             color: #34495e;
             font-size: 48px;
         }
-      
+        .owasp-table,.parameter-table{
+            box-shadow: 0 5px 5px -3px #0003, 0 8px 10px 1px #00000024, 0 3px 14px 2px #0000001f;
+        }
+        .search-field{
+            border: none;
+            outline: none;
+            caret-color: rgb(107, 119, 140);
+
+        }
+        label{
+            margin:0 ;
+            color: #0000008a;
+            font-size: 0.8rem;
+        }
+        #changeRows{
+            outline: none;
+        }
+        .input-wrapper{
+            color: #0000008a !important;
+            border-bottom:2px solid #a7a5a58a;
+        }
+
+      .show-more,.show-less{
+        color:#025c7a;
+      }
+      .more-content{
+        overflow-wrap:break-word;
+      }
+      .pii-elements{
+           font-weight: 800;
+           color:#025c7a;
+           padding: 5px 10px;
+           margin: 5px 10px;
+           background-color:#c0d8e0 ; 
+
+      }
+    
     </style>
 </head>
 
 <body>
-    <main id="main">
+   
+    <main id="main" class="d-none">
         <div class="container col-lg-6">
             <button class="border-0 bg-none" id="previousBtn2">
                 <ion-icon name="arrow-back-circle"></ion-icon>
             </button>
             <div class="d-flex flex-column justify-content-between align-items-center mt-5">
                 <div class="w-100 ">
-                    <h3 class="font-weight-bolder fs-4 title  w-100 text-left">APIsec Spec Analysis Results</h3>
-                    <div class="fs-2 font-weight-bold text-left" id="subTitle"></div>
+                    <h3 class="font-weight-bolder fs-2 title  w-100 text-center">APIsec Spec Analysis Results</h3>
+                    <div class="fs-5 font-weight-bold text-center text-muted my-3" id="subTitle"></div>
 
                   <div class="d-flex">
                     <div class="tiles w-100">
-                        <div class="row">
-                            <div class="card border-info m-3 rounded-end" style="max-width: 14rem;height:6rem;">
+                        <div class="row justify-content-between">
+                            <div class="card-tiles border-info m-2 rounded-end" style="max-width: 14rem;height:7rem;">
                                 <div class="align-items-center card-body d-flex justify-content-center">
                                     <h5 class="card-title d-flex flex-grow-1 justify-content-center"><i
                                             class="fa fa-list rounded-circle  p-3 m-1" aria-hidden="true"></i>
@@ -145,19 +232,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card border-info m-3 rounded-end" style="max-width: 14rem;height:6rem;">
+                            <div class="card-tiles border-info m-2 rounded-end"
+                                style="max-width: 14rem;height:7rem; border-left: 6px solid #b8b9b9 ;" id="borderLeft">
                                 <div class="align-items-center card-body d-flex justify-content-center ">
                                     <h5 class="card-title d-flex flex-grow-1 justify-content-center"><i
-                                            class="fa fa-code rounded-circle p-3 m-1" aria-hidden="true"></i>
+                                            class="fa fa-code rounded-circle p-3 m-1" aria-hidden="true" ></i>
                                     </h5>
                                     <div class="card-text d-flex flex-grow-1 flex-lg-column p-2">
                                         <h3 id="testsCount"></h3>
-                                        <span class="text-nowrap">Tests Generated</span>
+                                        <span class="text-nowrap" id="genText">Tests Generated</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex my-3" style="max-width: 14rem;" >
-                                <button id="sampleRunBtn" class="btn btn-block1 w-100 text-light" aria-hidden="true" data-toggle="tooltip" title="This is a sample run">
+                            <div class="d-flex my-2" style="max-width: 14rem;">
+                                <button id="sampleRunBtn" class="btn btn-block1 w-100 text-light">
                                     <i class="fa fa-play p-2" aria-hidden="true"></i>Run Tests
                                 </button>
                             </div>
@@ -167,97 +255,286 @@
                   </div>
                 </div>
                 
-            </div>
+                </div>
+         
             <div class="row justify-content-between">
                 <div class="col-lg-12 pt-lg-0 order-2 text-center">
+                  
                     <div>
                         <div class="my-3">
-                          
-                            
+                         
                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs mr-5" id="myTab" role="tablist">
+                            <ul class="nav nav-tabs my-4" id="myTab" role="tablist">
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
-                                    <button class="nav-link active py-4 w-100 font-weight-bold text-light "
-                                        id="OWASP-tab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button"
-                                        role="tab" aria-controls="home" aria-selected="true">
-                                        OWASP API Test Coverage
-                                    </button>
-                                </li>
-                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
-                                    <button class="nav-link py-4 w-100 font-weight-bold text-light  "
-                                        id="parameters-tab" data-bs-toggle="tab" data-bs-target="#parameters"
-                                        type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                        Parameters
-                                    </button>
-                                </li>
-                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
-                                    <button class="nav-link py-4 w-100 font-weight-bold text-light "
-                                        id="basicInfo-tab" data-bs-toggle="tab" data-bs-target="#basicInfo"
-                                        type="button" role="tab" aria-controls="messages" aria-selected="false">
+                                    <button class="nav-link active py-4 w-100 font-weight-bold" id="basicInfoTab" data-bs-toggle="tab"
+                                        data-bs-target="#basicInfo" type="button" role="tab" aria-controls="messages" aria-selected="false"
+                                        style="color: #025c7a !important;">
                                         Basic Info
                                     </button>
                                 </li>
+                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
+                                    <button class="nav-link py-4 w-100 font-weight-bold "
+                                    id="parametersTab" data-bs-toggle="tab" data-bs-target="#parameters"
+                                    type="button" role="tab" aria-controls="profile" aria-selected="false" >
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="paramsSpinner"></span>  Parameters
+                                </button>
+                                </li>
+        
+                                <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
+                                    <button class="nav-link py-4 w-100 font-weight-bold "
+                                        id="owaspTab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button" 
+                                        role="tab" aria-controls="home" aria-selected="true" >
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="owaspSpinner"></span> OWASP API Test Coverage
+                                    </button>
+                                </li>
+                                
                             </ul>
                           
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane active" id="OWASP" role="tabpanel" aria-labelledby="home-tab">
-                                   <div class="d-flex">
-                                    <div class="table-responsive my-3">
-                                        <table class="owasp-table  dataTable w-100">
-                                            <tr>
-                                                <th class=" font-weight-bold text-center">OWASP Ranking</th>
-                                                <th class=" font-weight-bold text-center">Category</th>
-                                                <th class=" font-weight-bold text-center">Number of Tests Generated</th>
+                                <div class="tab-pane active" id="basicInfo" role="tabpanel" aria-labelledby="basicinfo-tab">
+                                    <div id="description" class="text-left  p-2"></div>
+                                    <div id="openApiSec" class="text-left  p-2">
+                                        <span class='font-weight-bold fs-6'>API Specification:</span>
+                                        <span id="openApiSecContent"></span>
+                                      
 
-                                            </tr>
-                                        </table>
                                     </div>
-                                    <button class="btn p-0 py-3 h-100" id="OWASPRankingDownloadBtn">
-                                        <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
-                                    </button>
-                                    
-                                  </div>
+                                    <div class="basicinfo-table"></div>
+                                   
                                 </div>
                                 <div class="tab-pane" id="parameters" role="tabpanel" aria-labelledby="profile-tab">
-                                    <div class="d-flex">
-                                    <div class="table-responsive my-3">
-                                        <table class="parameter-table m-auto dataTable ">
+                                    <div class="">
+                                    <div class=" my-3">
+                                        <div class="d-flex align-items-center justify-content-between pb-3">
+                                            <div class="d-flex input-wrapper">
+                                                <span><i class="fa fa-search"></i></span>
+                                                <input type="text" placeholder="&nbsp;Search" id="searchFieldVariables" class="search-field"/>
+                                            </div>
+                                            <div class="">
+                                                <label for="changeRowsVariables">Rows per page:&nbsp;&nbsp;</label>
+                                            <select name="rowsPerPage" id="changeRowsVariables" class="border text-black-50">
+                                                <option value="5" selected>5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                              </select>
+                                            </div>
+                                        </div>
+                                          <div class="parameter-table"></div>
+                                         
+                                        <table class="parameter-table-virtual d-none m-auto dataTable ">
                                             <tr>
-                                                <th class=" font-weight-bold text-center">Name</th>
+                                                <th class=" font-weight-bold text-center">Parameters</th>
                                                 <th class=" font-weight-bold text-center">Type</th>
-                                                <th class=" font-weight-bold text-center">Format</th>
                                             </tr>
                                         </table>
                                     </div>
-                                    <button class="btn p-0 py-3 h-100" id="variablesDownloadBtn">
-                                        <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
-                                    </button>
+                                    
                                     </div>
                                    
                                 </div>
-                                <div class="tab-pane" id="basicInfo" role="tabpanel" aria-labelledby="basicinfo-tab">
-                                    <div id="description" class="text-left  p-2"></div>
-                                    <div id="openApiSec" class="text-left  p-2"></div>
-                                    <div class="table-responsive my-3">
-                                        <table class="basicinfo-table m-auto dataTable">
-                                            <tr>
-                                                <th class=" font-weight-bold text-center">Method</th>
-                                                <th class=" font-weight-bold text-center">Endpoint Count</th>
-                                            </tr>
-                                        </table>
+                                
+                                <div class="tab-pane" id="piiInfo" role="tabpanel" aria-labelledby="pii-tab">
+                                    <div class="piiInfo-child">
+                                        <div class = "piiInfo-description text-left">
+                                            <span class="font-weight-bolder">PII Data Exposure:</span>
+                                           Personally Identifiable Information or PII is any data that can be used to break the anonymity of a interaction. It is closely tied to privacy and tracking regulations. Examples of PII are government ID numbers, address, phone numbers.
+                                        </div>
+                                        <div class="piiInfo-keywords d-flex flex-column align-items-start ">
+                                            <div class="font-weight-bold" id="piiStatus">For the given specification,the PII elements are:</div>
+                                            <!-- <div class="pii-ele-wrapper d-flex"></div> -->
+                                            <table class="pii-ele-wrapper">
+                                                <!-- <tr><th></th></tr> -->
+                                                <tbody class=""></tbody>
+                                            </table>
+
+                                        </div>
                                     </div>
+                                 
                                 </div>
+                                <div class="tab-pane " id="OWASP" role="tabpanel" aria-labelledby="home-tab">
+                                   <div class="">
+                                  
+
+                                  </div>
+                                  <div>
+                                    <table class="owasp-table" style="width: 100%;">
+                                        <tr>
+                                            <th></th>
+                                            <th>Tests</th>
+                                          </tr>
+                                        
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2"
+                                                                    aria-expanded="true" aria-controls="collapse2">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                       OWASP API2:2023 - Broken Authentication
+                                                                    </span>
+                                                                    
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                            
+                                                        <div id="collapse2" class="collapse hide" aria-labelledby="headingOne" >
+                                                            <div class="card-body">
+                                                                Authentication mechanisms are often implemented incorrectly, allowing attackers to compromise authentication tokens or to exploit implementation flaws to assume other user’s identities temporarily or permanently. Compromising a system’s ability to identify the client/user, compromises API security overall.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3"
+                                                                    aria-expanded="true" aria-controls="collapse3">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        
+                                                                        OWASP API3:2023 - Broken Object Property Level Authorization
+                                                                    </span>
+
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                            
+                                                        <div id="collapse3" class="collapse hide" aria-labelledby="headingOne" >
+                                                            <div class="card-body">
+                                                                This category combines API3:2019 Excessive Data Exposure and API6:2019 - Mass Assignment, focusing on the root cause: the lack of or improper authorization validation at the object property level. This leads to information exposure or manipulation by unauthorized parties.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                                
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse7"
+                                                                    aria-expanded="true" aria-controls="collapse7">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        
+                                                                        OWASP API7:2023 - Server Side Request Forgery
+                                                                    </span>
+
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                            
+                                                        <div id="collapse7" class="collapse hide" aria-labelledby="headingOne">
+                                                            <div class="card-body">
+                                                                Server-Side Request Forgery (SSRF) flaws can occur when an API is fetching a remote resource without validating the user-supplied URI. This enables an attacker to coerce the application to send a crafted request to an unexpected destination, even when protected by a firewall or a VPN.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse8"
+                                                                    aria-expanded="true" aria-controls="collapse8">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        
+                                                                        OWASP API8:2023 - Security Misconfiguration
+                                                                    </span>
+
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                            
+                                                        <div id="collapse8" class="collapse hide" aria-labelledby="headingOne" >
+                                                            <div class="card-body">
+                                                                APIs and the systems supporting them typically contain complex configurations, meant to make the APIs more customizable. Software and DevOps engineers can miss these configurations, or don’t follow security best practices when it comes to configuration, opening the door for different types of attacks.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                                
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse10"
+                                                                    aria-expanded="true" aria-controls="collapse7">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API10:2023 - Unsafe Consumption of APIs
+                                                                    </span>
+
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                            
+                                                        <div id="collapse10" class="collapse hide" aria-labelledby="headingOne" >
+                                                            <div class="card-body">
+                                                                Developers tend to trust data received from third-party APIs more than user input, and so tend to adopt weaker security standards. In order to compromise APIs, attackers go after integrated third-party services instead of trying to compromise the target API directly.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                                
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+                                  </div>
+                                <div>
+                                </div>
+                                                
+                                      
+                                  
+                                </div>
+                               
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          
         </div>
     </main>
     <!-- End Footer -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
@@ -269,6 +546,7 @@
     <script src="assets/js/jquery.slim.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script data-require="jquery@*" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -276,6 +554,10 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://table-sortable.now.sh/table-sortable.js"></script>
+
+    <script  src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script> 
+
     <script type="module" src="./assets/js/sampleSpecAnalysis.js"></script>
 </body>
 

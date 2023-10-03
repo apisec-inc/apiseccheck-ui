@@ -4,145 +4,154 @@ $(document).ready(function () {
   $.ajax({
     url:
       s +
-      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20WuNU",
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20WKMk",
     method: "GET",
     dataType: "json",
     headers: {
       "Content-Type": "application/json",
     },
     success: function (resultData) {
-      $("#subTitle").html(resultData.data.name);
-      let tableDataParameters = "";
-      for (
-        let i = 0;
-        i < resultData.data.specAnalysis.variablesList.length;
-        i++
-      ) {
-        let variableFormat =
-          resultData.data.specAnalysis.variablesList[i].format;
-        tableDataParameters += `<tr><td class="text-center">${
-          resultData.data.specAnalysis.variablesList[i].name
-        }</td>
-        <td class="text-center">${
-          resultData.data.specAnalysis.variablesList[i].type
-        }</td>
-        <td class="text-center">${
-          variableFormat == null ? "-" : variableFormat
-        }</td>
-        </tr>`;
-      }
+      if(resultData){
+      $("#loader").addClass("d-none");
+      $("#main").removeClass("d-none");
+
+      $("#subTitle").html("API Name:" + resultData.data.name);
+      
+      $(".basicinfo-table").CanvasJSChart({
+        axisY: {
+          title: " Number of Endpoints",
+        },
+        legend: {
+          verticalAlign: "center",
+          horizontalAlign: "right",
+        },
+        animationEnabled: true,
+        animationDuration: 2000,
+        theme: "light2",
+        height: 300,
+        data: [
+          {
+            type: "pie",
+            // showInLegend: true,
+            radius: "100%",
+            center: ["50%", "50%"],
+            toolTipContent: "{label}  {y} ",
+            indexLabel: "{label}({y})",
+            dataPoints: [
+              {
+                label: "DELETE",
+                y: resultData.data.specAnalysis.httpMethodsCounts["DELETE"],
+                legendText: "DELETE",
+                color: "#f93e3e",
+              },
+              {
+                label: "GET",
+                y: resultData.data.specAnalysis.httpMethodsCounts["GET"],
+                legendText: "GET",
+                color: "#61affe",
+              },
+              {
+                label: "POST",
+                y: resultData.data.specAnalysis.httpMethodsCounts["POST"],
+                legendText: "POST",
+                color: "#fca130",
+              },
+              {
+                label: "PUT",
+                y: resultData.data.specAnalysis.httpMethodsCounts["PUT"],
+                legendText: "PUT",
+                color: "#49cc90",
+              },
+            ],
+          },
+        ],
+      });
+      let tableDataParameters = [];
+     
       $("#parameters .parameter-table").append(tableDataParameters);
 
       $("#endpointCount").html(resultData.data.specAnalysis.totalEndpoints);
       $("#testsCount").html(resultData.data.specAnalysis.totalPlaybooks);
+      let tableDataCategory = [];
 
-      let tableDataCategory = "";
-
-      function sortJSON(arr, key, asc = true) {
-        return arr.sort((a, b) => {
-          let x = a[key];
-          let y = b[key];
-          if (asc) {
-            return x < y ? -1 : x > y ? 1 : 0;
-          } else {
-            return x > y ? -1 : x < y ? 1 : 0;
-          }
-        });
-      }
-      let output = sortJSON(
-        resultData.data.specAnalysis.categoryWisePlaybookCountList,
-        "owaspRank",
-        true
-      );
-      for (
-        let i = 0;
-        i < resultData.data.specAnalysis.categoryWisePlaybookCountList.length;
-        i++
+      if (
+        resultData &&
+        resultData.data &&
+        resultData.data.specAnalysis.categoryWisePlaybookCountList
       ) {
-        let testsGenerated =
-          resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count;
-        if (testsGenerated > 0) {
-          tableDataCategory += `<tr><td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].owaspRank}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].label}</td>
-        <td class="text-center">${resultData.data.specAnalysis.categoryWisePlaybookCountList[i].count}</td>
-        </tr>`;
-        }
-      }
-
-      $("#OWASP .owasp-table").append(tableDataCategory);
-
-      function tableToCSVOWASPRanking() {
-        var csv_data = [];
-        var rows = $("#OWASP .owasp-table")[0].rows;
-        for (var i = 0; i < rows.length; i++) {
-          var cols = rows[i].querySelectorAll("td,th");
-          var csvrow = [];
-          for (var j = 0; j < cols.length; j++) {
-            csvrow.push(cols[j].innerHTML);
+        for (
+          let i = 0;
+          i <
+          resultData.data.specAnalysis.categoryWisePlaybookCountList.length;
+          i++
+        ) {
+          let testsGenerated =
+            resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
+              .count;
+         
+          if (testsGenerated > 0) {
+            tableDataCategory.push(
+              resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
+            );
           }
-          csv_data.push(csvrow.join(","));
         }
-        csv_data = csv_data.join("\n");
-        console.log(csv_data);
-        downloadCSVFileOWASPRanking(csv_data);
       }
-
-      function downloadCSVFileOWASPRanking(csv_data) {
-        var CSVFile = new Blob([csv_data], {
-          type: "text/csv",
-        });
-        var temp_link = document.createElement("a");
-        temp_link.download = "APIsecFreeOWASPRanking.csv";
-        var url = window.URL.createObjectURL(CSVFile);
-        temp_link.href = url;
-        temp_link.style.display = "none";
-        document.body.appendChild(temp_link);
-        temp_link.click();
-        document.body.removeChild(temp_link);
-      }
-
-      function tableToCSVVariables() {
-        var csv_data = [];
-        var rows = $("#parameters .parameter-table")[0].rows;
-        for (var i = 0; i < rows.length; i++) {
-          var cols = rows[i].querySelectorAll("td,th");
-          var csvrow = [];
-          for (var j = 0; j < cols.length; j++) {
-            csvrow.push(cols[j].innerHTML);
-          }
-          csv_data.push(csvrow.join(","));
+      $("#headingOne .btn").click(function () {
+        $(this).find(".fas").toggleClass("fa-plus fa-minus");
+      });
+      const groupByCategory = (tableDataCategory, owaspRank) => {
+        return tableDataCategory.reduce((result, currentValue) => {
+          (result[currentValue.owaspRank] =
+            result[currentValue.owaspRank] || []).push(currentValue);
+          return result;
+        }, {});
+      };
+      var sortedCategory = groupByCategory(tableDataCategory, "owaspRank");
+      let totalCountArray = [];
+      for (const ele in sortedCategory) {
+        let totalCount = 0;
+        for (let i = 0; i < sortedCategory[ele].length; i++) {
+          totalCount += sortedCategory[ele][i]["count"];
         }
-        csv_data = csv_data.join("\n");
-        console.log(csv_data);
-        downloadCSVFileVariables(csv_data);
+        totalCountArray.push(totalCount);
       }
+      $(".test-count").each(function (e) {
+        $(this).html(totalCountArray[e]);
+      });
+            for (const key in resultData.data.specAnalysis.piiList) {
+              if (resultData.data.specAnalysis.piiList.hasOwnProperty(key)) {
+                let paraName = key;
+                let paraValue = resultData.data.specAnalysis.piiList[key];
+                if(paraValue == false)
+                      paraValue = '-';
+                else
+                    paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
+             
+                tableDataParameters.push({name: paraName, type:paraValue})
+              }
+            }
+            var columnsParameters = {
+              name: "Name",
+              type: "Category",
+            };
+            var tableParameters = $("#parameters .parameter-table").tableSortable({
+              data: tableDataParameters,
+              sorting: ['type'],
+              columns: columnsParameters,
+              searchField: "#searchFieldVariables",
+              rowsPerPage: 5,
+              pagination: true,
+              sortingIcons: {
+                asc: "<span>▼</span>",
+                desc: "<span>▲</span>",
+              },
+            });
+            $("#changeRowsVariables").on("change", function () {
+              tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
+            });
+     
 
-      function downloadCSVFileVariables(csv_data) {
-        var CSVFile = new Blob([csv_data], {
-          type: "text/csv",
-        });
-        var temp_link = document.createElement("a");
-        temp_link.download = "APIsecFreeVariables.csv";
-        var url = window.URL.createObjectURL(CSVFile);
-        temp_link.href = url;
-        temp_link.style.display = "none";
-        document.body.appendChild(temp_link);
-        temp_link.click();
-        document.body.removeChild(temp_link);
-      }
-
-      let tableDataMethod = "";
-      for (
-        let i = 0;
-        i < resultData.data.specAnalysis.countEndpointsByMethodList.length;
-        i++
-      ) {
-        tableDataMethod += `<tr><td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].method}</td>
-        <td class="text-center">${resultData.data.specAnalysis.countEndpointsByMethodList[i].count}</td>
-       
-        </tr>`;
-      }
-      $("#basicInfo .basicinfo-table").append(tableDataMethod);
+   
       $("#description").html(
         "<span class='font-weight-bold fs-6'>Description:</span>" +
           resultData.data.description
@@ -152,14 +161,8 @@ $(document).ready(function () {
           resultData.data.openAPISpec
       );
 
-      localStorage.setItem("detailsURL", window.location.href);
-      $("#OWASPRankingDownloadBtn").click(function () {
-        tableToCSVOWASPRanking();
-      });
-      $("#variablesDownloadBtn").click(function () {
-        tableToCSVVariables();
-      });
-    },
+      
+    }},
     error: function (xhr, status, error) {},
   });
   $("#sampleRunBtn").click(function () {
@@ -168,5 +171,4 @@ $(document).ready(function () {
   $("#previousBtn2").click(function (event) {
     window.location.replace("product.html");
   });
-
 });

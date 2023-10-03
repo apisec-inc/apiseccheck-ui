@@ -442,7 +442,13 @@ div#loadingresultfree {
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="basicInfo" role="tabpanel" aria-labelledby="basicinfo-tab">
-                                    <div id="description" class="text-left  p-2"></div>
+                                    <div id="description" class="text-left  p-2">
+                                        <span class='font-weight-bold fs-6'>Description:</span>
+                                       <span id="openDescription" class="less-content"></span>
+                                       <div id="openDescriptionMore" class="more-content d-none"></div>
+                                       <button class="border-0 bg-none show-more d-none">Show more</button>
+                                       <button class="border-0 bg-none show-less d-none">Show less</button>
+                                    </div>                 
                                     <div id="openApiSec" class="text-left  p-2">
                                         <span class='font-weight-bold fs-6'>API Specification:</span>
                                         <span id="openApiSecContent"></span>
