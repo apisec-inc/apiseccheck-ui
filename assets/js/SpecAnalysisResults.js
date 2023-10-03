@@ -541,7 +541,7 @@ $(document).ready(function () {
                     document.getElementById("runbtn").disabled = false;
                     resultAPI();
                     clearInterval(intervalId1);
-                    clearInterval(intervalId);
+                    // clearInterval(intervalId);
                   } else if (
                     testresult.data ==
                     "Please check your OAS URL is valid, and the API is not too large."
