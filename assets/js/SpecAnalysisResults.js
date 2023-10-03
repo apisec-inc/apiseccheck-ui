@@ -643,17 +643,17 @@ $(document).ready(function () {
               if (resultData.data.specAnalysis.piiList.hasOwnProperty(key)) {
                 let paraName = key;
                 let paraValue = resultData.data.specAnalysis.piiList[key];
-                if(paraValue == false)
-                      paraValue = '-';
+                if (paraValue == false) paraValue = "-";
                 else
-                    paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
-                    // paraValue = 'PII'
+                  paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
+                // paraValue = 'PII'
                 // console.log(paraName,paraValue)
-                tableDataParameters.push({name: paraName, type:paraValue})
+                tableDataParameters.push({ name: paraName, type: paraValue });
               }
             }
-            let sortedParameters = tableDataParameters.sort(
-              (p1, p2) => (p1.type < p2.type) ? 1 : (p1.type > p2.type) ? -1 : 0);
+            let sortedParameters = tableDataParameters.sort((p1, p2) =>
+              p1.type < p2.type ? 1 : p1.type > p2.type ? -1 : 0
+            );
             // console.log(tableDataParameters)
             var columnsParameters = {
               name: "Name",
@@ -661,13 +661,15 @@ $(document).ready(function () {
               // format: "Format",
             };
             // console.log(resultData.data.specAnalysis.piiList)
-            var tableParameters = $("#parameters .parameter-table").tableSortable({
+            var tableParameters = $(
+              "#parameters .parameter-table"
+            ).tableSortable({
               data: sortedParameters,
               // sorting: true,
-              sorting: ['type'],
+              sorting: ["type"],
               columns: columnsParameters,
               searchField: "#searchFieldVariables",
-              rowsPerPage: 5,
+              rowsPerPage: 10,
               pagination: true,
               sortingIcons: {
                 asc: "<span>▼</span>",
@@ -742,7 +744,7 @@ $(document).ready(function () {
               $("#basicInfoTab")
                 .css("color", "#025c7a;")
                 .css("important", "true");
-              $("#parametersTab").tab("show");
+              // $("#parametersTab").tab("show");
               $("#owaspTab").css("color", "#b8b9b9 !important;");
               $("#owaspTab").css("color", "#b8b9b9").css("important", "true");
 
@@ -773,7 +775,7 @@ $(document).ready(function () {
               $("#owaspSpinner").addClass("d-none");
               $("#loadingresultfree").addClass("d-none");
               // #6B778C
-              $("#owaspTab").tab("show");
+              // $("#owaspTab").tab("show");
               document.getElementById("runbtn").disabled = false;
               getOwaspCoverage();
               getParameters();
