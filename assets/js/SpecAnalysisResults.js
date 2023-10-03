@@ -250,11 +250,11 @@ $(document).ready(function () {
             var csv_data = [];
             // console.log($('#OWASP .owasp-table .gs-table')[0])
             // var rows = $('#OWASP .owasp-table .gs-table')[0].rows;
-            console.log($(".owasp-table-virtual")[0]);
+            // console.log($(".owasp-table-virtual")[0]);
             var rows = $(".owasp-table-virtual")[0].rows;
             for (var i = 0; i < rows.length; i++) {
               var cols = rows[i].querySelectorAll("td,th");
-              console.log(cols);
+              // console.log(cols);
               var csvrow = [];
               for (var j = 0; j < cols.length; j++) {
                 csvrow.push(cols[j].innerHTML);
@@ -284,7 +284,7 @@ $(document).ready(function () {
             var csv_data = [];
             // console.log($('#parameters .parameter-table .gs-table')[0])
             // var rows = $('#parameters .parameter-table .gs-table')[0].rows;
-            console.log($(".parameter-table-virtual")[0]);
+            // console.log($(".parameter-table-virtual")[0]);
             var rows = $(".parameter-table-virtual")[0].rows;
             for (var i = 0; i < rows.length; i++) {
               var cols = rows[i].querySelectorAll("td,th");
@@ -591,10 +591,10 @@ $(document).ready(function () {
               let testsGenerated =
                 resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
                   .count;
-              console.log(
-                "testsGenerated",
-                resultData.data.specAnalysis.categoryWisePlaybookCountList
-              );
+              // console.log(
+              //   "testsGenerated",
+              //   resultData.data.specAnalysis.categoryWisePlaybookCountList
+              // );
               if (testsGenerated > 0) {
                 tableDataCategory.push(
                   resultData.data.specAnalysis.categoryWisePlaybookCountList[i]
@@ -648,7 +648,7 @@ $(document).ready(function () {
                 else
                     paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
                     // paraValue = 'PII'
-                console.log(paraName,paraValue)
+                // console.log(paraName,paraValue)
                 tableDataParameters.push({name: paraName, type:paraValue})
               }
             }
@@ -658,7 +658,7 @@ $(document).ready(function () {
               type: "Category",
               // format: "Format",
             };
-            console.log(resultData.data.specAnalysis.piiList)
+            // console.log(resultData.data.specAnalysis.piiList)
             var tableParameters = $("#parameters .parameter-table").tableSortable({
               data: tableDataParameters,
               // sorting: true,
