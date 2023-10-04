@@ -734,8 +734,7 @@ $(document).ready(function () {
                 .css("important", "true");
               // showDetails();
               // resultAPITest();
-            }
-            if (
+            } else if (
               testresult.data == "Test Case Generation Started" ||
               testresult.data == "Test Case Generation in progress"
             ) {
@@ -747,7 +746,7 @@ $(document).ready(function () {
               // $("#parametersTab").tab("show");
               $("#owaspTab").css("color", "#b8b9b9 !important;");
               $("#owaspTab").css("color", "#b8b9b9").css("important", "true");
-              $("#parametersTab div").addClass('animation-tilt-shaking')
+              $("#parametersTab div").addClass("animation-tilt-shaking");
               $("#parametersTab")
                 .css("color", "#025c7a")
                 .css("important", "true");
@@ -756,8 +755,7 @@ $(document).ready(function () {
               // showDetails();
               // getParameters();
               // resultAPITest();
-            }
-            if (testresult.data == "Test Case Generation Completed") {
+            } else if (testresult.data == "Test Case Generation Completed") {
               $("#owaspTab.active").css("color", "rgb(2, 92, 122) !important;");
               $("#basicInfoTab")
                 .css("color", "#025c7a;")
@@ -773,7 +771,7 @@ $(document).ready(function () {
               $(".nav-tabs .nav-link").css("color", "#025c7a");
               $("#owaspTab").css("color", "#025c7a").css("important", "true");
               $("#owaspSpinner").addClass("d-none");
-              $("#owaspTab div").addClass('animation-tilt-shaking')
+              $("#owaspTab div").addClass("animation-tilt-shaking");
               $("#loadingresultfree").addClass("d-none");
               // #6B778C
               // $("#owaspTab").tab("show");
@@ -785,7 +783,16 @@ $(document).ready(function () {
 
               // getOwaspCoverage();
               // showDetails();
+            } else if (testresult.data == "Request timeout...") {
+              clearInterval(intervalId);
+              $("#loadingresultfree").addClass("d-none");
+              $("#progressIcons").addClass("d-none");
+              $("#timeout").removeClass("d-none");
+              // $("#keyerror1").html(resultData.messages[0].value);
             }
+            // else {
+
+            // }
           },
           error: function (xhr, status, error) {
             // Handle any API errors here
