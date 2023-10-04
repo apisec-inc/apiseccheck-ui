@@ -201,7 +201,14 @@ div#loadingresultfree {
            background-color:#c0d8e0 ; 
 
       }
-    
+      @keyframes tilt-shaking {
+        0%   {transform: scale(1);}
+        50%   {transform: scale(1.16);}
+        100% {transform: scale(1);}
+     }
+     .animation-tilt-shaking{
+        animation: 2s ease-in 0s tilt-shaking;
+     }
     </style>
 </head>
 
@@ -418,7 +425,7 @@ div#loadingresultfree {
                                     <button class="nav-link py-4 w-100 font-weight-bold "
                                     id="parametersTab" data-bs-toggle="tab" data-bs-target="#parameters"
                                     type="button" role="tab" aria-controls="profile" aria-selected="false" style="color:#b8b9b9;">
-                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="paramsSpinner"></span>  Parameters
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="paramsSpinner"></span>&nbsp;<div class="d-inline-block"> Parameters</div>
                                 </button>
                                 </li>
                                 <!-- <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
@@ -432,7 +439,7 @@ div#loadingresultfree {
                                     <button class="nav-link py-4 w-100 font-weight-bold "
                                         id="owaspTab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button" 
                                         role="tab" aria-controls="home" aria-selected="true"  style="color: #b8b9b9;">
-                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="owaspSpinner"></span> OWASP API Test Coverage
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="owaspSpinner"></span>&nbsp;<div class="d-inline-block">OWASP API Test Coverage</div> 
                                     </button>
                                 </li>
                                 

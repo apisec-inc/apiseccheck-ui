@@ -130,16 +130,19 @@ $(document).ready(function () {
                 tableDataParameters.push({name: paraName, type:paraValue})
               }
             }
+            let sortedParameters = tableDataParameters.sort((p1, p2) =>
+            p1.type < p2.type ? 1 : p1.type > p2.type ? -1 : 0
+          );
             var columnsParameters = {
               name: "Name",
               type: "Category",
             };
             var tableParameters = $("#parameters .parameter-table").tableSortable({
-              data: tableDataParameters,
+              data: sortedParameters,
               sorting: ['type'],
               columns: columnsParameters,
               searchField: "#searchFieldVariables",
-              rowsPerPage: 5,
+              rowsPerPage: 10,
               pagination: true,
               sortingIcons: {
                 asc: "<span>▼</span>",

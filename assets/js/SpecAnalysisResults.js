@@ -747,7 +747,7 @@ $(document).ready(function () {
               // $("#parametersTab").tab("show");
               $("#owaspTab").css("color", "#b8b9b9 !important;");
               $("#owaspTab").css("color", "#b8b9b9").css("important", "true");
-
+              $("#parametersTab div").addClass('animation-tilt-shaking')
               $("#parametersTab")
                 .css("color", "#025c7a")
                 .css("important", "true");
@@ -773,6 +773,7 @@ $(document).ready(function () {
               $(".nav-tabs .nav-link").css("color", "#025c7a");
               $("#owaspTab").css("color", "#025c7a").css("important", "true");
               $("#owaspSpinner").addClass("d-none");
+              $("#owaspTab div").addClass('animation-tilt-shaking')
               $("#loadingresultfree").addClass("d-none");
               // #6B778C
               // $("#owaspTab").tab("show");
