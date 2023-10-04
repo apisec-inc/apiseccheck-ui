@@ -14,7 +14,9 @@
     <!-- Google Fonts -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
-
+    <script>  $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })</script>
     <style>
         .hr-theme-slash-2 {
             display: flex;
@@ -858,7 +860,8 @@ div#loadingresultfree {
                                             <td class="test-count">
                                                 
                                             </td>
-                                        </tr>
+                                            </tr>
+                                            
                                         <tr>
                                             <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
                                                 <div class="accordion" id="faqExample">
@@ -896,7 +899,198 @@ div#loadingresultfree {
                                                 
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse01"
+                                                                    aria-expanded="true" aria-controls="collapse01">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API1:2023 - Broken Object Level Authorization
+                                                                    </span>
                                         
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                        
+                                                        <div id="collapse01" class="collapse hide" aria-labelledby="headingOne">
+                                                            <div class="card-body">
+                                                                APIs tend to expose endpoints that handle object identifiers, creating a wide attack surface of
+                                                                Object Level Access
+                                                                Control issues. Object level authorization checks should be considered in every function that
+                                                                accesses a data source
+                                                                using an ID from the user.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                        
+                                        
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                                    title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+                                                    <b>?</b>
+                                        
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse04"
+                                                                    aria-expanded="true" aria-controls="collapse04">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API4:2023 - Unrestricted Resource Consumption
+                                                                    </span>
+                                        
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                        
+                                                        <div id="collapse04" class="collapse hide" aria-labelledby="headingOne">
+                                                            <div class="card-body">
+                                                                Satisfying API requests requires resources such as network bandwidth, CPU, memory, and storage.
+                                                                Other resources such as emails/SMS/phone calls or biometrics validation are made available by
+                                                                service providers via API integrations,
+                                                                and paid for per request. Successful attacks can lead to Denial of Service or an increase of
+                                                                operational costs.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                        
+                                        
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                                    title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+                                                    <b>?</b>
+                                        
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse05"
+                                                                    aria-expanded="true" aria-controls="collapse05">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API5:2023 - Broken Function Level Authorization
+                                                                    </span>
+                                        
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                        
+                                                        <div id="collapse05" class="collapse hide" aria-labelledby="headingOne">
+                                                            <div class="card-body">
+                                                                Complex access control policies with different hierarchies, groups, and roles, and an unclear
+                                                                separation between administrative and regular functions, tend to lead to authorization flaws.
+                                                                By exploiting these issues, attackers can gain access to other users’ resources and/or
+                                                                administrative functions.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                        
+                                        
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                                    title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+                                                    <b>?</b>
+                                        
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:85%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse06"
+                                                                    aria-expanded="true" aria-controls="collapse06">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API6:2023 - Unrestricted Access to Sensitive Business Flows
+                                                                    </span>
+                                        
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                        
+                                                        <div id="collapse06" class="collapse hide" aria-labelledby="headingOne">
+                                                            <div class="card-body">
+                                                                APIs vulnerable to this risk expose a business flow - such as buying a ticket, or posting a
+                                                                comment - without compensating for how the functionality could harm the business if used
+                                                                excessively in an automated manner.
+                                                                This doesn't necessarily come from implementation bugs.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="test-count">
+                                        
+                                        
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                                    title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+                                                    <b>?</b>
+                                        
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vulnerbilityLeft py-2 p-0" style="width:80%">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingOne">
+                                                            <h5 class="mb-0">
+                                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse09"
+                                                                    aria-expanded="true" aria-controls="collapse09">
+                                                                    <i class="fas fa-plus text-muted pe-1" aria-hidden="true"></i>
+                                                                    <span class="">
+                                                                        OWASP API9:2023 - Improper Inventory Management
+                                                                    </span>
+                                        
+                                                                </button>
+                                                            </h5>
+                                                        </div>
+                                                                
+                                                                                <div id="collapse09" class="collapse hide" aria-labelledby="headingOne">
+                                                                                    <div class="card-body">
+                                                                                        APIs tend to expose more endpoints than traditional web applications, making proper and updated
+                                                                                        documentation highly important.
+                                                                                        A proper inventory of hosts and deployed API versions also are important to mitigate issues such
+                                                                                        as deprecated API versions and exposed debug endpoints.
+                                                                                    </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                </td>
+                                                                                <td class="test-count">
+                                                                                
+                                                                                
+                                                                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                                                                                        title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+                                                                                        <b>?</b>
+                                                                                
+                                                                                    </span>
+                                                                                </td>
+                                                                                </tr>
                                     </table>
                                   </div>
                                 <div>
@@ -916,6 +1110,9 @@ div#loadingresultfree {
     </main>
     <!-- End Footer -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+    <script>
+    
+    </script>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
@@ -941,6 +1138,7 @@ div#loadingresultfree {
     <script  src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script> 
 
     <script type="module" src="./assets/js/SpecAnalysisResults.js"></script>
+
 </body>
 
 </html>
