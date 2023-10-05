@@ -360,7 +360,7 @@ $(document).ready(function () {
             animationEnabled: true,
             animationDuration: 2000,
             theme: "light2",
-            height: 300,
+            // height: 300,
             data: [
               {
                 type: "pie",
@@ -404,34 +404,31 @@ $(document).ready(function () {
             $(this).find(".fas").toggleClass("fa-plus fa-minus");
           });
           // $('#basicInfo .basicinfo-table').append(tableDataMethod);
-          $("#description").html(
-            
-            showDescription()
-          );
-          function showDescription(){
-            if(resultData.data.description.length > 240){
-              let dataDescription = `${resultData.data.description.substring(1,240)}...`
-              $('#openDescription').html(dataDescription);
-              $('#openDescriptionMore').html(resultData.data.description);
-              $('.show-more').removeClass('d-none');
-              $('.show-more').click(function(){
-                $('#openDescriptionMore').removeClass('d-none')
-                $('.show-less').removeClass('d-none')
-                $(this).addClass('d-none')
-                $('#openDescription').addClass('d-none');
-    
-              })
-              $('.show-less').click(function(){
-                $(this).addClass('d-none')
-                $('#openDescriptionMore').addClass('d-none')
-                $('#openDescription').removeClass('d-none');
-                $('.show-more').removeClass('d-none');
-    
-              })
-            }
-            else{
-              $('#openDescription').html(resultData.data.description)
-                // return resultData.data.openAPISpec;
+          $("#description").html(showDescription());
+          function showDescription() {
+            if (resultData.data.description.length > 240) {
+              let dataDescription = `${resultData.data.description.substring(
+                1,
+                240
+              )}...`;
+              $("#openDescription").html(dataDescription);
+              $("#openDescriptionMore").html(resultData.data.description);
+              $(".show-more").removeClass("d-none");
+              $(".show-more").click(function () {
+                $("#openDescriptionMore").removeClass("d-none");
+                $(".show-less").removeClass("d-none");
+                $(this).addClass("d-none");
+                $("#openDescription").addClass("d-none");
+              });
+              $(".show-less").click(function () {
+                $(this).addClass("d-none");
+                $("#openDescriptionMore").addClass("d-none");
+                $("#openDescription").removeClass("d-none");
+                $(".show-more").removeClass("d-none");
+              });
+            } else {
+              $("#openDescription").html(resultData.data.description);
+              // return resultData.data.openAPISpec;
             }
           }
           // $('#openApiSec').html("<span class='font-weight-bold fs-6'>API Specification:</span>" + localStorage.getItem("fileName"))
@@ -801,9 +798,14 @@ $(document).ready(function () {
       }, 5000);
       // }
     }
+    $("#forwardbtn").click(function (event) {
+      resultAPI();
+    });
+
     // function callResultAPI() {}
     function resultAPI() {
       if (localStorage.getItem("resultPage") == "true") {
+        $("#forwardbtn").removeClass("d-none");
         localStorage.removeItem("resultPage");
       } else {
         let mainURL = window.location.origin + "/productResult.html";
