@@ -23,11 +23,11 @@
         }
 
         .hr-line {
-            width: 100%;
+            width: 30%;
             position: relative;
             margin: 15px;
             border-bottom: 3px solid #025c7a;
-            margin-bottom: 17%;
+            margin-bottom: 2%;
         }
 
         .hr-line1 {
@@ -130,7 +130,7 @@
 
                                             <div class="col-md-2">
                                                 <button type="submit" class="btn btn-block1" id="btn">
-                                                    Scan
+                                                    Submit
                                                 </button>
 
                                             </div>
@@ -139,60 +139,64 @@
                                             <div class="d-none" id="loadingresultfree">
                                                 <h3 class="mt-5" style="  color: rgb(2, 92, 122);
                                             ;">
-                                                    APIsec
-                                                    scanning your API</h3>
+                                                    APIsec is
+                                                    Analyzing your API</h3>
                                                 <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
                                                 <button class="btn btn-primary" type="button"
                                                     style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
                                                     <span class="spinner-border spinner-border-sm" role="status"
                                                         aria-hidden="true" id=""></span>
-                                                    <span id="messageValue" class="mt-4"></span>
+                                                    <span id="messageValue" class="mt-4">Parsing API Specification</span>
                                                 </button>
-                                                <div class="d-none mt-4" id="scantime">
-                                                    <p class="text-center" style="color: #025c7a;">The scan will take
-                                                        approximately 2-5 minutes to complete. Please leave
-                                                        window open to complete scanning.
+                                                <!-- <div class="d-none mt-4" id="scantime">
+                                                    <p class="text-center" style="color: #025c7a;">APIsec Spec Analysis will take approximately 2-3 minutes to complete. Please remain on this page for your results.
                                                     </p>
-                                                </div>
+                                                </div> -->
 
                                             </div>
-                                            <div class="d-none d-flex flex-row mt-4" id="progressIcons">
-                                                <div class="hr-icon text-center"><img src="assets/img/rectangle_3.png"
+                                            <div class="d-none d-flex flex-row my-5 align-items-center justify-content-center" id="progressIcons">
+                                                <!-- <div class="hr-icon text-center"><img src="assets/img/rectangle_3.png"
                                                         alt="" width="48px;" height="60px;">
                                                     <div class="progressText mt-2" id="analyse" style="color: #025c7a;">
                                                         Analyzing API Specification</div>
                                                 </div>
-                                                <div class="hr-line"></div>
+                                                <div class="hr-line" style="filter: grayscale(100%) brightness(10%) contrast(10%);"></div>
                                                 <div class="hr-icon1"><img src="assets/img/settingsDark.png"
                                                         style="filter: grayscale(100%) brightness(10%) contrast(10%);"
                                                         alt="" width="60px" height="60px" id="settingdark">
                                                     <div class="progressText1 pt-2" id="generate"
-                                                        style="color: #b8b9b9;">Generating Tests Scenarios</div>
-                                                </div>
-                                                <div class="hr-line1"></div>
+                                                        style="color: #b8b9b9;">Generating Test Scenarios</div>
+                                                </div> -->
+                                                <!-- <div class="hr-line1"></div>
                                                 <div class="hr-icon1"><img src="assets/img/ellipse_1_copy_3.png" alt=""
                                                         width="60px" height="60px" id="targetNew"
                                                         style="filter: grayscale(100%) brightness(10%) contrast(10%);">
                                                     <div class="progressText2 pt-2 " id="running"
                                                         style="color: #b8b9b9;">Running Security Tests</div>
-                                                </div>
-                                                <div class="hr-line2"></div>
+                                                </div> -->
+                                                <!-- <div class="hr-line2"></div>
                                                 <div class="hr-icon2"><img src="assets/img/rectangle_4.png" alt=""
                                                         width="60px" height="60px" id="reporticon"
                                                         style="filter: grayscale(100%) brightness(10%) contrast(10%);">
                                                     <div class="progressText3 pt-2 " id="preparing"
                                                         style="color: #b8b9b9;">Preparing Results Report</div>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
                                                                                                                                                                                                                                                                                                                         style="color: #72ba2c"></i> Scan Completed</p> -->
                                         </div>
-                                        <div class="col-lg-8 mx-auto report pt-4" id="runasamplescan">
-                                            <p>Or <span class="samplecheck"><a href="sample.html" id="runSample">run a
-                                                        sample
-                                                        scan</a> <img src="assets/img/shape_1.png" alt=""
-                                                        class="image-fluid"></span></p>
+                                        <div class="col-lg-8 mx-auto report pt-4 position-relative" id="runasamplescan" style="right:30px">
+                                         
+                                                <p>
+                                                    <span class="samplecheck">Try <a href="sampleSpecAnalysis.html" id="runSampleSpecAnalysis">sample
+                                                            SpecAnalysis</a></span>
+                                                    <span> &nbsp;&nbsp;or&nbsp;</span>
+                                                    <span class="samplecheck"><a href="sample.html" id="runSample">sample scan</a></span>
+                                                    <span>&nbsp;&nbsp;<img src="assets/img/shape_1.png" alt="" class="image-fluid"></span>
+                                                </p>
+                                                        
+                                                
 
                                         </div>
                                 </div>

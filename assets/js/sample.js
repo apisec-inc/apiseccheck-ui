@@ -12,7 +12,9 @@ function runAsampleAPI() {
   //   e.preventDefault();
   $("#errorresult").addClass("d-none");
   $.ajax({
-    url: "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20KSfS",
+    url:
+      s +
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20WuNU",
     method: "GET",
     dataType: "json",
     headers: {
@@ -28,13 +30,10 @@ function runAsampleAPI() {
       var totalEndpoints = viewResult.data.testSummary.totalEndpoints;
       // var dateTested = viewResult.data.dateTested
       var testEnvironment = viewResult.data.testSummary.testEnvironment;
-      var vulnerabilityScore =
-        viewResult.data.testSummary.vulnerabilityScore;
+      var vulnerabilityScore = viewResult.data.testSummary.vulnerabilityScore;
       var valueDataScore = viewResult.data.testSummary.valueDataScore;
-      var configurationScore =
-        viewResult.data.testSummary.configurationScore;
-      var authenticationScore =
-        viewResult.data.testSummary.authenticationScore;
+      var configurationScore = viewResult.data.testSummary.configurationScore;
+      var authenticationScore = viewResult.data.testSummary.authenticationScore;
       var dateString = viewResult.data.dateTested;
       var date = new Date(dateString);
       var formattedDate = date.toLocaleDateString("en-US", {
@@ -67,17 +66,16 @@ function runAsampleAPI() {
       var noAuth = viewResult.data.testSummary.noAuth;
       var brokenAuthentication =
         viewResult.data.testSummary.brokenAuthentication;
-      var basicAuthentication =
-        viewResult.data.testSummary.basicAuthentication;
+      var basicAuthentication = viewResult.data.testSummary.basicAuthentication;
       //   barchart();
       if (APIdescription === "null") {
         $("#descriptionForAPI").text("No Description");
       } else {
         $("#descriptionForAPI").text(APIdescription);
       }
-      $("#headingOne .btn").click(function() {
-        console.log( $(this).find('.fas'))
-        $(this).find('.fas').toggleClass("fa-plus fa-minus");
+      $("#headingOne .btn").click(function () {
+        console.log($(this).find(".fas"));
+        $(this).find(".fas").toggleClass("fa-plus fa-minus");
       });
       if (injectionsForEndpoints === "Passed") {
         $("#injection").html(

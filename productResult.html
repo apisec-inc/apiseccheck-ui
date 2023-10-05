@@ -36,7 +36,10 @@
             border-bottom: 3px solid #666;
             margin-bottom: 16%;
         }
-
+td.vulnerbilityRight {
+    padding-left: 60px;
+    text-align: center;
+}
         .hr-line3 {
             width: 100%;
             position: relative;
@@ -70,7 +73,15 @@
 
 <body>
 
-
+    <!-- MUTLI SPINNER -->
+    <div id="loader">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="nb-spinner"></div>
+            </div>
+            <!-- <div class="font-weight-bolder fs-5 text-center">Loading...</div> -->
+        </div>
+    </div>
     <!-- ======= Header ======= -->
 
 
@@ -78,7 +89,7 @@
     <!-- ======= Hero Section ======= -->
 
 
-    <section class="resultPage p-0">
+    <section class="resultPage p-0 d-none">
         <div class="container">
             <div class="section-title  aos-init aos-animate " data-aos="fade-up">
                 <button class="border-0 bg-none" id="previousBtn">
@@ -167,7 +178,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse10" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse10" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                                     Log4j Injection is an attack in which the attacker is able to invoke a
                                                     remote server by injecting
@@ -200,7 +211,7 @@
                                                     </button>
                                                 </h5>
                                             </div>
-                                            <div id="collapse9" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse9" class="collapse hide" aria-labelledby="headingOne">
                                                 <div class="card-body">
                                                     Simple GET is a suite to test the plain GET APIs with no query or path
                                                     params. It's a utility/info
@@ -234,7 +245,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse8" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse8" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                                     Post parameters are inherently stored somewhere and should be carefully
                                                     scrubbed so that they cannot
@@ -284,7 +295,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse7" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse7" class="collapse hide" aria-labelledby="headingOne">
                                                 <div class="card-body">
                                                     Any data that can be used to break the anonymity of a interaction. It is
                                                     closely tied to privacy and
@@ -325,7 +336,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse6" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse6" class="collapse hide" aria-labelledby="headingOne">
                                                 <div class="card-body">
                                                     It will fail if the certificate is seen as invalid, weak or expiring
                                                     soon.
@@ -357,7 +368,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse5" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse5" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                 
                                                     It will fail if the certificate is seen as invalid, weak or expiring
@@ -391,7 +402,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse4" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse4" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                 
                                                     Benefit attackers looking for what technology they are trying to attack
@@ -423,7 +434,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse3" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse3" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                                     HTTP methods that are advertised or allowed that are either insecure or
                                                     likely a mistake. If an
@@ -459,7 +470,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapseTwo" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                                     API Specifying CORS
                                                     origins reduces the chance of XSS
@@ -493,7 +504,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                                     Incremental Ids scanning checks if the Auto generated IDs associated
                                                     with the resources in
@@ -547,7 +558,7 @@
                                                 </h5>
                                             </div>
                                 
-                                            <div id="collapse0" class="collapse hide" aria-labelledby="headingOne" data-parent="#faqExample">
+                                            <div id="collapse0" class="collapse hide" aria-labelledby="headingOne" >
                                                 <div class="card-body">
                                 
                                                     Identifies vulnerabilities resulting from either skipping or using
