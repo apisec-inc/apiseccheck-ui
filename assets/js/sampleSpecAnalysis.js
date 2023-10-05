@@ -28,7 +28,7 @@ $(document).ready(function () {
         animationEnabled: true,
         animationDuration: 2000,
         theme: "light2",
-        height: 300,
+        // height: 300,
         data: [
           {
             type: "pie",

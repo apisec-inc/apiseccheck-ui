@@ -571,11 +571,14 @@ div#scantime {
   color: rgb(0, 0, 0);
   line-height: 1.778;
   text-align: left;
-width: 78% !important;
+  width: 78% !important;
 
 }
+.basicinfo-table{
+  min-height: 320px !important;
+}
 @media (min-width: 992px) {
-.col-lg-6 {
+.customm {
 min-width: 710px !important;
 }
 }
