@@ -574,7 +574,11 @@ div#scantime {
 width: 78% !important;
 
 }
-
+@media (min-width: 992px) {
+.col-lg-6 {
+min-width: 710px !important;
+}
+}
 section#ApisecCheck {
   padding: 100px 0px;
 }
