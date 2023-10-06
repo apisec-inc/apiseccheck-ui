@@ -7,14 +7,14 @@ $(document).ready(function () {
 var s = getServer();
 
 function runAsampleAPI() {
-  console.log(s)
+  // console.log(s)
   // $("#runSample").onload(function (e) {
   //   e.preventDefault();
   $("#errorresult").addClass("d-none");
   if (s == "http://5.161.99.171:8080") {
     $.ajax({
       url:
-        s + "/api/v1/apiseccheck/results?project-name=OrcaWave%20WebApi%20WKMk",
+        s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20bjPH",
       method: "GET",
       dataType: "json",
       headers: {
@@ -291,7 +291,7 @@ function runAsampleAPI() {
   } else if (s == "http://apisecfree-stg-ui.apisec.ai:8080") {
     $.ajax({
       url:
-        s + "/api/v1/apiseccheck/results?project-name=OrcaWave%20WebApi%20Ezgr",
+        s + "/api/v1/apiseccheck/results?project-name=Online Banking%20REST%20API%20jDir",
       method: "GET",
       dataType: "json",
       headers: {
@@ -568,7 +568,7 @@ function runAsampleAPI() {
   } else if (s == "https://apiseccheck-image-4w7ghmnvva-uw.a.run.app") {
     $.ajax({
       url:
-        s + "/api/v1/apiseccheck/results?project-name=OrcaWave%20WebApi%20EFZS",
+        s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20EFZS",
       method: "GET",
       dataType: "json",
       headers: {
