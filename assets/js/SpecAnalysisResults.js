@@ -139,8 +139,8 @@ $(document).ready(function () {
           // }
 
           $("#subTitle").html("API Name:" + resultData.data.name);
-          let tableDataParameters = [];
-          let tableDataParameters2 = "";
+          // let tableDataParameters = [];
+          // let tableDataParameters2 = "";
           // for (
           //   let i = 0;
           //   i < resultData.data.specAnalysis.variablesList.length;
@@ -171,7 +171,7 @@ $(document).ready(function () {
           //   }</td>
           //   </tr>`;
           // }
-          $(".parameter-table-virtual").append(tableDataParameters2);
+          // $(".parameter-table-virtual").append(tableDataParameters2);
 
           $("#endpointCount").html(resultData.data.specAnalysis.totalEndpoints);
           $("#testsCount").html(resultData.data.specAnalysis.totalPlaybooks);
@@ -282,9 +282,6 @@ $(document).ready(function () {
 
           function tableToCSVVariables() {
             var csv_data = [];
-            // console.log($('#parameters .parameter-table .gs-table')[0])
-            // var rows = $('#parameters .parameter-table .gs-table')[0].rows;
-            // console.log($(".parameter-table-virtual")[0]);
             var rows = $(".parameter-table-virtual")[0].rows;
             for (var i = 0; i < rows.length; i++) {
               var cols = rows[i].querySelectorAll("td,th");
@@ -640,7 +637,7 @@ $(document).ready(function () {
               if (resultData.data.specAnalysis.piiList.hasOwnProperty(key)) {
                 let paraName = key;
                 let paraValue = resultData.data.specAnalysis.piiList[key];
-                if (paraValue == false) paraValue = "-";
+                if (paraValue == false) paraValue = `<span>-</span>`;
                 else
                   paraValue = `<span class="p-1  font-weight-bold text-light rounded-3" style="background-color:#69bc6d;font-size:12px">PII</span>`;
                 // paraValue = 'PII'
@@ -649,7 +646,7 @@ $(document).ready(function () {
               }
             }
             let sortedParameters = tableDataParameters.sort((p1, p2) =>
-              p1.type < p2.type ? 1 : p1.type > p2.type ? -1 : 0
+              p1.type > p2.type ? 1 : p1.type < p2.type ? -1 : 0
             );
             // console.log(tableDataParameters)
             var columnsParameters = {
@@ -676,6 +673,17 @@ $(document).ready(function () {
             $("#changeRowsVariables").on("change", function () {
               tableParameters.updateRowsPerPage(parseInt($(this).val(), 10));
             });
+            console.log($(".parameter-table-virtual")[0].rows.length)
+            if($(".parameter-table-virtual")[0].rows.length == 1){
+              let doc=[];let tableDataParameters2=" ";
+              for (let i = 0;i < sortedParameters.length;i++) {
+                 doc[i] = $.parseHTML(sortedParameters[i].type)[0].innerHTML;
+              tableDataParameters2 += `<tr><td class="text-center">${sortedParameters[i].name}</td>
+                                       <td class="text-center">${doc[i]}</td></tr>`;
+              }
+              $(".parameter-table-virtual").append(tableDataParameters2);
+            }
+           
           }
         },
       });
