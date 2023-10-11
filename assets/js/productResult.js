@@ -92,7 +92,7 @@ function scan() {
     var openAPISpec = openAPISpectemp.replace("getpostman", "postman");
     $("#email").next().hide();
     $("#openAPISpec").next().hide();
-    if (openAPISpec == "") {
+    if (openAPISpec.trim() == "") {
       $(".api-invalid-tooltip").show();
       return false;
     }

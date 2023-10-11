@@ -21,7 +21,7 @@
         }
 div#loadingresultfree {
     text-align: center;
-    padding: 25px;
+    /* padding: 25px; */
 }
 
         .hr-line {
@@ -216,6 +216,77 @@ div#loadingresultfree {
      .animation-tilt-shaking{
         animation: 2s ease-in 0s tilt-shaking;
      }
+     .progress-tooltip {
+  position: relative;
+  padding-top: 50px;
+}
+.progress-tooltip .progress-tooltip-info {
+  align-items: center;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 2px #ccc;
+  color: #025c7a;
+  display: inline-flex;
+  font-family: sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  text-align: center;
+  transform: translateX(calc(-50% - 5px));
+  width: 55px;
+}
+.progress-tooltip .progress-tooltip-info::before, .progress-tooltip .progress-tooltip-info::after {
+  content: "";
+  display: inline-block;
+  border: 7px solid transparent;
+  border-top-color: #eee;
+  position: absolute;
+  bottom: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-tooltip .progress-tooltip-info::before {
+  border-width: 8px;
+  border-top-color: #ccc;
+  bottom: -16px;
+  left: 50%;
+}
+.progress-tooltip .progress-tooltip-info::after {
+  z-index: 1;
+}
+
+.progress {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-family: sans-serif;
+  height: 20px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+.progress::-webkit-progress-bar {
+  background-color: #ccc;
+}
+.progress::-webkit-progress-value {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
+.progress::-moz-progress-bar {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
+.progress::-ms-fill {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
     </style>
 </head>
 
@@ -280,20 +351,35 @@ div#loadingresultfree {
                 
                 </div>
                 <div class="testresult pb-1">
-                    <div class="d-none" id="loadingresultfree">
+                    <div class="wrapper mx-5 px-5 d-none" id="progressOne">
+                        <div class="progress-tooltip">
+                          <span class="progress-tooltip-info" style="left: 0%;">0%</span>
+                          <progress class="progress" value="0" max="100">0%</progress>
+                        </div>
+                    </div>
+                    <div class="wrapper mx-5 px-5 d-none" id="progressTwo">
+                        <div class="progress-tooltip">
+                          <span class="progress-tooltip-info" style="left: 0%;">0%</span>
+                          <progress class="progress" value="0" max="100">0%</progress>
+                        </div>
+                    </div>
+                    <div class="d-none pt-1" id="loadingresultfree">
                         <!-- <h3 class="mt-5"
                                                                                                                                                                                                                                                                                                                                                             style="  color: rgb(2, 92, 122);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;">
                                                                                                                                                                                                                                                                                                                                                             APIsec is
                                                                                                                                                                                                                                                                                                                                                             Analyzing your API</h3> -->
                         <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
-                        <button class="btn btn-primary" type="button" style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
-                            <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span> -->
+                        <button class="btn opacity-100" type="button" style="background-color:white; color:#025C7a;border:none;" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span>
+                            <!-- <div class="spinner-grow spinner-grow-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div> -->
                             <span id="messageValue" class="mt-4"></span>
                             <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span> -->
-                            <div class="spinner-grow spinner-grow-sm" role="status">
+                            <!-- <div class="spinner-grow spinner-grow-sm" role="status">
                                 <span class="visually-hidden">Loading...</span>
-                            </div>
+                            </div> -->
                         </button>
                         <!-- <div class="d-none mt-4" id="scantime">
                                                                                                                                             <p class="text-center" style="color: #025c7a;">APIsec Spec Analysis will take approximately 2-3 minutes to
