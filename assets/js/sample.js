@@ -288,7 +288,7 @@ function runAsampleAPI() {
         // Handle any API errors here
       },
     });
-  } else if (s == "http://apisecfree-stg-ui.apisec.ai:8080") {
+  } else if (s == "https://backend.apisecfree-stg-ui.apisec.ai") {
     $.ajax({
       url:
         s + "/api/v1/apiseccheck/results?project-name=Online Banking%20REST%20API%20jDir",
