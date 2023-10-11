@@ -165,7 +165,7 @@ if (s === "http://5.161.99.171:8080") {
     },
     error: function (xhr, status, error) {},
   });
-} else if (s === "http://apisecfree-stg-ui.apisec.ai:8080") {
+} else if (s === "https://backend.apisecfree-stg-ui.apisec.ai") {
   $.ajax({
     url:
       s +
