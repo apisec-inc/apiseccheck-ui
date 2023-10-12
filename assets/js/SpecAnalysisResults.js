@@ -503,6 +503,8 @@ $(document).ready(function () {
               $('#progressTwo').removeClass('d-none')
               $('#progressTwo .progress-tooltip-info').animate({left:'5%'},{ duration: 2000}).text('5%');
               $('#progressTwo .progress').text('5%').val(5).animate({duration: 2000})
+              $('#previousBtn2').prop("disabled", true);
+
             }
             $("#loadingresultfree").removeClass("d-none");
             var intervalId1 = setInterval(function () {
@@ -523,12 +525,16 @@ $(document).ready(function () {
                     $('#progressTwo').removeClass('d-none')
                     $('#progressTwo .progress-tooltip-info').animate({left:'15%'},{ duration: 2000}).text('15%');
                     $('#progressTwo .progress').text('15%').val(15).animate({duration: 2000})
+                    $('#previousBtn2').prop("disabled", true);
+
                   }
                   else if(testresult.data == "We are executing the Security Tests")
                         {
                           // $('#progressTwo').removeClass('d-none')
                           $('#progressTwo .progress-tooltip-info').animate({left:'25%'},{ duration: 2000}).text('25%');
                           $('#progressTwo .progress').text('25%').val(25).animate({duration: 2000})
+                          $('#previousBtn2').prop("disabled", true);
+
                         }
                   // if(testresult.data == "Preparing Test Results")
                   //       {
@@ -560,15 +566,19 @@ $(document).ready(function () {
                       "font-weight",
                       "600"
                     );
+                    $('#previousBtn2').prop("disabled", true);
+
                   } else if (testresult.data == "Scan completed") {
                     // flag = 0;
                     $("#loadingresultfree").addClass("d-none");
                     $("#progressIcons").addClass("d-none");
                     $("#runbtn").prop("disabled", false);
-                    $('#progressTwo').removeClass('d-none')
+                    // $('#progressTwo').removeClass('d-none')
                     $('#progressTwo .progress-tooltip-info').animate({left:'100%'},{ duration: 2000}).text('100%');
                     $('#progressTwo .progress').text('100%').val(100).animate({duration: 2000})
-                    document.getElementById("runbtn").disabled = false;
+                    // document.getElementById("runbtn").disabled = false;
+                    $('#previousBtn2').prop("disabled", false);
+
                     resultAPI();
                     clearInterval(intervalId1);
                     // clearInterval(intervalId);
@@ -776,6 +786,8 @@ $(document).ready(function () {
               $("#basicInfoTab")
                 .css("color", "#025c7a;")
                 .css("important", "true");
+              $('#previousBtn2').prop("disabled",true);
+              // $('#previousBtn2').addClass('disabled');
               // showDetails();
               // resultAPITest();
             } else if (
@@ -796,6 +808,9 @@ $(document).ready(function () {
               $("#parametersTab")
                 .css("color", "#025c7a")
                 .css("important", "true");
+              $('#previousBtn2').prop("disabled", true);
+              // $('#previousBtn2').addClass('disabled');
+
               // location.reload();
               getParameters();
               // showDetails();
@@ -824,6 +839,8 @@ $(document).ready(function () {
               // #6B778C
               // $("#owaspTab").tab("show");
               document.getElementById("runbtn").disabled = false;
+              $('#previousBtn2').prop("disabled", false);
+              // $('#previousBtn2').addClass('disabled');
               getOwaspCoverage();
               getParameters();
               // location.reload();
