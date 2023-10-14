@@ -65,6 +65,20 @@
                             window.top.postMessage(message, "*");
                         });
                     </script> -->
+                
+                    <script type="text/javascript">
+                        (function (c, a) {
+                            window.mixpanel = a; var b, d, h, e; b = c.createElement("script");
+                            b.type = "text/javascript"; b.async = !0; b.src = "https://cdn.jsdelivr.net/gh/mixpanel/mixpanel-js@2.2.2/dist/mixpanel.min.js";
+                            d = c.getElementsByTagName("script")[0]; d.parentNode.insertBefore(b, d); a._i = []; a.init = function (b, d, g) {
+                                function f(a, b) { var c = b.split("."); 2 == c.length && (a = a[c[0]], b = c[1]); a[b] = function () { a.push([b].concat(Array.prototype.slice.call(arguments, 0))) } } var c = a; "undefined" !== typeof g ? c = a[g] = [] : g = "mixpanel"; c.people = c.people || []; c.toString = function (a) { var b = "mixpanel"; "mixpanel" !== g && (b += "." + g); a || (b += " (stub)"); return b }; c.people.toString = function () { return c.toString(1) + ".people (stub)" }; e = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                                for (h = 0; h < e.length; h++)f(c, e[h]); a._i.push([b, d, g])
+                            }; a.__SV = 1.2; window.mixpanel = c
+                        })(document, window.mixpanel || []);
+                        mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
+                        mixpanel.track("Page Viewed");
+                        mixpanel.track("Button Clicked", { buttonName: "Example" });
+                    </script>
 
 </head>
 
