@@ -298,9 +298,10 @@ div#loadingresultfree {
                 for (h = 0; h < e.length; h++)f(c, e[h]); a._i.push([b, d, g])
             }; a.__SV = 1.2; window.mixpanel = c
         })(document, window.mixpanel || []);
-        mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
+                    mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba", { debug: true, track_pageview: true, persistence: 'localStorage' });
         mixpanel.track("Page Viewed");
         mixpanel.track("Button Clicked", { buttonName: "Example" });
+
     </script>
 </head>
 
