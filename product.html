@@ -86,8 +86,8 @@
 <script>
 
                                                                                         mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
-                                                                                        mixpanel.track("Button Clicked on the product page", { buttonName: "submit" });
-                                                                                        // mixpanel.track_links("#fileUploadModal", { buttonName: "Upload a spec" });
+                                                                                                        mixpanel.track("Submit Button clicked on the product page", { buttonName: "submit" });
+                                                                                                        mixpanel.track("Upload a spec clicked on the product page", { buttonName: "upload" });
                                                                                         mixpanel.track_links("#nav a", "click nav link", {
                                                                                             "referrer": document.referrer
                                                                                         });
@@ -123,7 +123,7 @@
                                                                 aria-hidden="true" rel="tooltip"
                                                                 title="Please provide a URL to an API specification. APIsec Free supports OpenAPI Spec/Swagger."></i>
                                                             &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0"
-                                                                data-toggle="modal" id="uploadLink"
+                                                                data-toggle="modal" id="uploadLink" name="upload"
                                                                 data-target="#fileUploadModal" data-backdrop="static" data-keyboard="false">Upload a Spec</a>
                                                         </label>
                                                     </div>

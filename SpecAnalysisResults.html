@@ -310,6 +310,10 @@ div#loadingresultfree {
                                                                                                                                 mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
                                                                                                                                 mixpanel.track("Parameters Tab clicked", { buttonName: "param" });
                                                                                                                                         mixpanel.track("OWASP Tab clicked", { buttonName: "owaspt" });
+                                                                                                                                                mixpanel.track("Parameters Tab clicked", { buttonName: "param" });
+                                                                                                                                                mixpanel.track("Run test buttonclicked", { buttonName: "scanAPI" });
+                                                                                                                                                mixpanel.track("Basic button clicked", { buttonName: "Basic" });
+                                                                                                                                            
                                                                                                                                 // mixpanel.track_links("#runbtn", { buttonName: "scan" });
                                                                                                                                 // mixpanel.track_links("#parametersTab", { buttonName: "Parameters Tab" });
                                                                                                                                 // mixpanel.track_links("#owaspTab", { buttonName: "Parameters Tab" });
@@ -373,7 +377,7 @@ div#loadingresultfree {
                                 </div>
                             </div>
                             <div class="d-flex my-2" style="max-width: 14rem;">
-                                <button id="runbtn" class="btn btn-block1 w-100 text-light">
+                                <button id="runbtn" class="btn btn-block1 w-100 text-light" name="scanAPI">
                                     <i class="fa fa-play p-2" aria-hidden="true"></i>Run Tests
                                 </button>
                             </div>
@@ -557,7 +561,7 @@ div#loadingresultfree {
                             <ul class="nav nav-tabs my-4" id="myTab" role="tablist">
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
                                     <button class="nav-link active py-4 w-100 font-weight-bold" id="basicInfoTab" data-bs-toggle="tab"
-                                        data-bs-target="#basicInfo" type="button" role="tab" aria-controls="messages" aria-selected="false"
+                                        data-bs-target="#basicInfo" type="button" role="tab" aria-controls="messages" name="Basic" aria-selected="false"
                                         style="color: #025c7a !important;">
                                         Basic Info
                                     </button>
