@@ -1,6 +1,10 @@
 import { getServer } from "./environment.js";
 
 $(document).ready(function () {
+  $("#btn").on("click", function () {
+    mixpanel.track("Submit button clicked");
+  });
+
   // runAsampleAPI();
   scan();
   fileupload();
@@ -20,10 +24,11 @@ $(document).ready(function () {
     console.log("clicked");
     localStorage.setItem("resultPage", "true");
     // window.location.replace("product.html");
-    window.location.replace(localStorage.getItem("detailsURL"))
-    localStorage.removeItem('detailsURL')
+    window.location.replace(localStorage.getItem("detailsURL"));
+    localStorage.removeItem("detailsURL");
   });
 });
+
 var isSubmitting = false;
 var apiCallCounter = 0;
 var contents = "";
@@ -32,39 +37,52 @@ var fileName = "";
 var baseURL = null;
 window.addEventListener("DOMContentLoaded", (event) => {
   var dropArea = document.querySelector(".uploadFileBody");
-  if(dropArea){
-  dropArea.addEventListener("dragover", (event) => {
-    event.preventDefault(); //preventing from default behaviour
-  });
-  dropArea.addEventListener("dragleave", () => {
-    console.log("if user leaves from drop area");
-  });
-  dropArea.addEventListener("drop", (event) => {
-    event.preventDefault();
-    let file = event.dataTransfer.files[0];
-    var reader = new FileReader();
-    var fileName = file.name;
-    $("#openAPISpec").val(fileName);
-    reader.onload = function (v) {
-      // $(this).prop("disabled", true);
-      contents = v.target.result;
-      if (contents) {
-        $(".modal").modal("hide");
-      }
-    };
-    reader.readAsText(file);
-    // $("#getFile").val(fileName);
-    $("#fileUploadModal").addClass("d-none");
-    $(".modal-backdrop").addClass("d-none");
-    $("body").addClass("modal-open");
-    $("#uploadLink").click(function () {
-      $("#fileUploadModal").removeClass("d-none");
+  if (dropArea) {
+    dropArea.addEventListener("dragover", (event) => {
+      event.preventDefault(); //preventing from default behaviour
     });
-  });
+    dropArea.addEventListener("dragleave", () => {
+      console.log("if user leaves from drop area");
+    });
+    dropArea.addEventListener("drop", (event) => {
+      event.preventDefault();
+      let file = event.dataTransfer.files[0];
+      var reader = new FileReader();
+      var fileName = file.name;
+      $("#openAPISpec").val(fileName);
+      reader.onload = function (v) {
+        // $(this).prop("disabled", true);
+        contents = v.target.result;
+        if (contents) {
+          $(".modal").modal("hide");
+        }
+      };
+      reader.readAsText(file);
+      // $("#getFile").val(fileName);
+      $("#fileUploadModal").addClass("d-none");
+      $(".modal-backdrop").addClass("d-none");
+      $("body").addClass("modal-open");
+      $("#uploadLink").click(function () {
+        $("#fileUploadModal").removeClass("d-none");
+      });
+    });
   }
 });
 
 var s = getServer();
+//  $(document).on("click", "#uploadLink", function () {
+//    mixpanel.track("upload a spec Link clicked");
+//  });
+function trackEventOnClick(selector, eventName) {
+  $(document).on("click", selector, function () {
+    mixpanel.track(eventName);
+  });
+}
+
+// Usage
+
+trackEventOnClick("#uploadLink", "Upload a spec");
+trackEventOnClick("#btn", "Submit button clicked");
 
 $("#fileUploadModal").click(function () {
   $("#getFile").val("");
@@ -113,16 +131,16 @@ function scan() {
     $("#loadingresultfree").removeClass("d-none");
     $("#progressIcons").removeClass("d-none");
     $("#scantime").removeClass("d-none");
-    $("#runasamplescan").addClass("d-none")
+    $("#runasamplescan").addClass("d-none");
     // $('#runSample').on("click", function(e) {
     //   e.preventDefault();
-    
+
     // });
 
     // $('#runSample').css('color','rgb(133 168 180)');
     // $('#runSampleSpecAnalysis').on("click", function(e) {
     //   e.preventDefault();
-    
+
     // });
 
     // $('#runSampleSpecAnalysis').css('color','rgb(133 168 180)');
@@ -161,12 +179,12 @@ function scan() {
         }
         function errorDisplay() {
           var resultMessages = result.messages[0].key.split(",")[0];
-          
+
           apiCallCounter = apiCallCounter + 1;
           if (apiCallCounter == 1 && resultMessages == "Missing Base URL") {
             $("#missingBaseUrlPop").removeClass("d-none");
             $("#exampleModalCenterUnabletoLoad").modal("show");
-            $('#main').css('height','680px')
+            $("#main").css("height", "680px");
             $("#errorresult").addClass("d-none");
             $("#errorresult1").addClass("d-none");
             $("#messageValue").addClass("d-none");
@@ -204,8 +222,7 @@ function scan() {
             $("#email").prop("disabled", false);
             $("#uploadLink").removeClass("disabled");
             $("#errorresult").addClass("d-none");
-            $("#runasamplescan").removeClass("d-none")
-
+            $("#runasamplescan").removeClass("d-none");
           }
           if (!resultMessages) {
             for (var i = 0; i < result.messages.length; i++) {
