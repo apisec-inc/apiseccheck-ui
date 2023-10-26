@@ -19,6 +19,11 @@ $(document).ready(function () {
   $("#runbtn").on("click", function () {
     mixpanel.track("Run Tests Button Clicked");
   });
+  
+    $("#contactSales").on("click", function () {
+      mixpanel.track("Contact Sales link clicked");
+    });
+
 
   var s = getServer();
 
