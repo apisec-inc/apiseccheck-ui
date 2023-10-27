@@ -1,5 +1,27 @@
 import { getServer } from "./environment.js";
 $(document).ready(function () {
+   $("#basicInfoTab").on("click", function () {
+     mixpanel.track("Basic Info Tab Clicked");
+   });
+
+   $("#parametersTab").on("click", function () {
+     mixpanel.track("Parameters Tab Clicked");
+   });
+
+   $("#owaspTab").on("click", function () {
+     mixpanel.track("OWASP Tab Clicked");
+   });
+
+   $("#runbtn").on("click", function () {
+     mixpanel.track("Run Tests Button Clicked");
+   });
+
+   $("#contactSales").on("click", function () {
+     mixpanel.track("Contact Sales link clicked");
+   });
+   $("#variablesDownloadBtn").on("click", function () {
+     mixpanel.track("Download Variabled link clicked");
+   });
   var s = getServer();
 if (s === "http://5.161.99.171:8080") {
   $.ajax({

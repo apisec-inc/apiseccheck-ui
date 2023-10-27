@@ -19,12 +19,13 @@ $(document).ready(function () {
   $("#runbtn").on("click", function () {
     mixpanel.track("Run Tests Button Clicked");
   });
-  
-    $("#contactSales").on("click", function () {
-      mixpanel.track("Contact Sales link clicked");
-    });
 
-
+  $("#contactSales").on("click", function () {
+    mixpanel.track("Contact Sales link clicked");
+  });
+  $("#variablesDownloadBtn").on("click", function () {
+    mixpanel.track("Download Variabled link clicked");
+  });
   var s = getServer();
 
   resultAPITest();
