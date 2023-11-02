@@ -65,13 +65,38 @@
                             window.top.postMessage(message, "*");
                         });
                     </script> -->
+                
+            
+                <script type="text/javascript">
+                                                                                        (function (f, b) {
+                                                                                            if (!b.__SV) {
+                                                                                                var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) {
+                                                                                                    function g(a, d) { var b = d.split("."); 2 == b.length && (a = a[b[0]], d = b[1]); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))) } } var a = b; "undefined" !== typeof c ? a = b[c] = [] : c = "mixpanel"; a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d }; a.people.toString = function () { return a.toString(1) + ".people (stub)" }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                                                                                                    for (h = 0; h < i.length; h++)g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]) } } for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++)b(j[c]); return d }; b._i.push([e, f, c])
+                                                                                                }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g)
+                                                                                            }
+                                                                                        })(document, window.mixpanel || []);
+</script>
 
 </head>
 
 <body>
 
 
+<script>
 
+                                                                                        mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
+                                                                                                                                //                     mixpanel.track("Submit Button clicked on the product page", { buttonName: "submit" });
+                                                                                                                                //                     mixpanel.track("Upload a spec clicked on the product page", { buttonName: "upload" });
+                                                                                                                                //     mixpanel.track_links("#nav a", "click nav link", {
+                                                                                                                                //         "referrer": document.referrer
+                                                                                                                                //     });
+                                                                                                                                //                             mixpanel.track_links("", "Upload Link Clicked");
+                                                                                                                                // 
+
+                                                                                                                                // });
+                                                                                                                                                             
+                                                                                    </script>
 
     <main id="main">
 
@@ -102,8 +127,8 @@
                                                                 class="fa fa-question-circle questionMark"
                                                                 aria-hidden="true" rel="tooltip"
                                                                 title="Please provide a URL to an API specification. APIsec Free supports OpenAPI Spec/Swagger."></i>
-                                                            &nbsp; Or &nbsp;<a href="" class="ml-0 pl-0"
-                                                                data-toggle="modal" id="uploadLink"
+                                                            &nbsp; Or &nbsp;<a href="" class="upload-a-spec ml-0 pl-0" data-toggle="modal" id="uploadLink" name="upload"
+                                                                data-event-name="upload a spec button click"
                                                                 data-target="#fileUploadModal" data-backdrop="static" data-keyboard="false">Upload a Spec</a>
                                                         </label>
                                                     </div>
@@ -189,10 +214,10 @@
                                         <div class="col-lg-8 mx-auto report pt-4 position-relative" id="runasamplescan" style="right:30px">
                                          
                                                 <p>
-                                                    <span class="samplecheck">Try <a href="sampleSpecAnalysis.html" id="runSampleSpecAnalysis">sample
-                                                            SpecAnalysis</a></span>
+                                                    <span class="samplecheck">Try <a href="sampleSpecAnalysis.html" id="runSampleSpecAnalysis">Sample
+                                                            Spec Analysis</a></span>
                                                     <span> &nbsp;&nbsp;or&nbsp;</span>
-                                                    <span class="samplecheck"><a href="sample.html" id="runSample">sample scan</a></span>
+                                                    <span class="samplecheck"><a href="sample.html" id="runSample">Sample Scan</a></span>
                                                     <span>&nbsp;&nbsp;<img src="assets/img/shape_1.png" alt="" class="image-fluid"></span>
                                                 </p>
                                                         
@@ -477,8 +502,14 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <!-- Slick Carousel Plug-in -->
-    <!-- <script src="assets/js/bootstrap.bundle.min.js"></script> -->
-
+    <script>
+        // $('.upload-a-spec').on('click', function () {
+        // eventName = $(this).data("event-name");
+        // mixpanel.track(eventName);
+        // })
+        mixpanel.track_links("#runSampleSpecAnalysis", "RunSampleSpecAnalysis link Clicked");
+        mixpanel.track_links("#runSample", "Sample scan link clicked");
+    </script>
 </body>
 
 </html>

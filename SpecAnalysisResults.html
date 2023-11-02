@@ -21,7 +21,7 @@
         }
 div#loadingresultfree {
     text-align: center;
-    padding: 25px;
+    /* padding: 25px; */
 }
 
         .hr-line {
@@ -47,11 +47,11 @@ div#loadingresultfree {
             color: #ff0000;
             text-align: center;
         }
-   button#forwardbtn {
+         button#forwardbtn {
             position: relative;
-            top: 10px;
-            left: -16px;
-            color: #34495e;
+            top: 60px;
+            left: 56px;
+            color: #025C7a;
             font-size: 48px;
         }
         .progressText {
@@ -162,14 +162,15 @@ div#loadingresultfree {
             background-color: #025c7a;
             border-radius: 20px;
         }
-        .title,#subTitle,#OWASPRankingDownloadBtn,#variablesDownloadBtn{
-            color: #025c7a;
+        .title,#variablesDownloadBtn{
+            color: #025c7a !important;
         }
         button#previousBtn2 {
             position: relative;
             top: 60px;
             left: -56px;
-            color: #34495e;
+            /* color: #34495e; */
+            color: #025c7a;
             font-size: 48px;
         }
         .owasp-table,.parameter-table{
@@ -216,7 +217,99 @@ div#loadingresultfree {
      .animation-tilt-shaking{
         animation: 2s ease-in 0s tilt-shaking;
      }
+     .progress-tooltip {
+  position: relative;
+  padding-top: 50px;
+}
+.progress-tooltip .progress-tooltip-info {
+  align-items: center;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 2px #ccc;
+  color: #025c7a;
+  display: inline-flex;
+  font-family: sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  text-align: center;
+  transform: translateX(calc(-50% - 5px));
+  width: 55px;
+}
+.progress-tooltip .progress-tooltip-info::before, .progress-tooltip .progress-tooltip-info::after {
+  content: "";
+  display: inline-block;
+  border: 7px solid transparent;
+  border-top-color: #eee;
+  position: absolute;
+  bottom: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-tooltip .progress-tooltip-info::before {
+  border-width: 8px;
+  border-top-color: #ccc;
+  bottom: -16px;
+  left: 50%;
+}
+.progress-tooltip .progress-tooltip-info::after {
+  z-index: 1;
+}
+
+.progress {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-family: sans-serif;
+  height: 20px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+.progress::-webkit-progress-bar {
+  background-color: #ccc;
+}
+.progress::-webkit-progress-value {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
+.progress::-moz-progress-bar {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
+.progress::-ms-fill {
+  border-radius: 5px;
+  background-color: #025c7a;
+}
     </style>
+    <script type="text/javascript">
+                                                                                                                            (function (f, b) {
+                                                                                                                                if (!b.__SV) {
+                                                                                                                                    var e, g, i, h; window.mixpanel = b; b._i = []; b.init = function (e, f, c) {
+                                                                                                                                        function g(a, d) { var b = d.split("."); 2 == b.length && (a = a[b[0]], d = b[1]); a[d] = function () { a.push([d].concat(Array.prototype.slice.call(arguments, 0))) } } var a = b; "undefined" !== typeof c ? a = b[c] = [] : c = "mixpanel"; a.people = a.people || []; a.toString = function (a) { var d = "mixpanel"; "mixpanel" !== c && (d += "." + c); a || (d += " (stub)"); return d }; a.people.toString = function () { return a.toString(1) + ".people (stub)" }; i = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                                                                                                                                        for (h = 0; h < i.length; h++)g(a, i[h]); var j = "set set_once union unset remove delete".split(" "); a.get_group = function () { function b(c) { d[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); a.push([e, call2]) } } for (var d = {}, e = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < j.length; c++)b(j[c]); return d }; b._i.push([e, f, c])
+                                                                                                                                    }; b.__SV = 1.2; e = f.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === f.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js"; g = f.getElementsByTagName("script")[0]; g.parentNode.insertBefore(e, g)
+                                                                                                                                }
+        })(document, window.mixpanel || []);
+</script>
+    
+    </head>
+    
+    <body>
+    
+    
+        <script>
+
+                                                                                                                                                    mixpanel.init("e9d93273171b59e28cc75fe0eaf693ba");
+
+</script>
 </head>
 
 <body>
@@ -231,9 +324,14 @@ div#loadingresultfree {
     </div> -->
     <main id="main" class="d-none">
         <div class="container col-lg-6 customm">
-            <button class="border-0 bg-none" id="previousBtn2">
-                <ion-icon name="arrow-back-circle"></ion-icon>
-            </button>
+            <div class="d-flex justify-content-between">
+                <button class="border-0 bg-none btn" id="previousBtn2">
+                    <ion-icon name="arrow-back-circle"></ion-icon>
+                </button>
+                <button class="border-0 bg-none btn d-none" id="forwardbtn">
+                    <ion-icon name="arrow-forward-circle"></ion-icon>
+                </button>
+            </div>
             <!-- <button class="d-none" id="forwardbtn">test
                                     </button> -->
             <div class="d-flex flex-column justify-content-between align-items-center mt-5">
@@ -268,7 +366,7 @@ div#loadingresultfree {
                                 </div>
                             </div>
                             <div class="d-flex my-2" style="max-width: 14rem;">
-                                <button id="runbtn" class="btn btn-block1 w-100 text-light">
+                                <button id="runbtn" class="btn btn-block1 w-100 text-light" name="scanAPI">
                                     <i class="fa fa-play p-2" aria-hidden="true"></i>Run Tests
                                 </button>
                             </div>
@@ -279,21 +377,36 @@ div#loadingresultfree {
                 </div>
                 
                 </div>
-                <div class="testresult pb-1">
-                    <div class="d-none" id="loadingresultfree">
+                <div class="testresult pb-1 pt-4">
+                    <div class="wrapper mx-5 px-5 d-none" id="progressOne">
+                        <div class="progress-tooltip">
+                          <span class="progress-tooltip-info" style="left: 0%;">0%</span>
+                          <progress class="progress" value="0" max="100">0%</progress>
+                        </div>
+                    </div>
+                    <div class="wrapper mx-5 px-5 d-none" id="progressTwo">
+                        <div class="progress-tooltip">
+                          <span class="progress-tooltip-info" style="left: 0%;">0%</span>
+                          <progress class="progress" value="0" max="100">0%</progress>
+                        </div>
+                    </div>
+                    <div class="d-none pt-1" id="loadingresultfree">
                         <!-- <h3 class="mt-5"
                                                                                                                                                                                                                                                                                                                                                             style="  color: rgb(2, 92, 122);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ;">
                                                                                                                                                                                                                                                                                                                                                             APIsec is
                                                                                                                                                                                                                                                                                                                                                             Analyzing your API</h3> -->
                         <!-- <h4 class="text-center"><span class="text-muted testdomain">&#8203;</span></h4> -->
-                        <button class="btn btn-primary" type="button" style="background-color: rgb(2, 92, 122); color: #fff;" disabled>
-                            <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span> -->
+                        <button class="btn opacity-100" type="button" style="background-color:white; color:#025C7a;border:none;" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span>
+                            <!-- <div class="spinner-grow spinner-grow-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div> -->
                             <span id="messageValue" class="mt-4"></span>
                             <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id=""></span> -->
-                            <div class="spinner-grow spinner-grow-sm" role="status">
+                            <!-- <div class="spinner-grow spinner-grow-sm" role="status">
                                 <span class="visually-hidden">Loading...</span>
-                            </div>
+                            </div> -->
                         </button>
                         <!-- <div class="d-none mt-4" id="scantime">
                                                                                                                                             <p class="text-center" style="color: #025c7a;">APIsec Spec Analysis will take approximately 2-3 minutes to
@@ -333,7 +446,7 @@ div#loadingresultfree {
                 
                     <!-- <p class="text-center mt-4 progress-success d-none" id="progress-text"><i class="fa fa-check fa-lg" aria-hidden="true"
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             style="color: #72ba2c"></i> Scan Completed</p> -->
-    </div>
+             </div>
             <div class="row justify-content-between">
                 <div class="col-lg-12 pt-lg-0 order-2 text-center">
                     <div class="d-none" id="loadingresultfree">
@@ -437,13 +550,13 @@ div#loadingresultfree {
                             <ul class="nav nav-tabs my-4" id="myTab" role="tablist">
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
                                     <button class="nav-link active py-4 w-100 font-weight-bold" id="basicInfoTab" data-bs-toggle="tab"
-                                        data-bs-target="#basicInfo" type="button" role="tab" aria-controls="messages" aria-selected="false"
+                                        data-bs-target="#basicInfo" type="button" role="tab" aria-controls="messages" name="Basic" aria-selected="false"
                                         style="color: #025c7a !important;">
                                         Basic Info
                                     </button>
                                 </li>
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
-                                    <button class="nav-link py-4 w-100 font-weight-bold "
+                                    <button class="nav-link py-4 w-100 font-weight-bold " name="param"
                                     id="parametersTab" data-bs-toggle="tab" data-bs-target="#parameters"
                                     type="button" role="tab" aria-controls="profile" aria-selected="false" style="color:#b8b9b9;">
                                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="paramsSpinner"></span>&nbsp;<div class="d-inline-block"> Parameters</div>
@@ -457,7 +570,7 @@ div#loadingresultfree {
                                     </button>
                                 </li> -->
                                 <li class="nav-item position-relative d-flex flex-grow-1" role="presentation">
-                                    <button class="nav-link py-4 w-100 font-weight-bold "
+                                    <button class="nav-link py-4 w-100 font-weight-bold " name="owaspt"
                                         id="owaspTab" data-bs-toggle="tab" data-bs-target="#OWASP" type="button" 
                                         role="tab" aria-controls="home" aria-selected="true"  style="color: #b8b9b9;">
                                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="owaspSpinner"></span>&nbsp;<div class="d-inline-block">OWASP API Test Coverage</div> 
@@ -519,10 +632,10 @@ div#loadingresultfree {
                                             </tr>
                                         </table>
                                     </div>
-                                    <!-- <button class="btn p-0 py-3 h-100 float-lg-right" id="variablesDownloadBtn">
+                                    <button class="btn p-0 py-3 h-100 float-lg-right" id="variablesDownloadBtn">
                                         <i class="fa fa-download rounded-circle  p-2 mx-2" aria-hidden="true" rel="tooltip" title="Download as CSV"></i>
                                         Download as CSV
-                                    </button> -->
+                                    </button>
                                     </div>
                                    
                                 </div>
@@ -587,7 +700,8 @@ div#loadingresultfree {
                                     <td class="defaultData">
                                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
                                             title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
-                                            <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank">Contact
+                                            <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank"
+                                                id="contactSales">Contact
                                                 Sales
                                             </a>&nbsp;<i style="font-size:14px" class="fa fa-external-link"></i>
                                             </span>
