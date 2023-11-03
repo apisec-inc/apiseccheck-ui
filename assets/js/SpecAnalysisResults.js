@@ -946,6 +946,7 @@ $(document).ready(function () {
   }
 
   $("#previousBtn2").click(function (event) {
+    localStorage.removeItem("resultPage");
     window.location.replace("product.html");
   });
 });
