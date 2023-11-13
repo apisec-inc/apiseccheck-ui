@@ -27,7 +27,7 @@ if (s === "http://5.161.99.171:8080") {
   $.ajax({
     url:
       s +
-      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20WKMk",
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20ndIR",
     method: "GET",
     dataType: "json",
     headers: {
@@ -191,7 +191,7 @@ if (s === "http://5.161.99.171:8080") {
   $.ajax({
     url:
       s +
-      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20Ezgr",
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20MgCf",
     method: "GET",
     dataType: "json",
     headers: {
@@ -355,7 +355,7 @@ if (s === "http://5.161.99.171:8080") {
   $.ajax({
     url:
       s +
-      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20MIWH",
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20Kxdx",
     method: "GET",
     dataType: "json",
     headers: {
