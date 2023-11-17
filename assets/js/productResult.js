@@ -1256,15 +1256,15 @@ function runAsampleAPI() {
           );
         }
 
-        if (sixXFuzz === "Passed") {
-          $("#6fuzz").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#6fuzz").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sixXFuzz === "Passed") {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
         if (reflectedGetInjection === "Passed") {
           $("#reflectedget").html(
@@ -1326,15 +1326,15 @@ function runAsampleAPI() {
           );
         }
 
-        if (httpOptions === "Passed") {
-          $("#httpoption").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#httpoption").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (httpOptions === "Passed") {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
         if (corsConfig === "Passed") {
           $("#cors").html(
