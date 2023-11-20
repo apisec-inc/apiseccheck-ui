@@ -355,7 +355,7 @@ if (s === "http://5.161.99.171:8080") {
   $.ajax({
     url:
       s +
-      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20Kxdx",
+      "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20Cigh",
     method: "GET",
     dataType: "json",
     headers: {
