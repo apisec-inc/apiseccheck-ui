@@ -21,7 +21,7 @@ $(document).ready(function () {
   });
 
   $("#contactSales").on("click", function () {
-    mixpanel.track("Contact Sales link clicked");
+    mixpanel.track("Learn More link clicked");
   });
   $("#variablesDownloadBtn").on("click", function () {
     mixpanel.track("Download Variabled link clicked");
