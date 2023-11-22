@@ -102,155 +102,166 @@ $(document).ready(function () {
           $("#apispecification").text(apispecification);
 
         }
-        if (injectionsForEndpoints === "Passed") {
-          $("#injection").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else if (injectionsForEndpoints === "Failed") {
-          $("#injection").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (injectionsForEndpoints === "Passed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else if (injectionsForEndpoints === "Failed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (sixXFuzz === "Passed") {
-          $("#6fuzz").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#6fuzz").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sixXFuzz === "Passed") {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (reflectedGetInjection === "Passed") {
-          $("#reflectedget").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedget").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-        if (
-          reflectedGetInjection == "Passed" ||
-          reflectedPOSTInjection == "Passed"
-        ) {
-          $("#reflectedInject").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else if (
-          reflectedGetInjection == "Failed" &&
-          reflectedPOSTInjection == "Failed"
-        ) {
-          $("#reflectedInject").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedInject").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (reflectedGetInjection === "Passed") {
+        //   $("#reflectedget").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#reflectedget").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+        // if (
+        //   reflectedGetInjection == "Passed" ||
+        //   reflectedPOSTInjection == "Passed"
+        // ) {
+        //   $("#reflectedInject").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else if (
+        //   reflectedGetInjection == "Failed" &&
+        //   reflectedPOSTInjection == "Failed"
+        // ) {
+        //   $("#reflectedInject").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#reflectedInject").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (pii === "Passed") {
-          $("#piiData").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#piiData").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (pii === "Passed") {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (sslCertificateIssues === "Passed") {
-          $("#ssl").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#ssl").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sslCertificateIssues === "Passed") {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (missingTLSHSTSHeaders === "Passed") {
-          $("#missing").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#missing").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (missingTLSHSTSHeaders === "Passed") {
+        //   $("#missing").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#missing").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (serverPropertiesLeakInHeaders === "Passed") {
-          $("#serverprop").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#serverprop").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (serverPropertiesLeakInHeaders === "Passed") {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (httpOptions === "Passed") {
-          $("#httpoption").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#httpoption").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (httpOptions === "Passed") {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (corsConfig === "Passed") {
-          $("#cors").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#cors").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (corsConfig === "Passed") {
+        //   $("#cors").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#cors").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (incrementalIDsForEndpoint === "Passed") {
-          $("#incremental").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#incremental").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (incrementalIDsForEndpoint === "Passed") {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (noAuth === "Passed") {
-          $("#noauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#noauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (noAuth === "Passed") {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (brokenAuthentication === "Passed") {
-          $("#brokenauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#brokenauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (brokenAuthentication === "Passed") {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (basicAuthentication === "Passed") {
-          $("#basicauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#basicauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
+        // if (basicAuthentication === "Passed") {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+       
+        let failedCount = viewResult.data.testSummary.suiteStatsList.failedCount;
+        let passedCount = viewResult.data.testSummary.suiteStatsList.passedCount;
+        $(".test-status").each(function () {
+          let attribute = $(this).attr("name")
+            if(passedCount[attribute]==0)
+              $(this).html(`${failedCount[attribute]} Failed <i class="fa fa-times-circle cross" aria-hidden="true"></i>`);
+            else if(failedCount[attribute]==0)
+              $(this).html(`${passedCount[attribute]} Passed <i class="fa fa-check-circle check" aria-hidden="true"></i>`);
+            else
+             $(this).html(`<div class="pb-1">${passedCount[attribute]} Passed <i class="fa fa-check-circle check" aria-hidden="true"></i></div><div class="pb-1">${failedCount[attribute]} Failed <i class="fa fa-times-circle cross" aria-hidden="true"></i></div>`)
+        });
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");
         $("#indexpageUI").addClass("d-none");
