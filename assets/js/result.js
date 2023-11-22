@@ -256,11 +256,11 @@ $(document).ready(function () {
         $(".test-status").each(function () {
           let attribute = $(this).attr("name")
             if(passedCount[attribute]==0)
-              $(this).html(`${failedCount[attribute]} Failed <i class="fa fa-times-circle cross" aria-hidden="true"></i>`);
+              $(this).html(`<i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed `);
             else if(failedCount[attribute]==0)
-              $(this).html(`${passedCount[attribute]} Passed <i class="fa fa-check-circle check" aria-hidden="true"></i>`);
+              $(this).html(`<i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed `);
             else
-             $(this).html(`<div class="pb-1">${passedCount[attribute]} Passed <i class="fa fa-check-circle check" aria-hidden="true"></i></div><div class="pb-1">${failedCount[attribute]} Failed <i class="fa fa-times-circle cross" aria-hidden="true"></i></div>`)
+             $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
         });
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");
