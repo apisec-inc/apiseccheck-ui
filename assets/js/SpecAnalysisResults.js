@@ -907,6 +907,14 @@ $(document).ready(function () {
             $("#timeout").removeClass("d-none");
             // $("#keyerror1").html(resultData.messages[0].value);
           }
+          else if (testresult.data == "Error occurred during Spec Analysis") {
+            clearInterval(intervalId);
+            $("#loadingresultfree").addClass("d-none");
+            $("#progressIcons").addClass("d-none");
+            $("#ErrorOccured").removeClass("d-none");
+            $('.testresult').addClass("d-none");
+            // $("#keyerror1").html(resultData.messages[0].value);
+          }
           // else {
 
           // }
