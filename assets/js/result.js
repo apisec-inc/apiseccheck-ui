@@ -4,6 +4,9 @@ $(document).ready(function () {
   let url2 = new URL(window.location.href);
   var s = getServer();
   let projectName = url2.searchParams.get("project-name");
+  $("#contactSales").on("click", function () {
+    mixpanel.track("Learn More link clicked");
+  });
   //   console.log(projectName);
   function showResult(projectName) {
     $.ajax({
