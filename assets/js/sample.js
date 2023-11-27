@@ -11,6 +11,9 @@ function runAsampleAPI() {
   // $("#runSample").onload(function (e) {
   //   e.preventDefault();
   $("#errorresult").addClass("d-none");
+  $("#contactSales").on("click", function () {
+    mixpanel.track("Learn More link clicked");
+  });
   if (s == "http://5.161.99.171:8080") {
     $.ajax({
       url:
