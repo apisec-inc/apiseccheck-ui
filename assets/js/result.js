@@ -4,7 +4,6 @@ $(document).ready(function () {
   let url2 = new URL(window.location.href);
   var s = getServer();
   let projectName = url2.searchParams.get("project-name");
-  $("[data-toggle=tooltip]").tooltip({ placement: "right" });
   $("#contactSales").on("click", function () {
     mixpanel.track("Learn More link clicked");
   });
@@ -257,14 +256,37 @@ $(document).ready(function () {
        
         let failedCount = viewResult.data.testSummary.suiteStatsList.failedCount;
         let passedCount = viewResult.data.testSummary.suiteStatsList.passedCount;
+        console.log(failedCount,passedCount)
+        // $(".test-status").each(function () {
+        //   let attribute = $(this).attr("name")
+        //     if(passedCount[attribute]==0)
+        //       $(this).html(`<i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed `);
+        //     else if(failedCount[attribute]==0)
+        //       $(this).html(`<i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed `);
+        //     else
+        //      $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
+        // });
         $(".test-status").each(function () {
-          let attribute = $(this).attr("name")
-            if(passedCount[attribute]==0)
+          let attribute = $(this).attr("ApiRank")
+            if(passedCount[attribute]==0){
               $(this).html(`<i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed `);
-            else if(failedCount[attribute]==0)
+
+            }
+            else if(failedCount[attribute]==0){
               $(this).html(`<i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed `);
-            else
-             $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
+
+            }
+            else if(failedCount[attribute]== undefined && passedCount[attribute]== undefined){
+              $(this).html(` <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+                              title="Tests generated for this OWASP API risk can be executed using APIsec's paid product.">
+                              <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank"
+                              id="contactSales">Learn more</a></span> `);
+
+            }
+            else {
+              $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
+
+            }
         });
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");
@@ -278,6 +300,8 @@ $(document).ready(function () {
         $("#totalEndpoints").text(totalEndpoints);
         $("#testEnvironment").text(testEnvironment);
         $("#overallScore").text(score);
+        $("[data-toggle=tooltip]").tooltip({ placement: "right" });
+
       },
       error: function (xhr, status, error) {
         // Handle any API errors here
