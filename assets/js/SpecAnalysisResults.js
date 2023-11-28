@@ -3,6 +3,7 @@ import { getServer } from "./environment.js";
 $(document).ready(function () {
   let url2 = new URL(window.location.href);
   let projectName = url2.searchParams.get("project-name");
+  $("[data-toggle=tooltip]").tooltip({ placement: "right" });
 
   $("#basicInfoTab").on("click", function () {
     mixpanel.track("Basic Info Tab Clicked");

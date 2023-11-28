@@ -14,6 +14,8 @@ function runAsampleAPI() {
   $("#contactSales").on("click", function () {
     mixpanel.track("Learn More link clicked");
   });
+  $("[data-toggle=tooltip]").tooltip({ placement: "right" });
+
   if (s == "http://5.161.99.171:8080") {
     $.ajax({
       url:
