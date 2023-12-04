@@ -11,10 +11,15 @@ function runAsampleAPI() {
   // $("#runSample").onload(function (e) {
   //   e.preventDefault();
   $("#errorresult").addClass("d-none");
+  $("#contactSales").on("click", function () {
+    mixpanel.track("Learn More link clicked");
+  });
+  $("[data-toggle=tooltip]").tooltip({ placement: "right" });
+
   if (s == "http://5.161.99.171:8080") {
     $.ajax({
       url:
-        s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20bjPH",
+        s + "/api/v1/apiseccheck/results?project-name=Online%20Banking%20REST%20API%20MXyV",
       method: "GET",
       dataType: "json",
       headers: {
@@ -79,15 +84,15 @@ function runAsampleAPI() {
           console.log($(this).find(".fas"));
           $(this).find(".fas").toggleClass("fa-plus fa-minus");
         });
-        if (injectionsForEndpoints === "Passed") {
-          $("#injection").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else if (injectionsForEndpoints === "Failed") {
-          $("#injection").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (injectionsForEndpoints === "Passed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else if (injectionsForEndpoints === "Failed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
         // if (sixXFuzz === "Passed") {
         //   $("#6fuzz").html(
@@ -99,125 +104,138 @@ function runAsampleAPI() {
         //   );
         // }
 
-        if (reflectedGetInjection === "Passed") {
-          $("#reflectedget").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedget").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        if (reflectedPOSTInjection === "Passed") {
-          $("#reflectedpost").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedpost").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        if (pii === "Passed") {
-          $("#piiData").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#piiData").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        if (sslCertificateIssues === "Passed") {
-          $("#ssl").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#ssl").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        if (missingTLSHSTSHeaders === "Passed") {
-          $("#missing").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#missing").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        if (serverPropertiesLeakInHeaders === "Passed") {
-          $("#serverprop").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#serverprop").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
-
-        // if (httpOptions === "Passed") {
-        //   $("#httpoption").html(
+        // if (reflectedGetInjection === "Passed") {
+        //   $("#reflectedget").html(
         //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
         //   );
         // } else {
-        //   $("#httpoption").html(
+        //   $("#reflectedget").html(
         //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
         //   );
         // }
 
-        if (corsConfig === "Passed") {
-          $("#cors").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#cors").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (reflectedPOSTInjection === "Passed") {
+        //   $("#reflectedpost").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#reflectedpost").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (incrementalIDsForEndpoint === "Passed") {
-          $("#incremental").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#incremental").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (pii === "Passed") {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (noAuth === "Passed") {
-          $("#noauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#noauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sslCertificateIssues === "Passed") {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (brokenAuthentication === "Passed") {
-          $("#brokenauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#brokenauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (missingTLSHSTSHeaders === "Passed") {
+        //   $("#missing").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#missing").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (basicAuthentication === "Passed") {
-          $("#basicauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#basicauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (serverPropertiesLeakInHeaders === "Passed") {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        // // if (httpOptions === "Passed") {
+        // //   $("#httpoption").html(
+        // //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        // //   );
+        // // } else {
+        // //   $("#httpoption").html(
+        // //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        // //   );
+        // // }
+
+        // if (corsConfig === "Passed") {
+        //   $("#cors").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#cors").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        // if (incrementalIDsForEndpoint === "Passed") {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        // if (noAuth === "Passed") {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        // if (brokenAuthentication === "Passed") {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        // if (basicAuthentication === "Passed") {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        
+        let failedCount = viewResult.data.testSummary.suiteStatsList.failedCount;
+        let passedCount = viewResult.data.testSummary.suiteStatsList.passedCount;
+        $(".test-status").each(function () {
+          let attribute = $(this).attr("name")
+            if(passedCount[attribute]==0)
+              $(this).html(`<i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed `);
+            else if(failedCount[attribute]==0)
+              $(this).html(`<i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed `);
+            else
+             $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
+        });
 
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");
@@ -291,7 +309,7 @@ function runAsampleAPI() {
   } else if (s == "https://backend.apisecfree-stg-ui.apisec.ai") {
     $.ajax({
       url:
-        s + "/api/v1/apiseccheck/results?project-name=Online Banking%20REST%20API%20jDir",
+        s + "/api/v1/apiseccheck/results?project-name=Online Banking%20REST%20API%20yrlJ",
       method: "GET",
       dataType: "json",
       headers: {
@@ -356,145 +374,157 @@ function runAsampleAPI() {
           console.log($(this).find(".fas"));
           $(this).find(".fas").toggleClass("fa-plus fa-minus");
         });
-        if (injectionsForEndpoints === "Passed") {
-          $("#injection").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else if (injectionsForEndpoints === "Failed") {
-          $("#injection").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (injectionsForEndpoints === "Passed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else if (injectionsForEndpoints === "Failed") {
+        //   $("#injection").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (sixXFuzz === "Passed") {
-          $("#6fuzz").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#6fuzz").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sixXFuzz === "Passed") {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#6fuzz").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (reflectedGetInjection === "Passed") {
-          $("#reflectedget").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedget").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (reflectedGetInjection === "Passed") {
+        //   $("#reflectedget").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#reflectedget").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (reflectedPOSTInjection === "Passed") {
-          $("#reflectedpost").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#reflectedpost").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (reflectedPOSTInjection === "Passed") {
+        //   $("#reflectedpost").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#reflectedpost").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (pii === "Passed") {
-          $("#piiData").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#piiData").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (pii === "Passed") {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#piiData").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (sslCertificateIssues === "Passed") {
-          $("#ssl").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#ssl").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (sslCertificateIssues === "Passed") {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#ssl").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (missingTLSHSTSHeaders === "Passed") {
-          $("#missing").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#missing").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (missingTLSHSTSHeaders === "Passed") {
+        //   $("#missing").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#missing").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (serverPropertiesLeakInHeaders === "Passed") {
-          $("#serverprop").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#serverprop").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (serverPropertiesLeakInHeaders === "Passed") {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#serverprop").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (httpOptions === "Passed") {
-          $("#httpoption").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#httpoption").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (httpOptions === "Passed") {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#httpoption").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (corsConfig === "Passed") {
-          $("#cors").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#cors").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (corsConfig === "Passed") {
+        //   $("#cors").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#cors").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (incrementalIDsForEndpoint === "Passed") {
-          $("#incremental").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#incremental").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (incrementalIDsForEndpoint === "Passed") {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#incremental").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (noAuth === "Passed") {
-          $("#noauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#noauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (noAuth === "Passed") {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#noauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (brokenAuthentication === "Passed") {
-          $("#brokenauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#brokenauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (brokenAuthentication === "Passed") {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#brokenauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
 
-        if (basicAuthentication === "Passed") {
-          $("#basicauth").html(
-            '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
-          );
-        } else {
-          $("#basicauth").html(
-            '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
-          );
-        }
+        // if (basicAuthentication === "Passed") {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-check-circle check" aria-hidden="true"></i>'
+        //   );
+        // } else {
+        //   $("#basicauth").html(
+        //     '<i class="fa fa-times-circle cross" aria-hidden="true"></i>'
+        //   );
+        // }
+
+        let failedCount = viewResult.data.testSummary.suiteStatsList.failedCount;
+        let passedCount = viewResult.data.testSummary.suiteStatsList.passedCount;
+        $(".test-status").each(function () {
+          let attribute = $(this).attr("name")
+            if(passedCount[attribute]==0)
+              $(this).html(`<i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed `);
+            else if(failedCount[attribute]==0)
+              $(this).html(`<i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed `);
+            else
+             $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
+        });
 
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");

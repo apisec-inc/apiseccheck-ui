@@ -693,11 +693,26 @@ $(document).ready(function () {
           for (let i = 0; i < sortedCategory[ele].length; i++) {
             totalCount += sortedCategory[ele][i]["count"];
           }
-          totalCountArray.push(totalCount);
-        }
+         $(".test-count").each(function (e) {
+           if($(this).attr('ApiRank') == ele){
+             $(this).html(totalCount);
+          }
+        });   
+      }
         $(".test-count").each(function (e) {
-          $(this).html(totalCountArray[e]);
+          if($(this).html().trim() === ""){
+              $(this).html(` <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
+              title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
+              <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank">Learn more
+              </a>
+              </span>`)
+          }
         });
+        // $(".test-count").each(function (e) {
+        //   $(this).html(totalCountArray[e]);
+        // });
+        $("[data-toggle=tooltip]").tooltip({ placement: "right" });
+
       },
     });
   }
@@ -905,6 +920,14 @@ $(document).ready(function () {
             $("#loadingresultfree").addClass("d-none");
             $("#progressIcons").addClass("d-none");
             $("#timeout").removeClass("d-none");
+            // $("#keyerror1").html(resultData.messages[0].value);
+          }
+          else if (testresult.data == "Error occurred during Spec Analysis") {
+            clearInterval(intervalId);
+            $("#loadingresultfree").addClass("d-none");
+            $("#progressIcons").addClass("d-none");
+            $("#ErrorOccured").removeClass("d-none");
+            $('.testresult').addClass("d-none");
             // $("#keyerror1").html(resultData.messages[0].value);
           }
           // else {
