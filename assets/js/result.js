@@ -4,9 +4,9 @@ $(document).ready(function () {
   let url2 = new URL(window.location.href);
   var s = getServer();
   let projectName = url2.searchParams.get("project-name");
-  $("#contactSales").on("click", function () {
-    mixpanel.track("Learn More link clicked");
-  });
+  // $("#contactSales").on("click", function () {
+  //   mixpanel.track("Learn More link clicked");
+  // });
   //   console.log(projectName);
   function showResult(projectName) {
     $.ajax({
@@ -287,6 +287,9 @@ $(document).ready(function () {
               $(this).html(`<div class="pb-1"><i class="fa fa-check-circle check" aria-hidden="true"></i> ${passedCount[attribute]} Passed </div><div class="pb-1"><i class="fa fa-times-circle cross" aria-hidden="true"></i> ${failedCount[attribute]} Failed </div>`)
 
             }
+        });
+        $(".test-status #contactSales").on("click", function () {
+          mixpanel.track("Learn More link clicked");
         });
         $("#indexpageUI").hide().html();
         $("#indexpageUI").hide().html("#resultPageOnUI");
