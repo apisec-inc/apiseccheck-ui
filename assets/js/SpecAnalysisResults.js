@@ -703,7 +703,7 @@ $(document).ready(function () {
           if($(this).html().trim() === ""){
               $(this).html(` <span class="d-inline-block" tabindex="0" data-toggle="tooltip"
               title="Test coverage for this OWASP API Risk can be auto-generated using APIsec's paid product">
-              <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank">Learn more
+              <a href="https://www.apisec.ai/contact" style="color: #025C7a; text-decoration: underline;" target="_blank" id="contactSales">Learn more
               </a>
               </span>`)
           }
@@ -712,7 +712,9 @@ $(document).ready(function () {
         //   $(this).html(totalCountArray[e]);
         // });
         $("[data-toggle=tooltip]").tooltip({ placement: "right" });
-
+        $(".test-count #contactSales").on("click", function () {
+          mixpanel.track("Learn More link clicked");
+        });
       },
     });
   }
